@@ -10,7 +10,7 @@ html {
   height: 100%;
   position: relative;
   background-color: rgb(243, 243, 243);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 li {

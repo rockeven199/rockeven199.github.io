@@ -10,6 +10,7 @@ html {
   height: 100%;
   position: relative;
   background-color: rgb(243, 243, 243);
+  overflow: hidden;
 }
 
 li {
@@ -27,6 +28,9 @@ a {
   background-size: cover;
   position: relative;
   background-attachment: fixed;
+}
+.header .nav-menu {
+  display: none;
 }
 .header .header-nav {
   padding: 15px 0px;
@@ -74,6 +78,9 @@ a {
   width: 75%;
   height: 100%;
 }
+.article article .hr {
+  display: none;
+}
 .article article .article-main {
   width: calc(100% - 10px);
   margin: 10px 5px;
@@ -88,13 +95,18 @@ a {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 18px;
   font-weight: bold;
   color: rgba(24, 24, 24, 0.77);
 }
+.article article .article-main .article-header .pub-author {
+  font-size: 18px;
+}
+.article article .article-main .article-header .pub-time {
+  font-size: 18px;
+}
 .article article .article-main .article-title {
   width: 80%;
-  margin: 0px 10%;
+  margin: 0px calc(10% - 3px);
   font-size: 25px;
   padding: 20px 0px 10px 20px;
   color: rgba(24, 24, 24, 0.77);
@@ -102,20 +114,33 @@ a {
 }
 .article article .article-main .article-about {
   width: 80%;
-  margin: 0px 10%;
-  padding: 0px 0px 20px 20px;
+  margin: 20px 10% 20px 10%;
+  padding-left: 20px;
 }
 .article article .article-main .article-about .about-title {
+  font-size: 15px;
   color: white;
   padding: 3px 6px;
-  border-radius: 2px;
   background-color: rgba(0, 0, 0, 0.647);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 .article article .article-main .article-about .about-link {
+  font-size: 15px;
   cursor: default;
   padding: 3px 6px;
   color: white;
   background-color: rgb(17, 124, 191);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.article article .article-main .article-about .about-tag {
+  font-size: 15px;
+  padding: 3px 6px;
+  color: white;
+  background-color: rgba(11, 153, 65, 0.803);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .article article .article-main .article-content {
   display: flex;
@@ -123,7 +148,7 @@ a {
   width: 80%;
   background-color: rgba(233, 233, 233, 0.368);
   height: 100%;
-  font-size: 18px;
+  font-size: 20px;
   word-break: break-all;
   padding: 20px;
 }
@@ -135,8 +160,33 @@ a {
   width: calc(100% - 10px);
   height: calc(100% - 20px);
   margin: 10px 5px;
+  display: flex;
+  flex-direction: column;
+}
+.article aside .aside .notice {
+  height: 50%;
+  width: 70%;
+}
+.article aside .aside .notice .notice-title {
+  width: calc(100% - 20px);
+  display: flex;
+  align-items: center;
+  padding: 25px 0px 25px 25px;
+  justify-content: flex-start;
+  color: rgba(24, 24, 24, 0.77);
+  font-weight: 600;
+  font-size: 18px;
+}
+.article aside .aside .notice .notice-content {
+  width: 100%;
+  margin-left: 30px;
+  font-size: 14px;
+  color: rgba(24, 24, 24, 0.77);
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(189, 189, 189, 0.481);
 }
 .article aside .aside .tag {
+  height: 50%;
   width: 70%;
 }
 .article aside .aside .tag .tag-title {
@@ -161,9 +211,164 @@ a {
   padding: 4px 10px;
   margin: 5px 10px;
   float: left;
-  font-size: 16px;
+  font-size: 12px;
 }
 .article aside .aside .tag .article-tag .item-tag a {
   color: rgba(24, 24, 24, 0.623);
   cursor: default;
+}
+.article aside .aside .tag .article-tag .item-tag:hover {
+  background-color: rgba(24, 24, 24, 0.623);
+}
+.article aside .aside .tag .article-tag .item-tag:hover a {
+  color: rgb(226, 226, 226);
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px) and (min-height: 600px) and (max-height: 800px) {
+  .header {
+    background-size: 100% 100%;
+  }
+  .header .nav-menu {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+  }
+  .header .header-nav {
+    padding: 5px 0 !important;
+    width: 30%;
+    position: absolute;
+    transform: translateX(100%);
+  }
+  .header .header-nav .header-nav-group {
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+  }
+  .header .header-nav .header-nav-group .nav-items {
+    font-size: 10px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .header .blog-title {
+    font-size: 25px;
+  }
+  .header .nav-menu {
+    width: 30px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  aside {
+    display: none;
+  }
+  .article article {
+    width: 100% !important;
+  }
+  .article article .hr {
+    display: block;
+  }
+  .article article .article-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10% 0;
+  }
+  .article article .article-main .article-title {
+    display: flex;
+    justify-content: center;
+    padding: 0 !important;
+    font-size: 18px;
+    justify-content: flex-start;
+  }
+  .article article .article-main .about-link {
+    font-size: 5px;
+  }
+  .article article .article-main .about-tag {
+    font-size: 5px;
+  }
+  .article article .article-main .article-header {
+    padding-left: 36px;
+    width: calc(100% - 36px);
+    margin: 0;
+  }
+  .article article .article-main .article-header .pub-author {
+    font-size: 14px;
+    justify-content: flex-start;
+    margin: 2px 0;
+  }
+  .article article .article-main .article-header .pub-time {
+    font-size: 14px;
+  }
+  .article article .article-main .article-header .point {
+    margin: 3px !important;
+  }
+  .article article .article-main .article-content {
+    margin: 10px 0px 20px 0;
+    width: 90%;
+    padding: 10px 5px 0 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+  }
+  .article article .article-main .article-about {
+    padding: 0;
+    line-height: 25px;
+  }
+  .article article .article-main .article-about .about-link {
+    font-size: 10px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .article article .article-main .article-about .about-tag {
+    font-size: 10px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .article article .article-main .article-about .about-title {
+    font-size: 10px;
+    border-top-left-radius: 3;
+    border-bottom-left-radius: 3px;
+  }
+}
+.github-corner:hover .octo-arm {
+  -webkit-animation: octocat-wave 560ms ease-in-out;
+          animation: octocat-wave 560ms ease-in-out;
+}
+
+@-webkit-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    -webkit-animation: none;
+            animation: none;
+  }
+  .github-corner .octo-arm {
+    -webkit-animation: octocat-wave 560ms ease-in-out;
+            animation: octocat-wave 560ms ease-in-out;
+  }
 }/*# sourceMappingURL=index.css.map */

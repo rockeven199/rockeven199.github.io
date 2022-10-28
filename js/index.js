@@ -10,14 +10,26 @@ function outEle(outEle) {
 
 
 // aside
-
-$(".nav-menu").click(()=>{
-    $(".header-nav").css("transform","translateX(0)")
-})
+window.onload = () => {
+    var phoneMenuStatus = false;
+    $(".nav-menu").click(() => {
+        if (phoneMenuStatus == false) {
+            $(".header-nav").css("transform", "translateX(0)").css("transition","all 0.7s");
+            phoneMenuStatus = true;
+            // test log
+            console.log(phoneMenuStatus)
+        } else {
+            $(".header-nav").css("transform", "translateX(100%)").css("transition","all 0.7s");
+            //test log
+            phoneMenuStatus = false;
+            console.log(phoneMenuStatus)
+        }
+    })
+}
 
 //自适应
 
-window.onload = () => {
+window.onresize = () => {
     if (($(window).width() >= 360 && $(window).width() <= 500) && ($(window).height() >= 600 && $(window).height() <= 800)) {
 
     }

@@ -10,7 +10,7 @@ html {
   height: 100%;
   position: relative;
   background-color: rgb(243, 243, 243);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 li {
@@ -33,6 +33,7 @@ a {
   display: none;
 }
 .header .header-nav {
+  top: -5px;
   padding: 15px 0px;
   position: absolute;
   z-index: 2;
@@ -41,6 +42,7 @@ a {
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.207);
+  transition: all 0.5s;
 }
 .header .header-nav .header-nav-group {
   width: 100%;
@@ -146,11 +148,12 @@ a {
   display: flex;
   margin: 0px calc(10% + 20px);
   width: 80%;
-  background-color: rgba(233, 233, 233, 0.368);
+  background-color: rgba(195, 195, 195, 0.203);
   height: 100%;
   font-size: 20px;
   word-break: break-all;
   padding: 20px;
+  align-items: center;
 }
 .article aside {
   width: 25%;
@@ -180,9 +183,10 @@ a {
 .article aside .aside .notice .notice-content {
   width: 100%;
   margin-left: 30px;
+  margin-bottom: 10px;
   font-size: 14px;
   color: rgba(24, 24, 24, 0.77);
-  padding-bottom: 5px;
+  padding-bottom: 2.5px;
   border-bottom: 1px solid rgba(189, 189, 189, 0.481);
 }
 .article aside .aside .tag {
@@ -193,7 +197,7 @@ a {
   width: calc(100% - 20px);
   display: flex;
   align-items: center;
-  padding: 25px 0px 25px 20px;
+  padding: 25px 0px 25px 25px;
   justify-content: flex-start;
   color: rgba(24, 24, 24, 0.77);
   font-weight: 600;
@@ -224,11 +228,25 @@ a {
   color: rgb(226, 226, 226);
 }
 
-@media screen and (min-width: 300px) and (max-width: 500px) and (min-height: 600px) and (max-height: 800px) {
+.footer {
+  background-color: rgb(50, 50, 50);
+  color: white;
+  width: 100%;
+  padding: 20px 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 450px) {
   .header {
-    background-size: 100% 100%;
+    background-color: 100% 100%;
   }
   .header .nav-menu {
+    width: 40px !important;
+    height: 40px !important;
     display: block;
     position: absolute;
     top: 0;
@@ -244,12 +262,14 @@ a {
   .header .header-nav .header-nav-group {
     display: flex;
     flex-direction: column;
-    line-height: 20px;
+    line-height: 15px;
   }
   .header .header-nav .header-nav-group .nav-items {
-    font-size: 10px !important;
-    padding: 0px !important;
+    font-size: 14px !important;
+    padding: 3px 0px !important;
     margin: 0px !important;
+    line-height: 30px !important;
+    background-color: rgba(255, 255, 255, 0.095);
   }
   .header .blog-title {
     font-size: 25px;
@@ -271,12 +291,15 @@ a {
     display: block;
   }
   .article article .article-main {
+    width: calc(100% - 40px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10% 0;
+    padding: 4% 0;
+    margin: 0 20px;
   }
   .article article .article-main .article-title {
+    width: 90%;
     display: flex;
     justify-content: center;
     padding: 0 !important;
@@ -289,9 +312,13 @@ a {
   .article article .article-main .about-tag {
     font-size: 5px;
   }
+  .article article .article-main .article-about {
+    width: 90%;
+    margin: 5% 0;
+  }
   .article article .article-main .article-header {
-    padding-left: 36px;
-    width: calc(100% - 36px);
+    padding-left: 10%;
+    width: 100%;
     margin: 0;
   }
   .article article .article-main .article-header .pub-author {
@@ -308,7 +335,6 @@ a {
   .article article .article-main .article-content {
     margin: 10px 0px 20px 0;
     width: 90%;
-    padding: 10px 5px 0 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -332,6 +358,16 @@ a {
     font-size: 10px;
     border-top-left-radius: 3;
     border-bottom-left-radius: 3px;
+  }
+  .footer {
+    background-color: rgb(50, 50, 50);
+    color: white;
+    width: 100%;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 12px;
   }
 }
 .github-corner:hover .octo-arm {

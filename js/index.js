@@ -4,22 +4,17 @@ window.onload = function () {
         var phoneMenuStatus = false;
         $(".nav-menu").on('click', function () {
             if (phoneMenuStatus === false) {
+                $(".nav-menu").css("transform", "rotate(-270deg)").css("transition", "all 0.5s");
                 $(".header-nav").css("transform", "translateX(0)");
                 phoneMenuStatus = true;
             } else {
-                $(".header-nav").css("transform", "translateX(100%)");
+                $(".header-nav").css("transform", "translateY(-100%)");
+                $(".nav-menu").css("transform", "rotate(-180deg)").css("transition", "all 0.5s");
                 phoneMenuStatus = false;
             }
         })
     }
     aside();
-
-
-    //手机端自适应
-    window.onresize = () => {
-        if (($(window).width() >= 360 && $(window).width() <= 500) && ($(window).height() >= 600 || $(window).height() <= 800)) {
-        }
-    }
 
     //打字机特效插件
     var options = {
@@ -64,7 +59,7 @@ window.onload = function () {
         </div>
         <div class="article-about">
         <span class="about-title">Open Source</span><a class="about-link" href="">Github</a>
-        <span class="about-title">Home</span><a class="about-link" href="">Rockeven199</a>
+        <span class="about-title">Home</span><a class="about-link" href="">123</a>
         <span class="about-title">Tag</span><a class="about-tag" href="">Other</a>
         </div>
         <div class="article-content">${articleContent}</div>
@@ -81,7 +76,19 @@ window.onload = function () {
     // 渲染
     var temp = ejs.render('<%- tempHtml %>', { tempHtml });
     $(".article-section").html(temp);
-    
-    // 页脚设置
-    $(".footer").css("marginTop", $(document).height() * 0.5)
+
+
+    // 适配
+    var winH = $(window).height();
+    var winW = $(window).width();
+    //w:360-647,h:647-800
+    if ((winW >= 360 && winW <= 450) && (winH >= 647 && winH <= 800)) {
+        $(".footer").css("marginTop", winH* 1.45 - $("footer").height() + "px")
+        $(".footer p").css("fontSize", "10px");
+        $(".footer").css("padding", "3px");
+    }
+    if ((winW >= 1500 && winW <= 1920)) {
+        $(".footer").css("marginTop", winH * 1.3 - $("footer").height() + "px")
+    }
+    // alert(docH)
 }

@@ -93,7 +93,7 @@ window.onload = function () {
 
     setTimeout(() => {
         renderHtml()
-    }, 1000);
+    }, 600);
 
     // 适配
     var winH = $(window).height();

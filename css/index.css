@@ -1,7 +1,3 @@
-html {
-  filter: grayscale(100%);
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -195,7 +191,8 @@ a {
 }
 .page-content .article aside {
   width: 25%;
-  height: 100%;
+  height: 90%;
+  margin-top: 10%;
 }
 .page-content .article aside .aside {
   width: calc(100% - 10px);
@@ -225,7 +222,7 @@ a {
   font-size: 14px;
   color: rgba(24, 24, 24, 0.77);
   padding-bottom: 2.5px;
-  border-bottom: 1px solid rgba(189, 189, 189, 0.481);
+  border-bottom: 1px solid rgba(31, 31, 31, 0.481);
 }
 .page-content .article aside .aside .tag {
   height: 50%;
@@ -300,7 +297,7 @@ a {
     z-index: 3;
   }
   .page-header .header .header-nav {
-    padding: 5px 0 !important;
+    padding: 0 !important;
     width: 30%;
     position: absolute;
     transform: translateY(-100%);
@@ -315,20 +312,40 @@ a {
     padding: 3px 0px !important;
     margin: 0px !important;
     line-height: 30px !important;
-    background-color: rgba(255, 255, 255, 0.284);
+    background-color: rgba(255, 255, 255, 0.559);
+  }
+  .page-header .header .header-nav .header-nav-group .nav-items a {
+    color: rgb(30, 30, 30);
   }
   .page-header .header .blog-title {
     font-size: 25px;
   }
   .page-header .header .nav-menu {
-    width: 30px;
-    height: 35px;
+    width: 25px !important;
+    height: 25px !important;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
+  }
+  .page-content {
+    position: relative;
+    width: 100%;
   }
   .page-content aside {
     display: none;
+    border: 1px solid white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100% !important;
+    background-color: rgba(232, 186, 129, 0.574);
+    z-index: 3;
+  }
+  .page-content aside .tag {
+    width: 100% !important;
+  }
+  .page-content aside .notice {
+    width: 100% !important;
   }
   .page-content .article article {
     width: 100% !important;
@@ -343,6 +360,7 @@ a {
     align-items: center;
     padding: 4% 0;
     margin: 0 20px;
+    border-bottom: 1px solid black;
   }
   .page-content .article article .article-main .article-title {
     width: 90%;
@@ -386,6 +404,7 @@ a {
     justify-content: flex-start;
     align-items: center;
     font-size: 15px;
+    background-color: rgb(236, 236, 236);
   }
   .page-content .article article .article-main .article-about {
     padding: 0;
@@ -424,6 +443,7 @@ a {
     justify-content: center;
     display: flex;
     font-size: 14px;
+    margin-top: 10px;
   }
 }
 .github-corner:hover .octo-arm {

@@ -1,7 +1,3 @@
-html {
-  filter: grayscale(100%);
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -11,9 +7,24 @@ body,
 html {
   width: 100%;
   height: 100%;
-  position: relative;
   background-color: rgb(243, 243, 243);
-  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(79, 79, 79, 0.6);
+  border-radius: 6px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(25, 25, 25, 0.6);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: rgba(25, 25, 25, 0);
 }
 
 li {
@@ -25,18 +36,22 @@ a {
   color: white;
 }
 
-.header {
-  background-image: url("../img/161229155190231137135-20221007224453.webp");
+.page-header {
+  width: 100%;
   height: 60%;
+}
+.page-header .header {
+  background-image: url("../img/161229155190231137135-20221007224453.webp");
+  height: 100%;
   background-size: cover;
   position: relative;
   transition: all 1s;
 }
-.header .nav-menu {
+.page-header .header .nav-menu {
   display: none;
   transform: rotate(-180deg);
 }
-.header .header-nav {
+.page-header .header .header-nav {
   top: -5px;
   padding: 15px 0px;
   position: absolute;
@@ -48,12 +63,12 @@ a {
   background-color: rgba(0, 0, 0, 0.207);
   transition: all 0.5s;
 }
-.header .header-nav .header-nav-group {
+.page-header .header .header-nav .header-nav-group {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.header .header-nav .header-nav-group .nav-items {
+.page-header .header .header-nav .header-nav-group .nav-items {
   justify-content: center;
   width: 100%;
   display: flex;
@@ -62,7 +77,7 @@ a {
   font-size: 18px;
   cursor: default;
 }
-.header .blog-title {
+.page-header .header .blog-title {
   width: 100%;
   height: 60%;
   color: rgba(255, 255, 255, 0.797);
@@ -75,24 +90,27 @@ a {
   letter-spacing: 1px;
 }
 
-.article {
+.page-content {
+  width: 100%;
+}
+.page-content .article {
   width: 100%;
   height: 100%;
   display: flex;
 }
-.article article {
+.page-content .article article {
   width: 75%;
   height: 100%;
 }
-.article article .hr {
+.page-content .article article .hr {
   display: none;
 }
-.article article .article-main {
+.page-content .article article .article-main {
   width: calc(100% - 10px);
   margin: 10px 5px;
   padding: 10px 0px;
 }
-.article article .article-main .article-header {
+.page-content .article article .article-main .article-header {
   width: calc(80% - 20px);
   height: 5%;
   margin: auto;
@@ -104,13 +122,13 @@ a {
   font-weight: bold;
   color: rgba(24, 24, 24, 0.77);
 }
-.article article .article-main .article-header .pub-author {
+.page-content .article article .article-main .article-header .pub-author {
   font-size: 18px;
 }
-.article article .article-main .article-header .pub-time {
+.page-content .article article .article-main .article-header .pub-time {
   font-size: 18px;
 }
-.article article .article-main .article-title {
+.page-content .article article .article-main .article-title {
   width: 80%;
   margin: 0px calc(10% - 3px);
   font-size: 25px;
@@ -118,20 +136,24 @@ a {
   color: rgba(24, 24, 24, 0.77);
   font-weight: 600;
 }
-.article article .article-main .article-about {
+.page-content .article article .article-main .article-about {
   width: 80%;
   margin: 20px 10% 20px 10%;
   padding-left: 20px;
 }
-.article article .article-main .article-about .about-title {
+.page-content .article article .article-main .article-about .article-header-about-tag {
+  padding: 5px;
+  display: inline-flex;
+}
+.page-content .article article .article-main .article-about .article-header-about-tag .about-title {
   font-size: 15px;
   color: white;
   padding: 3px 6px;
-  background-color: rgba(0, 0, 0, 0.647);
+  background-color: rgba(0, 0, 0, 0.69);
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.article article .article-main .article-about .about-link {
+.page-content .article article .article-main .article-about .article-header-about-tag .about-link {
   font-size: 15px;
   cursor: default;
   padding: 3px 6px;
@@ -140,7 +162,7 @@ a {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.article article .article-main .article-about .about-tag {
+.page-content .article article .article-main .article-about .article-header-about-tag .about-object {
   font-size: 15px;
   padding: 3px 6px;
   color: white;
@@ -148,7 +170,15 @@ a {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.article article .article-main .article-content {
+.page-content .article article .article-main .article-about .article-header-about-tag .about-tag {
+  font-size: 15px;
+  padding: 3px 6px;
+  color: white;
+  background-color: rgb(12, 177, 106);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.page-content .article article .article-main .article-content {
   display: flex;
   margin: 0px calc(10% + 20px);
   width: 80%;
@@ -159,22 +189,22 @@ a {
   padding: 20px;
   align-items: center;
 }
-.article aside {
+.page-content .article aside {
   width: 25%;
   height: 100%;
 }
-.article aside .aside {
+.page-content .article aside .aside {
   width: calc(100% - 10px);
   height: calc(100% - 20px);
   margin: 10px 5px;
   display: flex;
   flex-direction: column;
 }
-.article aside .aside .notice {
+.page-content .article aside .aside .notice {
   height: 50%;
   width: 70%;
 }
-.article aside .aside .notice .notice-title {
+.page-content .article aside .aside .notice .notice-title {
   width: calc(100% - 20px);
   display: flex;
   align-items: center;
@@ -184,7 +214,7 @@ a {
   font-weight: 600;
   font-size: 18px;
 }
-.article aside .aside .notice .notice-content {
+.page-content .article aside .aside .notice .notice-content {
   width: 100%;
   margin-left: 30px;
   margin-bottom: 10px;
@@ -193,11 +223,11 @@ a {
   padding-bottom: 2.5px;
   border-bottom: 1px solid rgba(189, 189, 189, 0.481);
 }
-.article aside .aside .tag {
+.page-content .article aside .aside .tag {
   height: 50%;
   width: 70%;
 }
-.article aside .aside .tag .tag-title {
+.page-content .article aside .aside .tag .tag-title {
   width: calc(100% - 20px);
   display: flex;
   align-items: center;
@@ -207,11 +237,11 @@ a {
   font-weight: 600;
   font-size: 18px;
 }
-.article aside .aside .tag .article-tag {
+.page-content .article aside .aside .tag .article-tag {
   width: calc(100% - 20px);
   margin-left: 20px;
 }
-.article aside .aside .tag .article-tag .item-tag {
+.page-content .article aside .aside .tag .article-tag .item-tag {
   display: block;
   text-align: center;
   border-radius: 20px;
@@ -221,38 +251,42 @@ a {
   float: left;
   font-size: 12px;
 }
-.article aside .aside .tag .article-tag .item-tag a {
+.page-content .article aside .aside .tag .article-tag .item-tag a {
   color: rgba(24, 24, 24, 0.623);
   cursor: default;
 }
-.article aside .aside .tag .article-tag .item-tag:hover {
+.page-content .article aside .aside .tag .article-tag .item-tag:hover {
   background-color: rgba(24, 24, 24, 0.623);
 }
-.article aside .aside .tag .article-tag .item-tag:hover a {
+.page-content .article aside .aside .tag .article-tag .item-tag:hover a {
   color: rgb(226, 226, 226);
 }
 
-.footer {
+.page-footer .footer {
   background-color: rgb(50, 50, 50);
   color: white;
   width: 100%;
+  height: 10%;
   padding: 20px 0;
   justify-content: center;
   align-items: center;
   display: flex;
   letter-spacing: 0.5px;
-  flex-direction: column;
 }
-.footer p {
+.page-footer .footer p {
   font-size: 16px;
 }
 
 @media screen and (min-width: 300px) and (max-width: 450px) {
-  .header {
-    background-size: cover;
-    height: 40%;
+  .page-header {
+    width: 100%;
+    height: 60%;
   }
-  .header .nav-menu {
+  .page-header .header {
+    background-size: cover;
+    height: 100%;
+  }
+  .page-header .header .nav-menu {
     width: 30px !important;
     height: 40px !important;
     display: block;
@@ -261,44 +295,44 @@ a {
     right: 0;
     z-index: 3;
   }
-  .header .header-nav {
+  .page-header .header .header-nav {
     padding: 5px 0 !important;
     width: 30%;
     position: absolute;
     transform: translateY(-100%);
   }
-  .header .header-nav .header-nav-group {
+  .page-header .header .header-nav .header-nav-group {
     display: flex;
     flex-direction: column;
     line-height: 15px;
   }
-  .header .header-nav .header-nav-group .nav-items {
+  .page-header .header .header-nav .header-nav-group .nav-items {
     font-size: 14px !important;
     padding: 3px 0px !important;
     margin: 0px !important;
     line-height: 30px !important;
     background-color: rgba(255, 255, 255, 0.284);
   }
-  .header .blog-title {
+  .page-header .header .blog-title {
     font-size: 25px;
   }
-  .header .nav-menu {
+  .page-header .header .nav-menu {
     width: 30px;
     height: 35px;
     position: absolute;
     top: 0;
     right: 0;
   }
-  aside {
+  .page-content aside {
     display: none;
   }
-  .article article {
+  .page-content .article article {
     width: 100% !important;
   }
-  .article article .hr {
+  .page-content .article article .hr {
     display: block;
   }
-  .article article .article-main {
+  .page-content .article article .article-main {
     width: calc(100% - 40px);
     display: flex;
     flex-direction: column;
@@ -306,7 +340,7 @@ a {
     padding: 4% 0;
     margin: 0 20px;
   }
-  .article article .article-main .article-title {
+  .page-content .article article .article-main .article-title {
     width: 90%;
     display: flex;
     justify-content: center;
@@ -314,33 +348,34 @@ a {
     font-size: 18px;
     justify-content: flex-start;
   }
-  .article article .article-main .about-link {
+  .page-content .article article .article-main .about-link {
     font-size: 5px;
   }
-  .article article .article-main .about-tag {
+  .page-content .article article .article-main .about-tag {
     font-size: 5px;
+    padding: 0px !important;
   }
-  .article article .article-main .article-about {
+  .page-content .article article .article-main .article-about {
     width: 90%;
     margin: 5% 0;
   }
-  .article article .article-main .article-header {
+  .page-content .article article .article-main .article-header {
     padding-left: 10%;
     width: 100%;
     margin: 0;
   }
-  .article article .article-main .article-header .pub-author {
+  .page-content .article article .article-main .article-header .pub-author {
     font-size: 14px;
     justify-content: flex-start;
     margin: 2px 0;
   }
-  .article article .article-main .article-header .pub-time {
+  .page-content .article article .article-main .article-header .pub-time {
     font-size: 14px;
   }
-  .article article .article-main .article-header .point {
+  .page-content .article article .article-main .article-header .point {
     margin: 3px !important;
   }
-  .article article .article-main .article-content {
+  .page-content .article article .article-main .article-content {
     margin: 10px 0px 20px 0;
     width: 90%;
     display: flex;
@@ -348,26 +383,35 @@ a {
     align-items: center;
     font-size: 15px;
   }
-  .article article .article-main .article-about {
+  .page-content .article article .article-main .article-about {
     padding: 0;
     line-height: 25px;
   }
-  .article article .article-main .article-about .about-link {
-    font-size: 10px;
+  .page-content .article article .article-main .article-about .about-link {
+    display: flex;
+    align-items: center;
+    font-size: 10px !important;
+    padding: 0px 5px 0px 5px !important;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
-  .article article .article-main .article-about .about-tag {
-    font-size: 10px;
+  .page-content .article article .article-main .article-about .about-tag {
+    padding: 0px 5px 0px 5px !important;
+    display: flex;
+    align-items: center;
+    font-size: 10px !important;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
-  .article article .article-main .article-about .about-title {
-    font-size: 10px;
+  .page-content .article article .article-main .article-about .about-title {
+    display: flex;
+    align-items: center;
+    padding: 0px 5px 0px 5px !important;
+    font-size: 10px !important;
     border-top-left-radius: 3;
     border-bottom-left-radius: 3px;
   }
-  .footer {
+  .page-content .footer {
     background-color: rgb(50, 50, 50);
     color: white;
     width: 100%;

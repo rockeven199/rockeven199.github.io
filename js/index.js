@@ -40,13 +40,26 @@ window.onload = function () {
     //获取文章总数
     var listlen = listRes.length;
     var tempHtml = "";
-    var tempBlank = "";
+    var temptempHTML = ``
 
-    for (a = 0; a < listlen; a++) {
+    for (var a = 0; a < listlen; a++) {
         var pubDate = listRes[a].pubDate;
         var pubAuthor = listRes[a].authorName;
         var articleTitle = listRes[a].articleTitle;
         var articleContent = listRes[a].articleContent;
+        var tagTemplate = ``;
+        try {
+            for (var b = 0; b < listRes[a].Tag.length; b++) {
+                for (var c = 0; c < listRes[a].Tag.length; c++) {
+                    temptempHTML = ``
+                    temptempHTML = `<div class="article-header-about-tag"><span class="about-title" style="margin-left:5px">${listRes[a].Tag[b][0]}</span><a class="about-tag" href="${listRes[a].Tag[b][3]}" style="margin-right:5px;">${listRes[a].Tag[b][1]}</a></div>`
+                }
+                console.log(tagTemplate)
+                tagTemplate=tagTemplate+temptempHTML
+            }
+        } catch (error) {
+
+        }
 
         var html = `<div class="article-main">
         <div class="article-header">
@@ -58,9 +71,7 @@ window.onload = function () {
             <h1>${articleTitle}</h1>
         </div>
         <div class="article-about">
-        <span class="about-title">Open Source</span><a class="about-link" href="">Github</a>
-        <span class="about-title">Home</span><a class="about-link" href="">123</a>
-        <span class="about-title">Tag</span><a class="about-tag" href="">Other</a>
+        ${tagTemplate}
         </div>
         <div class="article-content">${articleContent}</div>
     </div>`
@@ -83,12 +94,9 @@ window.onload = function () {
     var winW = $(window).width();
     //w:360-647,h:647-800
     if ((winW >= 360 && winW <= 450) && (winH >= 647 && winH <= 800)) {
-        $(".footer").css("marginTop", winH* 1.45 - $("footer").height() + "px")
         $(".footer p").css("fontSize", "10px");
         $(".footer").css("padding", "3px");
     }
     if ((winW >= 1500 && winW <= 1920)) {
-        $(".footer").css("marginTop", winH * 1.3 - $("footer").height() + "px")
     }
-    // alert(docH)
 }

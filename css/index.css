@@ -395,12 +395,12 @@ a {
     display: flex;
     align-items: center;
     font-size: 10px !important;
-    padding: 0px 3px 0px 3px !important;
+    padding: 0px 5px 0px 5px !important;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
   .page-content .article article .article-main .article-about .about-tag {
-    padding: 0px 3px 0px 3px !important;
+    padding: 0px 5px 0px 5px !important;
     display: flex;
     align-items: center;
     font-size: 10px !important;
@@ -410,7 +410,7 @@ a {
   .page-content .article article .article-main .article-about .about-title {
     display: flex;
     align-items: center;
-    padding: 0px 3px 0px 3px !important;
+    padding: 0px 5px 0px 5px !important;
     font-size: 10px !important;
     border-top-left-radius: 3;
     border-bottom-left-radius: 3px;
@@ -423,7 +423,7 @@ a {
     flex-direction: column;
     justify-content: center;
     display: flex;
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 .github-corner:hover .octo-arm {

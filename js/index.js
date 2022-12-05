@@ -23,45 +23,46 @@ window.onload = function () {
     };
     var typed = new Typed('.blog-title', options);
 
-    // 数据请求
-    var XMLHttp;
-    listRes = null;
-    XMLHttp = new XMLHttpRequest();
-    XMLHttp.onreadystatechange = () => {
-        if (XMLHttp.readyState == 4 && XMLHttp.status == 200) {
-            listRes = XMLHttp.responseText;
-        }
-    }
-    XMLHttp.open("GET", "../article/list.json", false);
-    XMLHttp.send();
-
-    var listRes = JSON.parse(listRes)
-
-    //获取文章总数
-    var listlen = listRes.length;
-    var tempHtml = "";
-    var temptempHTML = ``
-
-    for (var a = 0; a < listlen; a++) {
-        var pubDate = listRes[a].pubDate;
-        var pubAuthor = listRes[a].authorName;
-        var articleTitle = listRes[a].articleTitle;
-        var articleContent = listRes[a].articleContent;
-        var tagTemplate = ``;
-        try {
-            for (var b = 0; b < listRes[a].Tag.length; b++) {
-                for (var c = 0; c < listRes[a].Tag.length; c++) {
-                    temptempHTML = ``
-                    temptempHTML = `<div class="article-header-about-tag"><span class="about-title" style="margin-left:5px">${listRes[a].Tag[b][0]}</span><a class="about-tag" href="${listRes[a].Tag[b][3]}" style="margin-right:5px;">${listRes[a].Tag[b][1]}</a></div>`
-                }
-                console.log(tagTemplate)
-                tagTemplate=tagTemplate+temptempHTML
+    function renderHtml() {
+        // 数据请求
+        var XMLHttp;
+        listRes = null;
+        XMLHttp = new XMLHttpRequest();
+        XMLHttp.onreadystatechange = () => {
+            if (XMLHttp.readyState == 4 && XMLHttp.status == 200) {
+                listRes = XMLHttp.responseText;
             }
-        } catch (error) {
-
         }
+        XMLHttp.open("GET", "../article/list.json", false);
+        XMLHttp.send();
 
-        var html = `<div class="article-main">
+        var listRes = JSON.parse(listRes)
+
+        //获取文章总数
+        var listlen = listRes.length;
+        var tempHtml = "";
+        var temptempHTML = ``
+
+        for (var a = 0; a < listlen; a++) {
+            var pubDate = listRes[a].pubDate;
+            var pubAuthor = listRes[a].authorName;
+            var articleTitle = listRes[a].articleTitle;
+            var articleContent = listRes[a].articleContent;
+            var tagTemplate = ``;
+            try {
+                for (var b = 0; b < listRes[a].Tag.length; b++) {
+                    for (var c = 0; c < listRes[a].Tag.length; c++) {
+                        temptempHTML = ``
+                        temptempHTML = `<div class="article-header-about-tag"><span class="about-title" style="margin-left:5px">${listRes[a].Tag[b][0]}</span><a class="about-tag" href="${listRes[a].Tag[b][3]}" style="margin-right:5px;">${listRes[a].Tag[b][1]}</a></div>`
+                    }
+                    console.log(tagTemplate)
+                    tagTemplate = tagTemplate + temptempHTML
+                }
+            } catch (error) {
+
+            }
+
+            var html = `<div class="article-main">
         <div class="article-header">
             <div class="pub-time">${pubDate}</div>
             <span class="point" style="color: rgba(24, 24, 24, 0.623);">·</span>
@@ -76,18 +77,23 @@ window.onload = function () {
         <div class="article-content">${articleContent}</div>
     </div>`
 
-        // 模板定义
-        if (tempHtml != "") {
-            tempHtml = tempHtml + html;
-        } else {
-            tempHtml = html;
+            // 模板定义
+            if (tempHtml != "") {
+                tempHtml = tempHtml + html;
+            } else {
+                tempHtml = html;
+            }
         }
+
+        // 渲染
+        var temp = ejs.render('<%- tempHtml %>', { tempHtml });
+        $(".article-section").html(temp);
+
     }
 
-    // 渲染
-    var temp = ejs.render('<%- tempHtml %>', { tempHtml });
-    $(".article-section").html(temp);
-
+    setTimeout(() => {
+        renderHtml()
+    }, 1000);
 
     // 适配
     var winH = $(window).height();

@@ -90,10 +90,15 @@ window.onload = function () {
         $(".article-section").html(temp);
 
     }
-
     setTimeout(() => {
         renderHtml()
     }, 600);
+
+    // 页面进度条
+    $(document).scroll(()=>{
+        // console.log($(document).scrollTop())
+        $(".prograss").width($(document).height()-$(document).scrollTop())
+    })
 
     // 适配
     var winH = $(window).height();

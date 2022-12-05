@@ -64,7 +64,7 @@ window.onload = function () {
         var html = `<div class="article-main">
         <div class="article-header">
             <div class="pub-time">${pubDate}</div>
-            <span class="point" style="margin:0px 20px;color: rgba(24, 24, 24, 0.623);">·</span>
+            <span class="point" style="color: rgba(24, 24, 24, 0.623);">·</span>
             <div class="pub-author">${pubAuthor}</div>
         </div>
         <div class="article-title" id="article-title">
@@ -95,7 +95,6 @@ window.onload = function () {
     //w:360-647,h:647-800
     if ((winW >= 360 && winW <= 450) && (winH >= 647 && winH <= 800)) {
         $(".footer p").css("fontSize", "10px");
-        $(".footer").css("padding", "3px");
     }
     if ((winW >= 1500 && winW <= 1920)) {
     }

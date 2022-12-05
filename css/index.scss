@@ -1,7 +1,7 @@
 // ------------------------附加选项------------------------
 // 变灰
 html {
-    // filter: grayscale(100%);
+    filter: grayscale(100%);
 }
 
 // ------------------------主样式------------------------
@@ -335,7 +335,7 @@ a {
     .page-header {
         width: 100%;
         height: 60%;
-        
+
         .header {
             background-size: cover;
             height: 100%;
@@ -468,13 +468,13 @@ a {
                             display: flex;
                             align-items: center;
                             font-size: 10px !important;
-                            padding: 0px 5px 0px 5px !important;
+                            padding: 0px 3px 0px 3px !important;
                             border-top-right-radius: 3px;
                             border-bottom-right-radius: 3px;
                         }
 
                         .about-tag {
-                            padding: 0px 5px 0px 5px !important;
+                            padding: 0px 3px 0px 3px !important;
                             display: flex;
                             align-items: center;
                             font-size: 10px !important;
@@ -485,7 +485,7 @@ a {
                         .about-title {
                             display: flex;
                             align-items: center;
-                            padding: 0px 5px 0px 5px !important;
+                            padding: 0px 3px 0px 3px !important;
                             font-size: 10px !important;
                             border-top-left-radius: 3;
                             border-bottom-left-radius: 3px;
@@ -494,7 +494,9 @@ a {
                 }
             }
         }
+    }
 
+    .page-footer {
         .footer {
             background-color: rgb(50, 50, 50);
             color: white;

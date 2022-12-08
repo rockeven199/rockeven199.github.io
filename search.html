@@ -10,7 +10,8 @@
 </head>
 
 <body>
-    <div></div>
+    <div>
+    </div>
 </body>
 
 </html>
@@ -18,7 +19,7 @@
     function show() {
         var url=window.location.search
         var searchParmas=new URLSearchParams(url);
-        $("div").html(searchParmas.get("search_content"))
+        // searchParmas.get("search_content")
     }
 
     show()

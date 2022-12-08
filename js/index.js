@@ -42,7 +42,7 @@ window.onload = function () {
         var listlen = listRes.length;
         var tempHtml = "";
         var temptempHTML = ``
-        var article_number=0;
+        var article_number = 0;
 
         for (var a = 0; a < listlen; a++) {
             var pubDate = listRes[a].pubDate;
@@ -52,7 +52,7 @@ window.onload = function () {
             var tagTemplate = ``;
             article_number++;
             try {
-               
+
                 for (var b = 0; b < listRes[a].Tag.length; b++) {
                     for (var c = 0; c < listRes[a].Tag.length; c++) {
                         temptempHTML = ``
@@ -120,8 +120,16 @@ window.onload = function () {
     }
 }
 // 搜索
-function searchContent(){
-    
+function searchContent(e) {
+    // 判断是否为空
+    if($("#search_content").val()==""||$("#search_content").val()==" "){
+        alert("请输入内容!");
+    }else{
+        $("#search_form").submit()
+    }
+}
+function serachOption(data) {
+    // 搜索选项
 }
 
 // 获取文章内容并跳转
@@ -136,6 +144,6 @@ function goToArticle(data) {
     //         console.log(title)
     //     }
     // });
-    $("#article_content").val(data.getAttribute("data-num")-1);
+    $("#article_content").val(data.getAttribute("data-num") - 1);
     $("#submit_article_content").click();
 }

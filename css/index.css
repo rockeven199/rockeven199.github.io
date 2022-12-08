@@ -138,6 +138,10 @@ a {
 .page-content .article article .article-main .article-header .pub-time {
   font-size: 18px;
 }
+.page-content .article article .article-main .article-header .point {
+  margin: 0px 5px;
+  font-size: 25px;
+}
 .page-content .article article .article-main .article-title {
   width: 80%;
   margin: 0px calc(10% - 3px);
@@ -210,9 +214,15 @@ a {
   display: flex;
   justify-content: center;
 }
+.page-content .article aside .search-area select {
+  width: 50px;
+  margin-left: 2.5px;
+  text-align: center;
+  font-size: 10px !important;
+}
 .page-content .article aside .search-area button {
   text-align: center;
-  margin-right: 2px;
+  margin-right: 2.5px;
   width: 50px;
   font-size: 10px;
 }

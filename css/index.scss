@@ -159,6 +159,11 @@ a {
                         font-size: 18px;
                     }
 
+                    .point{
+                        margin: 0px 5px;
+                        font-size: 25px;
+                    }
+
                 }
 
                 .article-title {
@@ -244,9 +249,16 @@ a {
                 display: flex;
                 justify-content: center;
 
+                select{
+                    width: 50px;
+                    margin-left:2.5px;
+                    text-align: center;
+                    font-size: 10px !important;
+                }
+
                 button{
                     text-align: center;
-                    margin-right: 2px;
+                    margin-right: 2.5px;
                     width: 50px;
                     font-size: 10px;
                 }

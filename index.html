@@ -47,10 +47,15 @@
             </article>
             <aside>
                 <div class="search-area">
-                    <form method="get" name="search" action="./search.html">
-                        <button type="submit" onsubmit="searchContent()">搜索</button>
-                        <input type="input" name="search_content" id="search_content">
+                    <form method="get" name="search" action="./search.html" id="search_form">
+                        <button type="button" onclick="searchContent()" id="search_button">搜索</button>
+                        <input type="input" name="search_content" id="search_content" value=""/>
                     </form>
+                    <select name="search_option" id="search_option">
+                        <option value="content" name="search_option" onclick="serachOption(this.value)">文章</option>
+                        <option value="author" name="search_option" onclick="serachOption(this.value)">作家</option>
+                        <option value="time" name="search_option" onclick="serachOption(this.value)">上传日期</option>
+                    </select>
                 </div>
                 <div class="aside">
                     <div class="tag">
@@ -87,9 +92,9 @@
         </svg>
     </a>
     <div style="display: none;">
-        <form action="./article_content.html" id="article_content_form" method="get" target="_blank">
+        <form action="./sarticle_content.html" id="article_content_form" method="get" target="_blank">
             <input type="text" value="" name="article_number" id="article_content">
-            <input type="submit" id="submit_article_content">
+            <input type="button" id="submit_article_content">
         </form>
     </div>
 </body>

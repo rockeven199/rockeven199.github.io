@@ -33,7 +33,7 @@ window.onload = function () {
                 listRes = XMLHttp.responseText;
             }
         }
-        XMLHttp.open("GET", "../article/list.json", false);
+        XMLHttp.open("GET", "../article/article_list.json", false);
         XMLHttp.send();
 
         var listRes = JSON.parse(listRes)
@@ -42,6 +42,7 @@ window.onload = function () {
         var listlen = listRes.length;
         var tempHtml = "";
         var temptempHTML = ``
+        var article_number=0;
 
         for (var a = 0; a < listlen; a++) {
             var pubDate = listRes[a].pubDate;
@@ -49,13 +50,21 @@ window.onload = function () {
             var articleTitle = listRes[a].articleTitle;
             var articleContent = listRes[a].articleContent;
             var tagTemplate = ``;
+            article_number++;
             try {
+               
                 for (var b = 0; b < listRes[a].Tag.length; b++) {
                     for (var c = 0; c < listRes[a].Tag.length; c++) {
                         temptempHTML = ``
-                        temptempHTML = `<div class="article-header-about-tag"><span class="about-title" style="margin-left:5px">${listRes[a].Tag[b][0]}</span><a class="about-tag" href="${listRes[a].Tag[b][3]}" style="margin-right:5px;">${listRes[a].Tag[b][1]}</a></div>`
+                        if (listRes[a].Tag[b][3] == "blue") {
+                            temptempHTML = `<div class="article-header-about-tag"><span class="about-title" style="margin-left:5px">${listRes[a].Tag[b][0]}</span><a class="about-link" href="${listRes[a].Tag[b][3]}">${listRes[a].Tag[b][1]}</a></div>`
+                        } else if (listRes[a].Tag[b][3] == "green") {
+                            temptempHTML = `<div class="article-header-about-tag"><span class="about-title" style="margin-left:5px">${listRes[a].Tag[b][0]}</span><a class="about-object" href="${listRes[a].Tag[b][3]}">${listRes[a].Tag[b][1]}</a></div>`
+                        } else {
+                            temptempHTML = `<div class="article-header-about-tag"><span class="about-title" style="margin-left:5px">${listRes[a].Tag[b][0]}</span><a class="about-tag" href="${listRes[a].Tag[b][3]}">${listRes[a].Tag[b][1]}</a></div>`
+                        }
+
                     }
-                    console.log(tagTemplate)
                     tagTemplate = tagTemplate + temptempHTML
                 }
             } catch (error) {
@@ -74,7 +83,7 @@ window.onload = function () {
         <div class="article-about">
         ${tagTemplate}
         </div>
-        <div class="article-content">${articleContent}</div>
+        <div class="article-content" onclick="goToArticle(this)" data-num="${article_number}">${articleContent}</div>
     </div>`
 
             // 模板定义
@@ -85,19 +94,19 @@ window.onload = function () {
             }
         }
 
+        console.log(article_number)
+
         // 渲染
         var temp = ejs.render('<%- tempHtml %>', { tempHtml });
         $(".article-section").html(temp);
-
     }
     setTimeout(() => {
         renderHtml()
     }, 600);
 
     // 页面进度条
-    $(document).scroll(()=>{
-        // console.log($(document).scrollTop())
-        $(".prograss").width($(document).height()-$(document).scrollTop())
+    $(document).scroll(() => {
+        $(".prograss").width($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 100 + '%')
     })
 
     // 适配
@@ -109,4 +118,24 @@ window.onload = function () {
     }
     if ((winW >= 1500 && winW <= 1920)) {
     }
+}
+// 搜索
+function searchContent(){
+    
+}
+
+// 获取文章内容并跳转
+function goToArticle(data) {
+    // $.ajax({
+    //     type: "GET",
+    //     url: "../article/article_list.json",
+    //     data: "data",
+    //     dataType: "json",
+    //     success: function (response) {
+    //         let title=response
+    //         console.log(title)
+    //     }
+    // });
+    $("#article_content").val(data.getAttribute("data-num")-1);
+    $("#submit_article_content").click();
 }

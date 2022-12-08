@@ -46,6 +46,12 @@
             <article class="article-section">
             </article>
             <aside>
+                <div class="search-area">
+                    <form method="get" name="search" action="./search.html">
+                        <button type="submit" onsubmit="searchContent()">搜索</button>
+                        <input type="input" name="search_content" id="search_content">
+                    </form>
+                </div>
                 <div class="aside">
                     <div class="tag">
                         <div class="tag-title">标签</div>
@@ -80,6 +86,12 @@
                 fill="currentColor" class="octo-body"></path>
         </svg>
     </a>
+    <div style="display: none;">
+        <form action="./article_content.html" id="article_content_form" method="get" target="_blank">
+            <input type="text" value="" name="article_number" id="article_content">
+            <input type="submit" id="submit_article_content">
+        </form>
+    </div>
 </body>
 
 </html>

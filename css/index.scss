@@ -36,6 +36,10 @@ body::-webkit-scrollbar-track {
     background-color: rgba(25, 25, 25, 0);
 }
 
+body {
+    position: relative;
+}
+
 li {
     list-style-type: none;
 }
@@ -55,6 +59,25 @@ a {
     background-color: rgba(0, 145, 255, 0.79);
 }
 
+// 提示
+.show-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .error-tips {
+        padding: 10px 20px;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        border-radius: 5px;
+        background-color: rgba(251, 33, 33, 0.619);
+        font-size: 18px;
+        color: white;
+        border: 2px solid rgba(255, 136, 156, 0.759);
+    }
+}
+
 // 页头
 .page-header {
     width: 100%;
@@ -65,7 +88,7 @@ a {
         height: 100%;
         background-size: cover;
         position: relative;
-        transition: all 1s;
+        background-attachment: fixed;
 
         .nav-menu {
             display: none;
@@ -81,7 +104,7 @@ a {
             width: 30%;
             display: flex;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.207);
+            background-color: rgba(0, 0, 0, 0.662);
             transition: all 0.5s;
 
             .header-nav-group {
@@ -97,6 +120,10 @@ a {
                     font-weight: 500;
                     font-size: 18px;
                     cursor: default;
+
+                    #search_content {
+                        border-radius: 5px;
+                    }
                 }
             }
         }
@@ -159,7 +186,7 @@ a {
                         font-size: 18px;
                     }
 
-                    .point{
+                    .point {
                         margin: 0px 5px;
                         font-size: 25px;
                     }
@@ -249,14 +276,14 @@ a {
                 display: flex;
                 justify-content: center;
 
-                select{
-                    width: 50px;
-                    margin-left:2.5px;
+                select {
+                    padding: 0px 2px;
+                    margin-left: 2.5px;
                     text-align: center;
                     font-size: 10px !important;
                 }
 
-                button{
+                button {
                     text-align: center;
                     margin-right: 2.5px;
                     width: 50px;
@@ -277,6 +304,7 @@ a {
                         outline: none;
                         border: 1px solid black;
                         padding: 2.5px 5px;
+                        border-radius:2px;
                     }
                 }
             }
@@ -350,7 +378,7 @@ a {
                         }
 
                         .item-tag:hover {
-                            background-color: rgba(24, 24, 24, 0.623);
+                            background-color: rgba(189, 189, 189, 0.623);
 
                             a {
                                 color: rgb(226, 226, 226);
@@ -407,7 +435,7 @@ a {
 
             .header-nav {
                 padding: 0 !important;
-                width: 30%;
+                width: 50%;
                 position: absolute;
                 transform: translateY(-100%);
 
@@ -421,10 +449,42 @@ a {
                         padding: 3px 0px !important;
                         margin: 0px !important;
                         line-height: 30px !important;
-                        background-color: rgba(255, 255, 255, 0.559);
+                        background-color: rgba(255, 255, 255, 0.756);
+
+                        form {
+                            display: flex;
+                            width: 100%;
+                            justify-content: center;
+
+                            #search_content {
+                                width: 50px !important;
+                                font-size: 10px;
+                                padding: 2px 5px;
+                                margin-right: 2.5px;
+                            }
+
+                            #search_button {
+                                font-size: 10px;
+                                padding: 2px 5px;
+                                margin-right: 2.5px;
+                            }
+
+                            #search_option {
+                                font-size: 10px;
+                                padding: 2px 5px;
+                            }
+                        }
 
                         a {
                             color: rgb(30, 30, 30);
+                        }
+                    }
+
+                    .nav-items:hover {
+                        background-color: rgba(77, 77, 77, 0.823);
+
+                        a {
+                            color: white;
                         }
                     }
                 }

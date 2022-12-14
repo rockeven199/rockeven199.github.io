@@ -117,6 +117,7 @@ window.onload = function () {
         $(".footer p").css("fontSize", "10px");
     }
     if ((winW >= 1500 && winW <= 1920)) {
+        $("#nav-search-item").css("display","none")
     }
 }
 // 搜索
@@ -127,9 +128,6 @@ function searchContent(e) {
     }else{
         $("#search_form").submit()
     }
-}
-function serachOption(data) {
-    // 搜索选项
 }
 
 // 获取文章内容并跳转

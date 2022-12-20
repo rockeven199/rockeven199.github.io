@@ -465,32 +465,22 @@ a {
     flex-direction: column;
     line-height: 15px;
   }
+  .page-header .header .header-nav .header-nav-group .nav-search-item form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  .page-header .header .header-nav .header-nav-group .nav-search-item form #mb-search_content {
+    width: 20px !important;
+    font-size: 10px;
+    display: block !important;
+  }
   .page-header .header .header-nav .header-nav-group .nav-items {
     font-size: 14px !important;
     padding: 3px 0px !important;
     margin: 0px !important;
     line-height: 30px !important;
     background-color: rgba(255, 255, 255, 0.756);
-  }
-  .page-header .header .header-nav .header-nav-group .nav-items form {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-  }
-  .page-header .header .header-nav .header-nav-group .nav-items form #search_content {
-    width: 50px !important;
-    font-size: 10px;
-    padding: 2px 5px;
-    margin-right: 2.5px;
-  }
-  .page-header .header .header-nav .header-nav-group .nav-items form #search_button {
-    font-size: 10px;
-    padding: 2px 5px;
-    margin-right: 2.5px;
-  }
-  .page-header .header .header-nav .header-nav-group .nav-items form #search_option {
-    font-size: 10px;
-    padding: 2px 5px;
   }
   .page-header .header .header-nav .header-nav-group .nav-items a {
     color: rgb(30, 30, 30);
@@ -541,29 +531,19 @@ a {
     width: calc(100% - 40px);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 4% 0;
     margin: 0 20px;
     border-bottom: 1px solid black;
   }
+  .page-content .article article .article-main .article-header {
+    padding-left: 5% !important;
+  }
   .page-content .article article .article-main .article-title {
-    width: 90%;
-    display: flex;
-    justify-content: center;
+    font-size: 16px;
     padding: 0 !important;
-    font-size: 18px;
-    justify-content: flex-start;
-  }
-  .page-content .article article .article-main .about-link {
-    font-size: 5px;
-  }
-  .page-content .article article .article-main .about-tag {
-    font-size: 5px;
-    padding: 0px !important;
-  }
-  .page-content .article article .article-main .article-about {
-    width: 90%;
-    margin: 5% 0;
+    margin: 0 !important;
+    padding-left: 5% !important;
   }
   .page-content .article article .article-main .article-header {
     padding-left: 10%;
@@ -591,32 +571,51 @@ a {
     background-color: rgb(236, 236, 236);
   }
   .page-content .article article .article-main .article-about {
-    padding: 0;
+    padding: 0 !important;
     line-height: 25px;
+  }
+  .page-content .article article .article-main .article-about .about-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px !important;
+    color: white;
+    height: 20px;
+    padding: 0px 6px !important;
+    background-color: rgba(0, 0, 0, 0.69);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
   }
   .page-content .article article .article-main .article-about .about-link {
     display: flex;
     align-items: center;
-    font-size: 10px !important;
-    padding: 0px 5px 0px 5px !important;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+    height: 20px !important;
+    font-size: 12px !important;
+    padding: 0px 6px !important;
+    color: white;
+    background-color: rgb(17, 124, 191);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .page-content .article article .article-main .article-about .about-object {
+    display: flex;
+    align-items: center;
+    height: 20px !important;
+    font-size: 12px !important;
+    padding: 0px 6px !important;
+    color: white;
+    background-color: rgba(11, 153, 65, 0.803);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
   .page-content .article article .article-main .article-about .about-tag {
-    padding: 0px 5px 0px 5px !important;
-    display: flex;
-    align-items: center;
-    font-size: 10px !important;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-  .page-content .article article .article-main .article-about .about-title {
-    display: flex;
-    align-items: center;
-    padding: 0px 5px 0px 5px !important;
-    font-size: 10px !important;
-    border-top-left-radius: 3;
-    border-bottom-left-radius: 3px;
+    height: 20px;
+    font-size: 12px !important;
+    padding: 0px 6px;
+    color: white;
+    background-color: rgb(134, 185, 5);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
   .page-footer .footer {
     background-color: rgb(50, 50, 50);

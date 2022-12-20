@@ -49,14 +49,17 @@
                     <li class="nav-items"><a>关于</a></li>
                     <li class="nav-items" id="nav-search-item">
                         <form method="get" name="search" action="./search.html" id="search_form">
-                            <button type="button" onclick="searchContent()" id="search_button">搜索</button>
-                            <input type="input" name="search_content" id="search_content" value="" />
-                            <select name="search_option" id="search_option">
-                                <option value="content" name="search_option">文章</option>
-                                <option value="author" name="search_option">作者</option>
-                                <option value="title" name="search_option">标题</option>
-                                <option value="date" name="search_option">日期</option>
-                            </select>
+                            <input type="input" name="search_content" id="mb-search_content" value="" />
+                            <div class="mb-search-area" style="display: flex;
+                            justify-content: space-around;">
+                                <select name="search_option" id="search_option" style="font-size: 10px;padding: 2px 5px 2px;border: 1px solid transparent;">
+                                    <option value="content" name="search_option">文章</option>
+                                    <option value="author" name="search_option">作者</option>
+                                    <option value="title" name="search_option">标题</option>
+                                    <option value="date" name="search_option">日期</option>
+                                </select>
+                                <button type="button" onclick="searchContent()" id="search_button" style="font-size: 10px;padding: 2.3px 5px;border: 1px solid transparent;">搜索</button>
+                            </div>
                         </form>
                     </li>
                 </ul>

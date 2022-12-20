@@ -134,7 +134,9 @@ function errorTips(data) {
         })
         setTimeout(() => {
             $(".error-tips").css("top", "-50px");
-            $(".tips-progress").css("width","100%");
+            setTimeout(()=>{
+                $(".tips-progress").css("width", "100%");
+            },200)
         }, 2000);
     }, 5);
 }
@@ -149,7 +151,9 @@ function successTips(data) {
         })
         setTimeout(() => {
             $(".success-tips").css("top", "-50px");
-            $(".tips-progress").css("width","100%");
+            setTimeout(()=>{
+                $(".tips-progress").css("width", "100%");
+            },200)
         }, 2000);
     }, 5);
 }
@@ -157,10 +161,10 @@ function successTips(data) {
 // 搜索
 function searchContent(e) {
     // 判断是否为空
-    if ($("#search_content").val() == "" || $("#search_content").val() == " ") {
-        errorTips("搜索内容不能为空")
+    if (document.getElementById("id_search_content").value == "") {
+        errorTips("搜索内容不能为空");
     } else {
-        $("#search_form").submit()
+        $("#search_form").submit();
     }
 }
 

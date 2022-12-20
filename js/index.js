@@ -104,44 +104,79 @@ window.onload = function () {
         renderHtml()
     }, 600);
 
-    // 页面进度条
-    $(document).scroll(() => {
-        $(".prograss").width($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 100 + '%')
-    })
-
     // 适配
     var winH = $(window).height();
     var winW = $(window).width();
     //w:360-647,h:647-800
     if ((winW >= 360 && winW <= 450) && (winH >= 647 && winH <= 800)) {
         $(".footer p").css("fontSize", "10px");
+        // 页面进度条
+        $(document).scroll(() => {
+            $(".prograss").width($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 110 + '%')
+        })
     }
     if ((winW >= 1500 && winW <= 1920)) {
-        $("#nav-search-item").css("display","none")
+        $("#nav-search-item").css("display", "none");
+        // 页面进度条
+        $(document).scroll(() => {
+            $(".prograss").width($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 100 + '%')
+        })
     }
 }
+// 错误提示
+function errorTips(data) {
+    $(".tips-progress").css("width", "100%")
+    $(".error-tips p").text(data);
+    setTimeout(() => {
+        $(".error-tips").css("top", "20px",);
+        $(".tips-progress").css({
+            width: "0px"
+        })
+        setTimeout(() => {
+            $(".error-tips").css("top", "-50px");
+            $(".tips-progress").css("width","100%");
+        }, 2000);
+    }, 5);
+}
+
+function successTips(data) {
+    $(".tips-progress").css("width", "100%")
+    $(".success-tips p").text(data);
+    setTimeout(() => {
+        $(".success-tips").css("top", "20px",);
+        $(".tips-progress").css({
+            width: "0px"
+        })
+        setTimeout(() => {
+            $(".success-tips").css("top", "-50px");
+            $(".tips-progress").css("width","100%");
+        }, 2000);
+    }, 5);
+}
+
 // 搜索
 function searchContent(e) {
     // 判断是否为空
-    if($("#search_content").val()==""||$("#search_content").val()==" "){
-        alert("请输入内容!");
-    }else{
+    if ($("#search_content").val() == "" || $("#search_content").val() == " ") {
+        errorTips("搜索内容不能为空")
+    } else {
         $("#search_form").submit()
     }
 }
 
 // 获取文章内容并跳转
 function goToArticle(data) {
-    // $.ajax({
-    //     type: "GET",
-    //     url: "../article/article_list.json",
-    //     data: "data",
-    //     dataType: "json",
-    //     success: function (response) {
-    //         let title=response
-    //         console.log(title)
-    //     }
-    // });
+    $.ajax({
+        type: "GET",
+        url: "../article/article_list.json",
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+            for (let a = 0; a < response.length; a++) {
+                console.log(response[a].pubDate)
+            }
+        }
+    });
     $("#article_content").val(data.getAttribute("data-num") - 1);
     $("#submit_article_content").click();
 }

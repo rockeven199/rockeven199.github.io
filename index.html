@@ -22,7 +22,14 @@
 
 <body>
     <div class="show-area">
-        <div class="error-tips animate__animated">111</div>
+        <div class="error-tips">
+            <p></p>
+            <div class="tips-progress"></div>
+        </div>
+        <div class="success-tips">
+            <p></p>
+            <div class="tips-progress"></div>
+        </div>
     </div>
     <h1 style="display:none;">Rockeven199的小屋</h1>
     <div class="prograss"></div>
@@ -63,16 +70,21 @@
             </article>
             <aside>
                 <div class="search-area">
+                    <div class="search-group">
+                        <div class="search-area-title">搜索</div>
                     <form method="get" name="search" action="./search.html" id="search_form">
-                        <button type="button" onclick="searchContent()" id="search_button">搜索</button>
-                        <input type="input" name="search_content" id="search_content" value="" />
-                        <select name="search_option" id="search_option">
-                            <option value="content" name="search_option">文章</option>
-                            <option value="author" name="search_option">作者</option>
-                            <option value="title" name="search_option">标题</option>
-                            <option value="date" name="search_option">日期</option>
-                        </select>
+                        <input type="input" name="search_content" id="search_content" value="" placeholder="请输入搜索内容"/>
+                        <div class="search-area-button">
+                            <select name="search_option" id="search_option" title="选择搜索范围">
+                                <option value="content" name="search_option">文章</option>
+                                <option value="author" name="search_option">作者</option>
+                                <option value="title" name="search_option">标题</option>
+                                <option value="date" name="search_option">日期</option>
+                            </select>
+                            <button type="button" onclick="searchContent()" id="search_button">搜索</button>
+                        </div>
                     </form>
+                    </div>
                 </div>
                 <div class="aside">
                     <div class="tag">

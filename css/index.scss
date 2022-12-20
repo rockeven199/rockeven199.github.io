@@ -67,14 +67,61 @@ a {
 
     .error-tips {
         padding: 10px 20px;
-        position: absolute;
+        position: fixed;
         z-index: 999;
-        top: 0;
+        min-width: 8%;
+        top: -25px;
+        border-radius: 2.5px;
+        background-color: rgba(251, 33, 33, 0.719);
+        font-size: 16px;
+        color: rgba(239, 239, 239, 0.959);
+        transition: all 0.5s;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        overflow: hidden;
+
+        .tips-progress{
+            transition: all 2s;
+            left: 0;
+            position: absolute;
+            bottom: 0.5px;
+            z-index: 999;
+            height: 3px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border-radius: 5px;
+            background-color: rgba(248, 248, 248, 0.458);
+        }
+    }
+
+    .success-tips {
+        overflow: hidden;
+        padding: 10px 20px;
+        position: fixed;
+        z-index: 999;
+        top: -25px;
         border-radius: 5px;
-        background-color: rgba(251, 33, 33, 0.619);
-        font-size: 18px;
-        color: white;
-        border: 2px solid rgba(255, 136, 156, 0.759);
+        background-color: rgba(55, 251, 33, 0.719);
+        font-size: 16px;
+        color: rgba(239, 239, 239, 0.959);
+        transition: all 0.5s;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+
+        .tips-progress{
+            transition: all 3s;
+            left: 0;
+            position: absolute;
+            bottom: 0.5px;
+            z-index: 999;
+            height: 3px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border-radius: 5px;
+            background-color: aqua;
+        }
     }
 }
 
@@ -255,7 +302,7 @@ a {
                     display: flex;
                     margin: 0px calc(10% + 20px);
                     width: 80%;
-                    background-color: rgba(195, 195, 195, 0.203);
+                    background-color: rgba(207, 207, 207, 0.37);
                     height: 100%;
                     font-size: 20px;
                     word-break: break-all;
@@ -271,47 +318,94 @@ a {
             margin-top: 10%;
 
             .search-area {
-                width: 70%;
-                margin: 10px 0px 10px 20px;
+                margin: 10px 5px;
+                width: calc(100% - 10px);
                 display: flex;
                 justify-content: center;
+                flex-direction: column;
+                font-weight: 600;
+                font-size: 18px;
+                color: rgba(24, 24, 24, 0.77);
 
-                select {
-                    padding: 0px 2px;
-                    margin-left: 2.5px;
-                    text-align: center;
-                    font-size: 10px !important;
-                }
+                .search-group {
+                    margin-left: 25px;
+                    width: 60%;
 
-                button {
-                    text-align: center;
-                    margin-right: 2.5px;
-                    width: 50px;
-                    font-size: 10px;
-                }
-
-                form {
-                    width: 100%;
-                    display: flex;
-
-                    input:focus {
-                        outline: none;
-                        border: 1px solid black;
+                    .search-area-title {
+                        margin-bottom: 30px;
                     }
 
-                    input {
-                        width: 80%;
-                        outline: none;
-                        border: 1px solid black;
-                        padding: 2.5px 5px;
-                        border-radius:2px;
+                    select {
+                        padding: 0px 2px;
+                        margin-left: 2.5px;
+                        text-align: center;
+                        font-size: 10px !important;
+                    }
+
+                    button {
+                        text-align: center;
+                        margin-right: 2.5px;
+                        width: 50px;
+                        font-size: 10px;
+                    }
+
+                    form {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        input:focus {
+                            outline: none;
+                            border-bottom: 3px solid rgb(26, 127, 214);
+                        }
+
+                        input {
+                            transition: all 1s;
+                            width: calc(90% + 10px);
+                            outline: none;
+                            border-bottom: 3px solid rgba(164, 164, 164, 0.712);
+                            border-left: 1px solid rgba(164, 164, 164, 0.712);
+                            border-right: 1px solid rgba(164, 164, 164, 0.712);
+                            border-top: 1px solid rgba(164, 164, 164, 0.712);
+                            border-radius: 2px;
+                            margin: 0px 20px;
+                            font-size: 12px;
+                            padding: 5px;
+                        }
+
+                        .search-area-button {
+                            display: flex;
+                            width: 100%;
+                            justify-content: space-evenly;
+                            margin: 5px;
+
+                            button {
+                                width: 30%;
+                                border-radius: 2px;
+                                padding: 6px 8px;
+                                color: white;
+                                background-color: rgba(197, 27, 27, 0.732);
+                                border: 1px solid rgba(179, 179, 179, 0.527);
+                            }
+
+                            select {
+                                width: 30%;
+                                border-radius: 2px;
+                                padding: 6px 12px;
+                                color: white;
+                                background-color: rgba(20, 170, 95, 0.732);
+                                border: 1px solid rgba(179, 179, 179, 0.527);
+                            }
+                        }
                     }
                 }
             }
 
             .aside {
                 width: calc(100% - 10px);
-                height: calc(100% - 20px);
+                height: calc(90% - 20px);
                 margin: 10px 5px;
                 display: flex;
                 flex-direction: column;
@@ -337,14 +431,15 @@ a {
                         margin-bottom: 10px;
                         font-size: 14px;
                         color: rgba(24, 24, 24, 0.77);
-                        padding-bottom: 2.5px;
-                        border-bottom: 1px solid rgba(31, 31, 31, 0.481);
+                        padding-bottom: 3px;
+                        border-bottom: 2px solid rgba(31, 31, 31, 0.258);
                     }
                 }
 
                 .tag {
                     height: 50%;
                     width: 70%;
+                    margin: 20% 0;
 
                     .tag-title {
                         width: calc(100% - 20px);
@@ -362,14 +457,15 @@ a {
                         margin-left: 20px;
 
                         .item-tag {
+                            background-color: rgba(227, 226, 226, 0.201);
                             display: block;
                             text-align: center;
                             border-radius: 20px;
-                            border: 1px solid rgba(24, 24, 24, 0.623);
                             padding: 4px 10px;
                             margin: 5px 10px;
                             float: left;
                             font-size: 12px;
+                            transition: all 0.25s;
 
                             a {
                                 color: rgba(24, 24, 24, 0.623);
@@ -378,11 +474,8 @@ a {
                         }
 
                         .item-tag:hover {
-                            background-color: rgba(189, 189, 189, 0.623);
-
-                            a {
-                                color: rgb(226, 226, 226);
-                            }
+                            box-shadow: 0px 0px 2px rgba(61, 61, 61, 0.756);
+                            transition: all 0.25s;
                         }
                     }
                 }

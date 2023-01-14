@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片轮播</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .img {
+            width: 50%;
+            height: 60%;
+            margin: auto auto;
+            overflow: hidden;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px black;
+        }
+
+        .img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .imgNum {
+            width: 10%;
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .picNum {
+            align-items: center;
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+
+        .item {
+            color: black;
+            padding: 10px;
+            list-style: none;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .choice {
+            background-color: #1570e0 !important;
+            color: white;
+        }
+
+        .dischoice {
+            background-color: white !important;
+        }
+
+        .slideIn {
+            animation: slideIn 1.5s;
+            animation-fill-mode: forwards;
+        }
+
+        .slideOut {
+            animation: slideOut 1.5s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(200%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(-200%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img">
+        <img src="../img/playground.webp" alt="">
+    </div>
+    <div class="imgNum">
+        <ul class="picNum">
+        </ul>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    var recycleImage = () => {
+        // 获取图片元素
+        var imgArray = ["sky", "tennis_count", "beach", "playground"];
+        var imgSrcArray = [];
+        imgArray.forEach(item => {
+            imgSrcArray.push("../img/" + item + ".webp");
+        });
+        var imgArray = null;
+
+        // 创建图片编号
+        for (let a = 1; a < imgSrcArray.length + 1; a++) {
+            let positionEle = document.querySelector("[class='picNum']");
+            let addEle = document.createElement("li");
+            var addOther = positionEle.appendChild(addEle);
+            let textEle = document.createTextNode(a);
+            addOther.setAttribute("class", "item");
+            addOther.appendChild(textEle);
+            addOther.setAttribute("onmouseenter", "choiceToggleOver(this)");
+            addOther.setAttribute("onmouseout", "choiceToggleOut(this)");
+        }
+
+        // 图片轮换
+        var count = 0;
+        var usedFlag = false;
+
+        toggleImg = () => {
+            const container = document.querySelector(".img");
+            const imgObj = document.querySelector("img");
+            const imgNum = document.querySelectorAll(".item");
+            // 设置图片轮播样式
+            var numTimer = setInterval(() => {
+                for (let b = 0; b < imgNum.length; b++) {
+                    if (b == count) {
+                        document.querySelectorAll(".item").forEach((item) => {
+                            item.classList = "item"
+                        });
+                        document.querySelectorAll(".item")[count].classList = "choice item"
+                    }
+                }
+                clearInterval(numTimer)
+            }, 1500)
+
+            if (count == 4) {
+                count = 0;
+                toggleImg();
+                return false;
+            }
+            else {
+                if (usedFlag != false) {
+                    imgObj.classList = "slideIn";
+                    setInterval(() => mainRecylceTimer, 3000);
+                    window.mainRecylceTimer = setInterval(() => {
+                        imgObj.classList = "slideOut";
+                        window.changeImage = setInterval(() => {
+                            imgObj.setAttribute("src", imgSrcArray[count]);
+                            clearInterval(changeImage);
+                        }, 1000);
+                        count++;
+                        clearInterval(mainRecylceTimer);
+                    }, 3000);
+                }
+            }
+        }
+
+        if (usedFlag == false) {
+            const ImgObj = document.querySelector("img");
+            ImgObj.classList = "slideOut";
+            usedFlag = true;
+            document.querySelector(".picNum").firstElementChild.classList = "item"
+            toggleImg();
+        }
+
+        mainTimer = setInterval(() => toggleImg(), 4000);
+        toggleImageObj = new Object(recycleImage);
+        toggleImageObj.imgSrcArray = imgSrcArray;
+        toggleImageObj.count = count;
+        console.log(imgSrcArray[count])
+    }
+    recycleImage()
+
+    // 悬浮暂停
+    toggleImageObj.hoverStatus = true;
+    function choiceToggleOver(Element) {
+        // if (toggleImageObj.hoverStatus) {
+        if (Element.className.indexOf("choice") != -1) {
+            clearInterval(mainTimer);
+            clearInterval(window.mainRecylceTimer);
+            clearInterval(window.changeImage);
+            console.log("on")
+            document.querySelector("img").setAttribute("src", document.querySelector("img").getAttribute("src"))
+            if (toggleImageObj.count == 4) {
+                toggleImageObj.count = 0;
+            }
+        }
+        // toggleImageObj.hoverStatus = false;
+        // }
+    }
+
+    function choiceToggleOut() {
+        // console.log(toggleImageObj.hoverStatus)
+        // if (toggleImageObj.hoverStatus == false) {
+        clearInterval(mainTimer);
+        clearInterval(window.mainRecylceTimer);
+        setInterval(() => toggleImg(), 4000);
+        setInterval(() => window.mainRecylceTimer, 3000);
+        setInterval(() => window.changeImage, 1000);
+        toggleImg()
+        //     }
+        //     else {
+        //         toggleImageObj.overStatus = true;
+        //     }
+    }
+</script>

@@ -101,9 +101,11 @@ window.onload = function () {
         $(".article-section").html(temp);
     }
     setTimeout(() => {
-        renderHtml()
+        renderHtml();
+        deviceFlex();
     }, 600);
-
+}
+function deviceFlex() {
     // 适配
     var winH = $(window).height();
     var winW = $(window).width();
@@ -123,10 +125,15 @@ window.onload = function () {
         })
     }
 }
-// 错误提示
-function errorTips(data) {
+
+window.onresize = function () {
+    deviceFlex();
+}
+
+// 提示信息
+function errorTips(content) {
     $(".tips-progress").css("width", "100%")
-    $(".error-tips p").text(data);
+    $(".error-tips p").text(content);
     setTimeout(() => {
         $(".error-tips").css("top", "20px",);
         $(".tips-progress").css({
@@ -134,16 +141,18 @@ function errorTips(data) {
         })
         setTimeout(() => {
             $(".error-tips").css("top", "-50px");
-            setTimeout(()=>{
+            setTimeout(() => {
                 $(".tips-progress").css("width", "100%");
-            },200)
+            }, 200)
         }, 2000);
     }, 5);
+
+    return 0;
 }
 
-function successTips(data) {
+function successTips(content) {
     $(".tips-progress").css("width", "100%")
-    $(".success-tips p").text(data);
+    $(".success-tips p").text(content);
     setTimeout(() => {
         $(".success-tips").css("top", "20px",);
         $(".tips-progress").css({
@@ -151,25 +160,37 @@ function successTips(data) {
         })
         setTimeout(() => {
             $(".success-tips").css("top", "-50px");
-            setTimeout(()=>{
+            setTimeout(() => {
                 $(".tips-progress").css("width", "100%");
-            },200)
+            }, 200)
         }, 2000);
     }, 5);
+
+    return 0;
 }
 
 // 搜索
-function searchContent(e) {
-    // 判断是否为空
-    if (document.getElementById("id_search_content").value == "") {
-        errorTips("搜索内容不能为空");
-    } else {
-        $("#search_form").submit();
+function searchContent(searchButton) {
+    var __this = searchButton;
+    var getUA = __this.dataset.ua;
+    console.log(getUA)
+    if (getUA === "pc") {
+        if (__this.parentElement.parentElement.children[0].dataset.search == "" || __this.parentElement.parentElement.children[0].dataset.search == '') {
+            alert("no")
+        }
     }
 }
 
+// 输入框内容监听
+function inputChange(ele) {
+    var __this = ele;
+    __this.dataset.search = __this.value
+    console.log(__this.dataset.search)
+}
+
+
 // 获取文章内容并跳转
-function goToArticle(data) {
+function goToArticle(pageNum) {
     $.ajax({
         type: "GET",
         url: "../article/article_list.json",
@@ -177,10 +198,16 @@ function goToArticle(data) {
         dataType: "json",
         success: function (response) {
             for (let a = 0; a < response.length; a++) {
-                console.log(response[a].pubDate)
+                if (response[a].pubDate == pageNum) {
+                    // response[a].pubDate
+                    location.href = "../article_content.html"
+                    return 0;
+                }
             }
         }
     });
-    $("#article_content").val(data.getAttribute("data-num") - 1);
+    $("#article_content").val(pageNum.getAttribute("data-num") - 1);
     $("#submit_article_content").click();
+
+    return 0;
 }

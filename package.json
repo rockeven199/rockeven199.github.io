@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "@vue/cli": "^5.0.8",
-    "@vue/cli-init": "^5.0.8",
-    "vue": "^3.2.36"
+    "htt": "^0.0.1",
+    "http": "^0.0.1-security"
   }
 }

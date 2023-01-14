@@ -10,6 +10,7 @@
     <title>Rockeven199的小屋</title>
     <link rel="stylesheet" href="./css/lib/animate.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link href='http://fonts.font.im/css?family=Lato' rel='stylesheet' type='text/css'>
     <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!-- <script src="./js/lib/jquery-3.6.1.js"></script> -->
@@ -28,18 +29,22 @@
         </div>
         <div class="success-tips">
             <p></p>
-            <div class="tips-progress"></div>
+            <div class="tips-progress">
+            </div>
         </div>
     </div>
     <h1 style="display:none;">Rockeven199的小屋</h1>
-    <div class="prograss"></div>
+    <div class="prograss">
+        <div class="prograss-pic"></div>
+    </div>
     <div class="page-header">
         <header class="header">
-            <svg t="1670252205900" class="nav-menu icon" viewBox="0 0 1097 1024" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" p-id="14290" width="200" height="200">
+            <svg t="1672580248520" class="nav-menu icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="48554" width="200" height="200">
                 <path
-                    d="M68.608 912.018286c-28.452571 0-51.492571 21.504-51.492571 47.981714 0 26.477714 23.04 47.981714 51.492571 47.981714h959.926857c28.452571 0 51.492571-21.504 51.492572-47.981714 0-26.477714-23.04-47.981714-51.492572-47.981714z m835.657143-595.529143c-18.797714-18.724571-50.249143-17.627429-70.363429 2.413714-20.041143 20.114286-21.138286 51.565714-2.413714 70.290286l121.270857 121.270857-129.901714 129.828571c-20.114286 20.114286-21.211429 51.565714-2.413714 70.363429 18.724571 18.724571 50.176 17.627429 70.217142-2.486857l202.678858-202.605714zM68.608 464.018286c-28.452571 0-51.492571 21.504-51.492571 47.981714 0 26.477714 23.04 47.981714 51.492571 47.981714h582.802286c28.452571 0 51.419429-21.504 51.419428-47.981714 0-26.477714-22.966857-47.981714-51.419428-47.981714z m0-448C40.082286 16.018286 17.115429 37.522286 17.115429 64c0 26.477714 23.04 47.981714 51.492571 47.981714h959.926857c28.452571 0 51.492571-21.504 51.492572-47.981714 0-26.477714-23.04-47.981714-51.492572-47.981714z"
-                    p-id="14291"></path>
+                    d="M193.422222 506.311111c85.333333 0 153.6-62.577778 167.822222-142.222222H995.555556v-56.888889H361.244444c-14.222222-79.644444-82.488889-142.222222-167.822222-142.222222-93.866667 0-170.666667 76.8-170.666666 170.666666s76.8 170.666667 170.666666 170.666667z m0-284.444444c62.577778 0 113.777778 51.2 113.777778 113.777777s-51.2 113.777778-113.777778 113.777778-113.777778-51.2-113.777778-113.777778 51.2-113.777778 113.777778-113.777777zM1001.244444 713.955556h-108.088888c-14.222222-79.644444-82.488889-142.222222-167.822223-142.222223-85.333333 0-153.6 62.577778-167.822222 142.222223H28.444444v56.888888h531.911112c14.222222 79.644444 82.488889 142.222222 167.822222 142.222223s153.6-62.577778 167.822222-142.222223h108.088889v-56.888888z m-275.911111 142.222222c-62.577778 0-113.777778-51.2-113.777777-113.777778s51.2-113.777778 113.777777-113.777778 113.777778 51.2 113.777778 113.777778-51.2 113.777778-113.777778 113.777778z"
+                    fill="#ffffff" p-id="48555"></path>
+            </svg>
             </svg>
             <nav class="header-nav">
                 <ul class="header-nav-group">
@@ -47,21 +52,6 @@
                     <li class="nav-items"><a>归档</a></li>
                     <li class="nav-items"><a>标签</a></li>
                     <li class="nav-items"><a>关于</a></li>
-                    <li class="nav-items" id="nav-search-item">
-                        <form method="get" name="search" action="./search.html" id="search_form">
-                            <input type="input" name="search_content" id="mb-search_content" value="" />
-                            <div class="mb-search-area" style="display: flex;
-                            justify-content: space-around;">
-                                <select name="search_option" id="search_option" style="font-size: 10px;padding: 2px 5px 2px;border: 1px solid transparent;">
-                                    <option value="content" name="search_option">文章</option>
-                                    <option value="author" name="search_option">作者</option>
-                                    <option value="title" name="search_option">标题</option>
-                                    <option value="date" name="search_option">日期</option>
-                                </select>
-                                <button type="button" onclick="searchContent()" id="search_button" style="font-size: 10px;padding: 2.3px 5px;border: 1px solid transparent;">搜索</button>
-                            </div>
-                        </form>
-                    </li>
                 </ul>
             </nav>
             <div class="blog-title"></div>
@@ -75,18 +65,20 @@
                 <div class="search-area">
                     <div class="search-group">
                         <div class="search-area-title">搜索</div>
-                    <form method="get" name="search" action="./search.html" id="search_form">
-                        <input type="input" name="search_content" id="search_content" value="" placeholder="请输入搜索内容"/>
-                        <div class="search-area-button">
-                            <select name="search_option" id="search_option" title="选择搜索范围">
-                                <option value="content" name="search_option">文章</option>
-                                <option value="author" name="search_option">作者</option>
-                                <option value="title" name="search_option">标题</option>
-                                <option value="date" name="search_option">日期</option>
-                            </select>
-                            <button type="button" onclick="searchContent()" id="search_button">搜索</button>
-                        </div>
-                    </form>
+                        <form method="get" name="search" action="./search.html" id="search_form">
+                            <input type="input" name="search_content" id="search-input" value="" placeholder="请输入搜索内容"
+                                onchange="inputChange(this)" data-search="" />
+                            <div class="search-area-button">
+                                <select name="search_option" id="search_option" title="选择搜索范围">
+                                    <option value="content" name="search_option">文章</option>
+                                    <option value="author" name="search_option">作者</option>
+                                    <option value="title" name="search_option">标题</option>
+                                    <option value="date" name="search_option">日期</option>
+                                </select>
+                                <button type="button" id="search_button" data-ua="pc"
+                                    onclick="searchContent(this)">搜索</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="aside">
@@ -112,7 +104,7 @@
     <a href="https://github.com/rockeven199/rockeven199.github.io" class="github-corner"
         aria-label="View source on GitHub">
         <svg viewBox="0 0 250 250" id="github-pic"
-            style="fill:#64CEAA; color:#fff; position: absolute;width:100px;height:120px; top: -10px; border: 0; left: 0; transform: scale(-1, 1);"
+            style="fill:#64CEAA; color:#fff; position: absolute;width:100px;height:100px; top: -10px; border: 0; left: 0; transform: scale(-1,1);"
             aria-hidden="true">
             <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
             <path

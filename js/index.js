@@ -17,11 +17,11 @@ window.onload = function () {
     aside();
 
     //打字机特效插件
-    var options = {
-        strings: ['Rockeven199的博客'],
-        typeSpeed: 60
-    };
-    var typed = new Typed('.blog-title', options);
+    // var options = {
+    //     strings: ['Rockeven199的博客'],
+    //     typeSpeed: 60
+    // };
+    // var typed = new Typed('.blog-title', options);
 
     function renderHtml() {
         // 数据请求
@@ -94,8 +94,6 @@ window.onload = function () {
             }
         }
 
-        console.log(article_number)
-
         // 渲染
         var temp = ejs.render('<%- tempHtml %>', { tempHtml });
         $(".article-section").html(temp);
@@ -104,9 +102,13 @@ window.onload = function () {
         renderHtml();
         deviceFlex();
     }, 600);
+
+    // 初始化搜索框
+    document.querySelector('#search-input').value = "";
 }
+
+// 设备适配
 function deviceFlex() {
-    // 适配
     var winH = $(window).height();
     var winW = $(window).width();
     //w:360-647,h:647-800
@@ -125,7 +127,6 @@ function deviceFlex() {
         })
     }
 }
-
 window.onresize = function () {
     deviceFlex();
 }
@@ -169,23 +170,25 @@ function successTips(content) {
     return 0;
 }
 
-// 搜索
-function searchContent(searchButton) {
-    var __this = searchButton;
-    var getUA = __this.dataset.ua;
-    console.log(getUA)
-    if (getUA === "pc") {
-        if (__this.parentElement.parentElement.children[0].dataset.search == "" || __this.parentElement.parentElement.children[0].dataset.search == '') {
-            alert("no")
-        }
-    }
-}
-
-// 输入框内容监听
+// 监听输入框内容
 function inputChange(ele) {
     var __this = ele;
     __this.dataset.search = __this.value
-    console.log(__this.dataset.search)
+}
+
+// 搜索
+function searchContent(searchButton) {
+    this.__this = searchButton;
+    this.getUA = __this.dataset.ua;
+    this.searchWay = __this.previousElementSibling;
+    if (getUA === "pc") {
+        if (__this.parentElement.parentElement.children[0].dataset.search == "") {
+            __this.setAttribute("type", "button");
+            errorTips("搜索内容不能为空");
+        } else {
+            __this.setAttribute("type", "submit");
+        }
+    } else { }
 }
 
 

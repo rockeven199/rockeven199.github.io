@@ -8,11 +8,77 @@
     <title>Document</title>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="./js/article_content.js"></script>
+    <link href='http://fonts.font.im/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./css/article_content.css">
+    <script type="text/javascript" src="./js/article_content.js"></script>
 </head>
 
 <body>
-    <div id="article_title"></div>
-    <div id="article_content"></div>
+    <div class="container">
+        <div class="article-area">
+            <div class="article-title">javascript dom详解</div>
+            <div class="article-info">
+                <div class="author">作者：<span>Li Long</span></div>
+                <div class="pub-time">时间：<span>2023-1-16</span></div>
+            </div>
+            <div class="article-header-about-tag">
+                <div class="tag-group">
+                    <span class="about-title">rockeven199</span>
+                    <span class="about-link">rock</span>
+                </div>
+                <div class="tag-group">
+                    <span class="about-title">rockeven199</span>
+                    <span class="about-link">rock</span>
+                </div>
+                <div class="tag-group">
+                    <span class="about-title">rockeven199</span>
+                    <span class="about-link">rock</span>
+                </div>
+            </div>
+            <div class="content">
+                <childTitle>什么是DOM？</childTitle>
+                <content>
+                    外行看来前端工程师的工作就是改页面（HTML、CSS），写脚本（JavaScript）。当你意识到你不是在改HTML而是在操作DOM时，你就升级了！ 那么什么是DOM？
+
+                    MDN: 文档对象模型 (DOM) 是HTML和XML文档的编程接口。它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM
+                    将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。简言之，它会将web页面和脚本或程序语言连接起来。
+
+                    说白了DOM就是浏览器为JavaScript提供的一系列接口（通过window.documnet提供的），通过这些接口我们可以操作web页面。
+                    但DOM并不是编程语言，它是文档对象的模型，该模型是独立于编程语言的。比如我们在Python中也可以操作DOM：
+
+                    所以Web前端常讲的DOM API (web 或 XML 页面) = DOM + JS (脚本语言)
+                </content>
+                <code>
+                    <select>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Python">Python</option>
+                    </select>
+                    import xml.dom.minidom as m;
+                    doc = m.parse("C:\\Projects\\Py\\chap1.xml");
+                    doc.nodeName # DOM property of document object;
+                    p_list = doc.getElementsByTagName("para");
+                </code>
+                <childTitle>DOM 创建</childTitle>
+                DOM节点（Node）通常对应于一个标签，一个文本，或者一个HTML属性。DOM节点有一个nodeType属性用来表示当前元素的类型，它是一个整数：
+            </div>
+        </div>
+        <div class="aside">
+            <div class="control">
+                <svg t="1673842012318" class="icon" id="control-icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="10222" width="200" height="200">
+                    <path
+                        d="M512 929.959184c-230.4 0-417.959184-187.559184-417.959184-417.959184s187.559184-417.959184 417.959184-417.959184 417.959184 187.559184 417.959184 417.959184-187.559184 417.959184-417.959184 417.959184z"
+                        fill="#16C4AF" p-id="10223"></path>
+                    <path
+                        d="M444.081633 689.632653c-5.22449 0-10.44898-2.089796-14.628572-6.269388-8.359184-8.359184-8.359184-21.420408 0-29.779592l156.734694-156.734693c8.359184-8.359184 21.420408-8.359184 29.779592 0 8.359184 8.359184 8.359184 21.420408 0 29.779591l-156.734694 156.734694c-4.702041 4.179592-9.926531 6.269388-15.15102 6.269388z"
+                        fill="#DCFFFA" p-id="10224"></path>
+                    <path
+                        d="M600.816327 532.897959c-5.22449 0-10.44898-2.089796-14.628572-6.269388l-156.734694-156.734693c-8.359184-8.359184-8.359184-21.420408 0-29.779592 8.359184-8.359184 21.420408-8.359184 29.779592 0l156.734694 156.734694c8.359184 8.359184 8.359184 21.420408 0 29.779591-4.702041 4.179592-9.926531 6.269388-15.15102 6.269388z"
+                        fill="#DCFFFA" p-id="10225"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

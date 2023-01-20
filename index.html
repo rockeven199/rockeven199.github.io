@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/lib/animate.css">
     <link rel="stylesheet" href="./css/index.css">
     <link href='http://fonts.font.im/css?family=Lato' rel='stylesheet' type='text/css'>
-    <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.min.js"></script> -->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!-- <script src="./js/lib/jquery-3.6.1.js"></script> -->
     <!-- <script src="./js/lib/typed.js"></script> -->
@@ -39,6 +39,15 @@
     </div>
     <div class="page-header">
         <header class="header">
+            <div style="width: 100%;display: flex;
+            justify-content: center;">
+                <svg t="1674189047045" class="show-next icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="2170">
+                    <path
+                        d="M533.333333 516.266667l-174.933333-170.666667-64 59.733333 234.666667 234.666667L768 405.333333l-59.733333-59.733333-174.933334 170.666667z"
+                        fill="#ffffff" p-id="2171"></path>
+                </svg>
+            </div>
             <svg t="1672580248520" class="nav-menu icon" viewBox="0 0 1024 1024" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" p-id="48554" width="200" height="200">
                 <path
@@ -54,7 +63,7 @@
                     <li class="nav-items"><a>关于</a></li>
                 </ul>
             </nav>
-            <div class="blog-title"></div>
+            <div class="blog-title">Rockeven199的博客</div>
         </header>
     </div>
     <div class="page-content">
@@ -75,7 +84,7 @@
                                     <option value="title" name="search_option">标题</option>
                                     <option value="date" name="search_option">日期</option>
                                 </select>
-                                <button type="button" id="search_button" data-ua="pc"
+                                <button type="submit" id="search_button" data-ua="pc"
                                     onclick="searchContent(this)">搜索</button>
                             </div>
                         </form>

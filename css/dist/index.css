@@ -8,7 +8,7 @@ html {
   font-family: "Lato", sans-serif;
   width: 100%;
   height: 100%;
-  background-color: rgb(243, 243, 243);
+  background-color: #f3f3f3;
 }
 
 body::-webkit-scrollbar {
@@ -73,7 +73,7 @@ a {
   top: -25px;
   right: 5%;
   border-radius: 2.5px;
-  background-color: rgb(207, 57, 57);
+  background-color: #cf3939;
   font-size: 14px;
   color: rgba(239, 239, 239, 0.959);
   transition: all 0.5s;
@@ -134,22 +134,7 @@ a {
   bottom: 0;
   width: 2.8125rem;
   height: 2.8125rem;
-  -webkit-animation: showNext 0.8s infinite;
-          animation: showNext 0.8s infinite;
-}
-@-webkit-keyframes showNext {
-  0% {
-    bottom: 15px;
-  }
-  45% {
-    bottom: -15px;
-  }
-  50% {
-    bottom: -15px;
-  }
-  100% {
-    bottom: 15px;
-  }
+  animation: showNext 0.8s infinite;
 }
 @keyframes showNext {
   0% {
@@ -289,7 +274,7 @@ a {
   cursor: default;
   padding: 3px 6px;
   color: white;
-  background-color: rgb(17, 124, 191);
+  background-color: #117cbf;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -305,7 +290,7 @@ a {
   font-size: 13px;
   padding: 3px 6px;
   color: white;
-  background-color: rgb(134, 185, 5);
+  background-color: #86b905;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -363,7 +348,7 @@ a {
 }
 .page-content .article aside .search-area .search-group form input:focus {
   outline: none;
-  border-bottom: 3px solid rgb(26, 127, 214);
+  border-bottom: 3px solid #1a7fd6;
 }
 .page-content .article aside .search-area .search-group form input {
   transition: all 1s;
@@ -470,7 +455,7 @@ a {
 }
 
 .page-footer .footer {
-  background-color: rgb(50, 50, 50);
+  background-color: #323232;
   color: white;
   width: 100%;
   height: 10%;
@@ -521,7 +506,7 @@ a {
     background-color: rgba(255, 255, 255, 0.756);
   }
   .page-header .header .header-nav .header-nav-group .nav-items a {
-    color: rgb(30, 30, 30);
+    color: #1e1e1e;
   }
   .page-header .header .header-nav .header-nav-group .nav-items:hover {
     background-color: rgba(77, 77, 77, 0.823);
@@ -539,6 +524,7 @@ a {
     top: 5px;
     right: 5px;
   }
+
   .page-content {
     position: relative;
     width: 100%;
@@ -606,7 +592,7 @@ a {
     justify-content: flex-start;
     align-items: center;
     font-size: 15px;
-    background-color: rgb(236, 236, 236);
+    background-color: #ececec;
   }
   .page-content .article article .article-main .article-about {
     padding: 0 !important;
@@ -632,7 +618,7 @@ a {
     font-size: 8px !important;
     padding: 0px 6px !important;
     color: white;
-    background-color: rgb(17, 124, 191);
+    background-color: #117cbf;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
@@ -652,10 +638,11 @@ a {
     font-size: 8px !important;
     padding: 0px 6px;
     color: white;
-    background-color: rgb(134, 185, 5);
+    background-color: #86b905;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+
   .page-footer {
     width: 100%;
     margin-top: 20px;
@@ -668,20 +655,7 @@ a {
   }
 }
 .github-corner:hover .octo-arm {
-  -webkit-animation: octocat-wave 560ms ease-in-out;
-          animation: octocat-wave 560ms ease-in-out;
-}
-
-@-webkit-keyframes octocat-wave {
-  0%, 100% {
-    transform: rotate(0);
-  }
-  20%, 60% {
-    transform: rotate(-25deg);
-  }
-  40%, 80% {
-    transform: rotate(10deg);
-  }
+  animation: octocat-wave 560ms ease-in-out;
 }
 
 @keyframes octocat-wave {
@@ -697,11 +671,10 @@ a {
 }
 @media (max-width: 500px) {
   .github-corner:hover .octo-arm {
-    -webkit-animation: none;
-            animation: none;
+    animation: none;
   }
+
   .github-corner .octo-arm {
-    -webkit-animation: octocat-wave 560ms ease-in-out;
-            animation: octocat-wave 560ms ease-in-out;
+    animation: octocat-wave 560ms ease-in-out;
   }
-}/*# sourceMappingURL=index.css.map */
+}

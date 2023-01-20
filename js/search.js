@@ -5,7 +5,6 @@ window.onload = function () {
     var serach_content = Urlparam.get("search_content");
     var serach_option = Urlparam.get("search_option")
     var articleLen;
-    var articleUrl;
     var showPoor;
     var chooseOption;
 
@@ -20,19 +19,18 @@ window.onload = function () {
             if (serach_option == "content") {
                 // 通过内容查找
                 for (var a = 0; a < articleLen; a++) {
-                    showPoor = a;
-                    articleUrl = resData[a].article_url;
-                    $.ajax({
-                        type: "get",
-                        url: articleUrl,
-                        data: "data",
-                        dataType: "text",
-                        success: function (response) {
-                            if (response.indexOf(serach_content) != -1) {
-                                $('div').text(response)
+                    if (resData[a].articleContent == serach_content) {
+                        ""
+                        $.ajax({
+                            type: "get",
+                            url: resData[a].article_url,
+                            data: "data",
+                            dataType: "text",
+                            success: function (response) {
+                                $("div").append("<p>" + response + "</p>")
                             }
-                        }
-                    });
+                        });
+                    }
                 }
             } else if (serach_option == "author") {
                 document.write("通过作者查找")

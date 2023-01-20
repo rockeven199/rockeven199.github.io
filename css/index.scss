@@ -129,7 +129,7 @@ a {
             position: absolute;
             bottom: 0.5px;
             z-index: 999;
-            height: 3px;
+            height: .1875rem;
             width: 100%;
             margin: 0;
             padding: 0;
@@ -142,12 +142,39 @@ a {
 // 页头
 .page-header {
     width: 100%;
-    height: 60%;
+    height: 100%;
+    position: relative;
+
+    .show-next {
+        position: absolute;
+        bottom: 0;
+        width: 2.8125rem;
+        height: 2.8125rem;
+        animation: showNext 0.8s infinite;
+    }
+
+    @keyframes showNext {
+        0% {
+            bottom: 15px;
+        }
+
+        45% {
+            bottom: -15px;
+        }
+
+        50% {
+            bottom: -15px;
+        }
+
+        100% {
+            bottom: 15px;
+        }
+    }
 
     .header {
-        background-image: url('../img/161229155190231137135-20221007224453.webp');
+        background-image: url('../img/playground.webp');
         height: 100%;
-        background-size: 100% 100%;
+        background-size: 100% 100;
         position: relative;
         background-attachment: fixed;
 
@@ -191,20 +218,22 @@ a {
 
         .blog-title {
             width: 100%;
-            height: 60%;
+            height: 100%;
             color: rgba(255, 255, 255, 0.797);
-            position: absolute;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: flex-end;
             font-size: 50px;
             font-weight: 600;
             letter-spacing: 1px;
+
         }
+
+        // 打字机效果
     }
 }
 
-// 页面内容
+// 文章内容
 .page-content {
     width: 100%;
 
@@ -257,15 +286,15 @@ a {
                 .article-title {
                     width: 80%;
                     margin: 0px calc(10% - 3px);
-                    font-size: 25px;
-                    padding: 20px 0px 10px 20px;
+                    font-size: 20px;
+                    padding: 20px 0px 0px 23px;
                     color: rgba(24, 24, 24, 0.77);
                     font-weight: 600;
                 }
 
                 .article-about {
                     width: 80%;
-                    margin: 20px 10% 20px 10%;
+                    margin: 10px 10%;
                     padding-left: 20px;
 
                     .article-header-about-tag {
@@ -273,7 +302,7 @@ a {
                         display: inline-flex;
 
                         .about-title {
-                            font-size: 15px;
+                            font-size: 13px;
                             color: white;
                             padding: 3px 6px;
                             background-color: rgba(0, 0, 0, 0.69);
@@ -282,7 +311,7 @@ a {
                         }
 
                         .about-link {
-                            font-size: 15px;
+                            font-size: 13px;
                             cursor: default;
                             padding: 3px 6px;
                             color: white;
@@ -292,7 +321,7 @@ a {
                         }
 
                         .about-object {
-                            font-size: 15px;
+                            font-size: 13px;
                             padding: 3px 6px;
                             color: white;
                             background-color: rgba(11, 153, 65, 0.803);
@@ -301,7 +330,7 @@ a {
                         }
 
                         .about-tag {
-                            font-size: 15px;
+                            font-size: 13px;
                             padding: 3px 6px;
                             color: white;
                             background-color: rgb(134, 185, 5);
@@ -318,7 +347,7 @@ a {
                     width: 80%;
                     background-color: rgba(207, 207, 207, 0.37);
                     height: 100%;
-                    font-size: 20px;
+                    font-size: 16px;
                     word-break: break-all;
                     padding: 20px;
                     align-items: center;
@@ -471,7 +500,7 @@ a {
                         margin-left: 20px;
 
                         .item-tag {
-                            background-color: rgba(227, 226, 226, 0.201);
+                            background-color: rgba(174, 174, 174, 0.201);
                             display: block;
                             text-align: center;
                             border-radius: 20px;

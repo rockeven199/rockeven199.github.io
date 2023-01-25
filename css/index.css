@@ -42,6 +42,7 @@ a {
 }
 
 .prograss {
+  top: 0px;
   border-radius: 5px;
   height: 8px;
   position: fixed;
@@ -50,14 +51,14 @@ a {
   background-color: rgba(0, 145, 255, 0.867);
 }
 .prograss .prograss-pic {
-  width: 20px;
-  height: 20px;
-  background-image: url("../img/sky.webp");
+  width: 3.75rem;
+  height: 3.75rem;
+  background-image: url("../img/cat.png");
   position: absolute;
-  right: -10px;
+  right: -45px;
+  top: -10px;
   z-index: 0px;
-  border: 3px solid white;
-  border-radius: 20px;
+  background-size: 100% 100%;
 }
 
 .show-area {
@@ -131,7 +132,7 @@ a {
 }
 .page-header .show-next {
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   width: 2.8125rem;
   height: 2.8125rem;
   -webkit-animation: showNext 0.8s infinite;
@@ -139,30 +140,30 @@ a {
 }
 @-webkit-keyframes showNext {
   0% {
-    bottom: 15px;
+    bottom: 20px;
   }
   45% {
-    bottom: -15px;
+    bottom: -5px;
   }
   50% {
-    bottom: -15px;
+    bottom: -5px;
   }
   100% {
-    bottom: 15px;
+    bottom: 20px;
   }
 }
 @keyframes showNext {
   0% {
-    bottom: 15px;
+    bottom: 20px;
   }
   45% {
-    bottom: -15px;
+    bottom: -5px;
   }
   50% {
-    bottom: -15px;
+    bottom: -5px;
   }
   100% {
-    bottom: 15px;
+    bottom: 20px;
   }
 }
 .page-header .header {
@@ -208,7 +209,7 @@ a {
 .page-header .header .blog-title {
   width: 100%;
   height: 100%;
-  color: rgba(255, 255, 255, 0.797);
+  color: rgba(255, 255, 255, 0.911);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -219,6 +220,8 @@ a {
 
 .page-content {
   width: 100%;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 .page-content .article {
   width: 100%;
@@ -250,26 +253,32 @@ a {
   color: rgba(24, 24, 24, 0.77);
 }
 .page-content .article article .article-main .article-header .pub-author {
-  font-size: 18px;
+  font-size: 14px;
+  border-bottom: 1px solid black;
+  color: rgba(30, 30, 30, 0.736);
 }
 .page-content .article article .article-main .article-header .pub-time {
-  font-size: 18px;
+  font-size: 14px;
+  border-bottom: 1px solid black;
+  color: rgba(30, 30, 30, 0.736);
 }
 .page-content .article article .article-main .article-header .point {
-  margin: 0px 5px;
-  font-size: 25px;
+  padding: 0px 5px;
+  font-size: 14px;
+  border-bottom: 1px solid black;
+  color: rgba(30, 30, 30, 0.736);
 }
 .page-content .article article .article-main .article-title {
   width: 80%;
   margin: 0px calc(10% - 3px);
   font-size: 20px;
-  padding: 20px 0px 0px 23px;
+  padding-left: 1.4375rem;
   color: rgba(24, 24, 24, 0.77);
   font-weight: 600;
 }
 .page-content .article article .article-main .article-about {
   width: 80%;
-  margin: 10px 10%;
+  margin: 0px 10% 5px 10%;
   padding-left: 20px;
 }
 .page-content .article article .article-main .article-about .article-header-about-tag {
@@ -313,7 +322,7 @@ a {
   display: flex;
   margin: 0px calc(10% + 20px);
   width: 80%;
-  background-color: rgba(207, 207, 207, 0.37);
+  background-color: rgba(222, 222, 222, 0.419);
   height: 100%;
   font-size: 16px;
   word-break: break-all;
@@ -474,25 +483,29 @@ a {
   color: white;
   width: 100%;
   height: 10%;
-  padding: 20px 0;
+  padding: 10px 0;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 .page-footer .footer p {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 @media screen and (min-width: 300px) and (max-width: 450px) {
   .page-header {
     width: 100%;
-    height: 60%;
+    height: 100%;
   }
   .page-header .header {
     background-size: cover;
     height: 100%;
+  }
+  .page-header .header .show-next {
+    width: 1.875rem;
+    height: 1.875rem;
   }
   .page-header .header .nav-menu {
     width: 30px !important;
@@ -589,23 +602,23 @@ a {
     margin: 0;
   }
   .page-content .article article .article-main .article-header .pub-author {
-    font-size: 14px;
+    font-size: 12px;
     justify-content: flex-start;
-    margin: 2px 0;
+    margin: 3px 0px !important;
   }
   .page-content .article article .article-main .article-header .pub-time {
-    font-size: 14px;
+    font-size: 12px;
   }
   .page-content .article article .article-main .article-header .point {
-    margin: 3px !important;
+    font-size: 12px;
+    margin: 3px 0px !important;
   }
   .page-content .article article .article-main .article-content {
     margin: 10px 0px 20px 0;
-    width: 90%;
+    width: calc(100% - 40px);
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    font-size: 15px;
+    font-size: 13px;
     background-color: rgb(236, 236, 236);
   }
   .page-content .article article .article-main .article-about {
@@ -619,7 +632,7 @@ a {
     align-items: center;
     font-size: 8px !important;
     color: white;
-    height: 20px;
+    height: 1.125rem;
     padding: 0px 6px !important;
     background-color: rgba(0, 0, 0, 0.69);
     border-top-left-radius: 5px;
@@ -628,7 +641,7 @@ a {
   .page-content .article article .article-main .article-about .about-link {
     display: flex;
     align-items: center;
-    height: 20px !important;
+    height: 1.125rem;
     font-size: 8px !important;
     padding: 0px 6px !important;
     color: white;
@@ -639,7 +652,7 @@ a {
   .page-content .article article .article-main .article-about .about-object {
     display: flex;
     align-items: center;
-    height: 20px !important;
+    height: 1.125rem;
     font-size: 8px !important;
     padding: 0px 6px !important;
     color: white;
@@ -648,7 +661,7 @@ a {
     border-bottom-right-radius: 5px;
   }
   .page-content .article article .article-main .article-about .about-tag {
-    height: 20px;
+    height: 1.125rem;
     font-size: 8px !important;
     padding: 0px 6px;
     color: white;

@@ -13,12 +13,12 @@
             ],
             [
                 "Tag",
-                "c",
+                "C",
                 "https://bing.com",
                 "blue"
             ]
         ],
-        "article_url": "../article/20220514.txt"
+        "articleUrl": "../article/20220514.txt"
     },
     {
         "pubDate": "20220515",
@@ -34,12 +34,12 @@
             ],
             [
                 "Tag",
-                "c",
+                "C",
                 "https://bing.com",
                 "blue"
             ]
         ],
-        "article_url": "../article/20220515.txt"
+        "articleUrl": "../article/20220515.txt"
     },
     {
         "pubDate": "20220516",
@@ -55,11 +55,11 @@
             ],
             [
                 "Tag",
-                "c",
+                "php",
                 "https://bing.com",
                 "blue"
             ]
         ],
-        "article_url": "../article/20220516.txt"
+        "articleUrl": "../article/20220516.txt"
     }
 ]

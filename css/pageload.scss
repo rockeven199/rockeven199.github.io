@@ -1,7 +1,7 @@
 /* 加载中样式 */
 .loading {
-    width: 100dvw;
-    height: 100dvh;
+    width: 100%;
+    height: 100%;
     position: absolute;
     z-index: 999;
     background-color: white;
@@ -23,7 +23,7 @@
 .loading span::after {
     content: attr(data-char);
     position: absolute;
-    z-index:1;
+    z-index: 1;
     transform: rotateX(180deg);
     top: 3.5rem;
     letter-spacing: .3125rem;
@@ -54,10 +54,18 @@
 }
 
 @keyframes loading-complete {
-    0%{
-        transform: translateX(0);
+    0% {
+        transform: translateY(0);
+        opacity: 1;
     }
-    100%{
-        transform: translateX(-100%);
+
+    60% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
     }
 }

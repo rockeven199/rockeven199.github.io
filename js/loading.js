@@ -2,7 +2,7 @@ document.onreadystatechange = function () {
     if (document.readyState == "complete") {
         document.querySelector(".loading").style.display = "none";
         document.querySelector(".prograss-pic").removeAttribute("style");
-        document.querySelector(".loading").style.animation = "loading-complete 1s forward"
+        document.querySelector(".loading").style.animation = "loading-complete 5s forwards"
         document.querySelector("body").style.overflow = "";
         // 临时样式
         // document.querySelector(".prograss-pic").style.display = "none";

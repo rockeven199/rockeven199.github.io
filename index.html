@@ -10,19 +10,31 @@
     <title>Rockeven199的小屋</title>
     <link rel="stylesheet" href="./css/lib/animate.css">
     <link rel="stylesheet" href="./css/index.css">
-    <!-- <link href='http://fonts.font.im/css?family=Lato' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.font.im/css?family=Lato' rel='stylesheet' type='text/css'>
     <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!-- <script src="./js/lib/jquery-3.6.1.js"></script> -->
     <!-- <script src="./js/lib/typed.js"></script> -->
+    <script src="./js/loading.js"></script>
     <script src="./js/lib/ejs.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/getAsideTag.js"></script>
     <script src="./js/getNotice.js"></script>
+    <style>
+        /* 加载中样式 */
+        .loading {
+            width: 100dvw;
+            height: 100dvh;
+            position: absolute;
+            z-index: 999;
+            background-color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <dialog>loading.......</dialog>
+    <div class="loading">加载中......</div>
+    <!-- 加载完成 -->
     <div class="show-area">
         <div class="error-tips">
             <p></p>

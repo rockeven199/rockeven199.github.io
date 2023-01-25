@@ -57,7 +57,7 @@ a {
   position: absolute;
   right: -45px;
   top: -10px;
-  z-index: 0px;
+  z-index: 0;
   background-size: 100% 100%;
 }
 

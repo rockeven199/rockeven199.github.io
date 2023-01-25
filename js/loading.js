@@ -1,5 +1,5 @@
 document.onreadystatechange = function () {
     if (document.readyState == "complete") {
-    } else {
+        document.querySelector(".loading").style.display = "none";
     }
 }

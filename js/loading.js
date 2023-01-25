@@ -15,6 +15,6 @@ document.onreadystatechange = function () {
 
         realDom.forEach(element => {
             element.style.color = fontColor[Math.floor(Math.random() * (6 - 1 + 1))];
-        });
+        })
     }
 }

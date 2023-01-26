@@ -1,6 +1,5 @@
 document.onreadystatechange = function () {
     if (document.readyState == "complete") {
-        document.querySelector(".loading").style.display = "none";
         document.querySelector(".prograss-pic").removeAttribute("style");
         document.querySelector(".loading").style.animation = "loading-complete 5s forwards"
         document.querySelector("body").style.overflow = "";

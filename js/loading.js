@@ -1,6 +1,6 @@
 document.onreadystatechange = function () {
     if (document.readyState == "complete") {
-        document.querySelector(".loading").style.animation = "loading-complete 4s forwards"
+        document.querySelector(".loading").style.animation = "loading-complete 4s forwards";
         document.querySelector("body").style.overflow = "";
         // 临时样式
         // document.querySelector(".prograss-pic").style.display = "none";

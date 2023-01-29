@@ -25,14 +25,6 @@ window.onload = function () {
         showFlag = true;
       }
     });
-    var arr = [];
-    var showCode = document.querySelector("code").innerText;
-    var temp = showCode.indexOf(";", 0);
-
-    while (temp != -1) {
-      temp = showCode.indexOf(";", temp + 1);
-      arr.push(temp);
-    }
   }
 
   style();

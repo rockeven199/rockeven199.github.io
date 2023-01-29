@@ -42,7 +42,7 @@ window.onload = function () {
         var listlen = listRes.length;
         var tempHtml = "";
         var temptempHTML = ``
-        var article_number = 0;
+        var article_number = -1;
 
         for (var a = 0; a < listlen; a++) {
             var pubDate = listRes[a].pubDate;
@@ -100,13 +100,28 @@ window.onload = function () {
     }
     var openLoadTimeOut = setTimeout(() => {
         renderHtml();
-        clearTimeout(openLoadTimeOut)
+        clearTimeout(openLoadTimeOut);
     }, 600);
 
-    // 初始化搜索框
+    // 显示返回顶部按钮
+    window.addEventListener('scroll', () => {
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= window.innerHeight) {
+            document.querySelector(".back-top").style.animation = "fadeIn 0.2s forwards";
+            document.querySelector(".back-top").style.display = "block";
+        } else {
+            document.querySelector(".back-top").style.animation = "fadeOut 0.2s forwards";
+            document.querySelector(".back-top").style.display = "none";
+        }
+    });
+
+    // 初始化页面元素
+    // 搜索框
     document.querySelector('#search-input').value = "";
     // 设置页面样式
     deviceFlex();
+    // 返回顶部
+    scrollTo(0, 0);
 }
 
 // 设备适配
@@ -133,21 +148,20 @@ function deviceFlex() {
 
 // 提示信息
 function errorTips(content) {
-    $(".tips-progress").css("width", "100%")
     $(".error-tips p").text(content);
-    setTimeout(() => {
-        $(".error-tips").css("top", "20px",);
-        $(".tips-progress").css({
-            width: "0px"
-        })
+    var flag = false;
+    if (flag == false) {
         setTimeout(() => {
-            $(".error-tips").css("top", "-50px");
+            flag = true;
+            $(".error-tips").css("top", "40px");
+            document.querySelector(".tips-progress").style.animation = "tipsProgress 2s forwards";
             setTimeout(() => {
-                $(".tips-progress").css("width", "100%");
-            }, 200)
-        }, 2000);
-    }, 5);
-
+                $(".error-tips").css("top", "-50px");
+                document.querySelector(".tips-progress").removeAttribute("style");
+                flag = false;
+            }, 2000);
+        }, 5);
+    }
     return 0;
 }
 
@@ -188,29 +202,38 @@ function searchContent(searchButton) {
         } else {
             __this.setAttribute("type", "submit");
         }
-    } else { }
+    }
 }
 
 
 // 获取文章内容并跳转
 function goToArticle(pageNum) {
-    $.ajax({
-        type: "GET",
-        url: "../article/article_list.json",
-        data: "data",
-        dataType: "json",
-        success: function (response) {
-            for (let a = 0; a < response.length; a++) {
-                if (response[a].pubDate == pageNum) {
-                    // response[a].pubDate
-                    location.href = "../article_content.html"
-                    return 0;
-                }
-            }
+    var xhr = new XMLHttpRequest();
+    var articleNum = pageNum.dataset.num;
+    var articleArray = undefined;
+    var articleUrl = "";
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 || xhr.status == 200) {
+            articleArray = eval(xhr.responseText);
+            articleUrl = articleArray[articleNum].articleUrl;
+            sessionStorage.setItem("articleUrl", articleUrl);
+            sessionStorage.setItem("articleNum", pageNum.dataset.num);
+            location.href="../article_content.html"
         }
-    });
-    $("#article_content").val(pageNum.getAttribute("data-num") - 1);
-    $("#submit_article_content").click();
-
+    }
+    xhr.open('GET', '../article/article_list.json', false);
+    xhr.send();
     return 0;
+}
+
+// 点击按钮返回页面顶部
+function backTop() {
+    var temp = 1000;
+    var backTopTimer = setInterval(() => {
+        if (temp <= 0) {
+            clearInterval(backTopTimer)
+        }
+        scrollTo(0, temp);
+        temp -= 120;
+    }, 10)
 }

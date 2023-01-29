@@ -18,6 +18,7 @@
     animation: loading 1.8s infinite var(--delay);
     letter-spacing: .3125rem;
     color: white;
+    -webkit-text-stroke: 0.5px rgba(60, 60, 60, 0.67);
 }
 
 .loading span::after {
@@ -28,7 +29,7 @@
     top: 3.5rem;
     letter-spacing: .3125rem;
     left: 0px;
-    filter: opacity(0.5) blur(2.6px);
+    filter: opacity(0.5) blur(10px);
 }
 
 @keyframes loading {
@@ -67,5 +68,13 @@
     100% {
         transform: translateY(-100%);
         opacity: 0;
+    }
+}
+
+@media screen and (min-width:300px) and (max-width:450px) {
+    .loading {
+        span {
+            font-size: 1.875rem;
+        }
     }
 }

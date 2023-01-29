@@ -1,3 +1,4 @@
+@import url("./tag.css");
 * {
   margin: 0;
   padding: 0;
@@ -84,7 +85,6 @@ a {
   text-align: center;
 }
 .show-area .error-tips .tips-progress {
-  transition: all 2s;
   left: 0;
   position: absolute;
   bottom: 0.5px;
@@ -95,6 +95,22 @@ a {
   padding: 0;
   border-radius: 5px;
   background-color: rgba(248, 248, 248, 0.458);
+}
+@-webkit-keyframes tipsProgress {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@keyframes tipsProgress {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
 }
 .show-area .success-tips {
   overflow: hidden;
@@ -284,39 +300,8 @@ a {
 .page-content .article article .article-main .article-about .article-header-about-tag {
   padding: 5px;
   display: inline-flex;
-}
-.page-content .article article .article-main .article-about .article-header-about-tag .about-title {
-  font-size: 13px;
-  color: white;
-  padding: 3px 6px;
-  background-color: rgba(0, 0, 0, 0.69);
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-.page-content .article article .article-main .article-about .article-header-about-tag .about-link {
-  font-size: 13px;
-  cursor: default;
-  padding: 3px 6px;
-  color: white;
-  background-color: rgb(17, 124, 191);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-.page-content .article article .article-main .article-about .article-header-about-tag .about-object {
-  font-size: 13px;
-  padding: 3px 6px;
-  color: white;
-  background-color: rgba(11, 153, 65, 0.803);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-.page-content .article article .article-main .article-about .article-header-about-tag .about-tag {
-  font-size: 13px;
-  padding: 3px 6px;
-  color: white;
-  background-color: rgb(134, 185, 5);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  align-items: center;
+  justify-content: center;
 }
 .page-content .article article .article-main .article-content {
   display: flex;
@@ -375,7 +360,7 @@ a {
   border-bottom: 3px solid rgb(26, 127, 214);
 }
 .page-content .article aside .search-area .search-group form input {
-  transition: all 1s;
+  transition: all 0.2s;
   width: calc(90% + 10px);
   outline: none;
   border-bottom: 3px solid rgba(164, 164, 164, 0.712);
@@ -468,6 +453,7 @@ a {
   float: left;
   font-size: 12px;
   transition: all 0.25s;
+  letter-spacing: 0.0313rem;
 }
 .page-content .article aside .aside .tag .article-tag .item-tag a {
   color: rgba(24, 24, 24, 0.623);
@@ -483,17 +469,64 @@ a {
   color: white;
   width: 100%;
   height: 10%;
-  padding: 10px 0;
+  padding: 1.25rem 0;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
-  letter-spacing: 1px;
+  letter-spacing: 0.0938rem;
+  line-height: 1.25rem;
 }
 .page-footer .footer p {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
+.back-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 2.5rem;
+  background-color: rgb(253, 249, 240);
+  border-radius: 20px;
+  border: 3px solid rgb(131, 131, 131);
+  font-size: 0.875rem;
+  color: rgb(106, 106, 106);
+  padding: 0.625rem 1.25rem;
+  font-weight: 600;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 @media screen and (min-width: 300px) and (max-width: 450px) {
   .page-header {
     width: 100%;
@@ -678,6 +711,12 @@ a {
   }
   .page-footer .footer p {
     font-size: 12px !important;
+  }
+  .back-top {
+    font-size: 0.875rem;
+    padding: 0.3125rem 0.625rem;
+    bottom: 0.75rem;
+    right: 0.75rem;
   }
 }
 .github-corner:hover .octo-arm {

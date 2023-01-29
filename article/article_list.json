@@ -2,14 +2,14 @@
     {
         "pubDate": "20220514",
         "authorName": "Rockeven199",
-        "articleTitle": "我的第一篇文章",
+        "articleTitle": "JavaScript Promise用法",
         "articleContent": "12345",
         "Tag": [
             [
                 "OpenSource",
                 "Rockeven199",
                 "https://bing.com",
-                "green"
+                "blue"
             ],
             [
                 "Tag",
@@ -18,12 +18,12 @@
                 "blue"
             ]
         ],
-        "articleUrl": "../article/20220514.txt"
+        "articleUrl": "../article/content/20220514.md"
     },
     {
         "pubDate": "20220515",
         "authorName": "Rockeven199",
-        "articleTitle": "我的第二篇文章",
+        "articleTitle": "JavaScript Object用法",
         "articleContent": "12345",
         "Tag": [
             [
@@ -39,12 +39,12 @@
                 "blue"
             ]
         ],
-        "articleUrl": "../article/20220515.txt"
+        "articleUrl": "../article/content/20220515.md"
     },
     {
         "pubDate": "20220516",
         "authorName": "Rockeven199",
-        "articleTitle": "我的第三篇文章",
+        "articleTitle": "Java基础",
         "articleContent": "3333333333333333",
         "Tag": [
             [
@@ -60,6 +60,6 @@
                 "blue"
             ]
         ],
-        "articleUrl": "../article/20220516.txt"
+        "articleUrl": "../article/content/20220516.md"
     }
 ]

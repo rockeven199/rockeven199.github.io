@@ -28,7 +28,7 @@
     </style>
 </head>
 
-<body style="overflow: scroll;" id="top">
+<body id="top" style="overflow: scroll;">
     <!--加载动画 -->
     <div class="loading">
         <span class="loading-char" style="--delay:0.1s;" data-char="L">L</span>
@@ -54,9 +54,8 @@
             </div>
         </div>
     </div>
-    <h1 style="display:none;">Rockeven199的小屋</h1>
     <div class="prograss">
-        <div class="prograss-pic"></div>
+        <div class="prograss-pic back-top" onclick="backTop()"></div>
     </div>
     <div class="page-header">
         <header class="header">
@@ -97,7 +96,7 @@
                         <div class="search-area-title">搜索</div>
                         <form method="get" name="search" action="./search.html" id="search_form">
                             <input type="input" name="search_content" id="search-input" value="" placeholder="请输入搜索内容"
-                                onchange="inputChange(this)" data-search="" />
+                                onchange="inputChange(this)" data-search="" autocomplete="false" />
                             <div class="search-area-button">
                                 <select name="search_option" id="search_option" title="选择搜索范围">
                                     <option value="content" name="search_option">文章</option>
@@ -145,13 +144,6 @@
                 fill="currentColor" class="octo-body"></path>
         </svg>
     </a>
-    <!-- <div style="display: none;">
-        <form action="./article_content.html" id="article_content_form" method="get" target="_blank">
-            <input type="text" value="" name="article_number" id="article_content">
-            <input type="button" id="submit_article_content">
-        </form>
-    </div> -->
-    <div class="back-top" style="display: none;" onclick="backTop()">回到顶部</div>
 </body>
 
 </html>

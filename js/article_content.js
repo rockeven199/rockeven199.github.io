@@ -36,10 +36,11 @@ function renderInfo() {
         data: "data",
         dataType: "json",
         success: function (response) {
-            // 设置作者、文章标签、发布时间
+            // 设置作者、文章标签、发布时间、页面标题
             document.querySelector(".author span").innerHTML = response[position].authorName;
             document.querySelector(".article-title").innerHTML = response[position].articleTitle;
-            document.querySelector(".pub-time span").innerHTML = response[position].pubDate.slice(0, 4) + "-" + response[position].pubDate.slice(4, 6) + "-" + response[position].pubDate.slice(6, 8);
+            document.querySelector(".pub-time span").innerHTML = response[position].pubDate;
+            document.title = response[position].articleTitle;
             for (a in response[position].Tag) {
                 if (response[position].Tag[a][3] == "blue") {
                     temptempHTML += `<div class="tag-group"><span class="about-title" style="margin-left:5px">${response[position].Tag[a][0]}</span><a class="about-link">${response[position].Tag[a][1]}</a></div></div>`
@@ -55,6 +56,8 @@ function renderInfo() {
             for (let c = 0; c < response.length; c++) {
                 articleList += "<li class='article-item'>" + response[c].articleTitle + "</li>";
             }
+
+            // 文章列表
             document.querySelector(".article-group").innerHTML = articleList;
         }
     });

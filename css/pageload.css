@@ -16,8 +16,7 @@
   font-family: "Lato", sans-serif;
   font-size: 40px;
   font-weight: 600;
-  -webkit-animation: loading 1.8s infinite var(--delay);
-          animation: loading 1.8s infinite var(--delay);
+  animation: loading 1.8s infinite var(--delay);
   letter-spacing: 0.3125rem;
   color: white;
   -webkit-text-stroke: 0.5px rgba(60, 60, 60, 0.67);
@@ -32,24 +31,6 @@
   letter-spacing: 0.3125rem;
   left: 0px;
   filter: opacity(0.5) blur(10px);
-}
-
-@-webkit-keyframes loading {
-  0% {
-    transform: translateY(0px);
-  }
-  25% {
-    transform: translateY(20px);
-  }
-  40% {
-    transform: translateY(20px);
-  }
-  60% {
-    transform: translateY(0px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
 }
 
 @keyframes loading {
@@ -67,20 +48,6 @@
   }
   100% {
     transform: translateY(0px);
-  }
-}
-@-webkit-keyframes loading-complete {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  70% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100%);
-    opacity: 0;
   }
 }
 @keyframes loading-complete {

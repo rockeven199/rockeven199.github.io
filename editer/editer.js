@@ -149,15 +149,6 @@ window.onload = function () {
         }
         document.querySelector(".render-article-area").innerHTML = template;
     });
-    // $.ajax({
-    //     type: "get",
-
-    //     data: "data",
-    //     dataType: "json",
-    //     success: function (response) {
-
-    //     }
-    // });
 
     // 文章列表
     var controlIcon = false;
@@ -174,9 +165,9 @@ window.onload = function () {
     });
 
     // 文章编写预览
-    // document.querySelector("textarea").addEventListener("input", () => {
-    //     document.querySelector(".preview-area").innerHTML = marked.parse(document.querySelector("textarea").value);
-    // });
+    document.querySelector("textarea").addEventListener("input", () => {
+        document.querySelector(".preview-area").innerHTML = marked.parse(document.querySelector("textarea").value);
+    });
 
     // 全选文章
     window.hasChecked = false;
@@ -206,15 +197,18 @@ window.onload = function () {
                 item.checked ? item.parentElement.remove() : ""
             });
         }
-
         // 单独选择
         else if (checked.length > 0 && document.querySelectorAll(".article-group input[type=checkbox]").length != checked.length) {
-            document.querySelectorAll(".article-group input[type=checkbox]").forEach((item) => { item.checked ? item.parentElement.remove() : ""; });
+            document.querySelectorAll(".article-group input[type=checkbox]").forEach((item) => {
+                item.checked ? item.parentElement.remove() : ""
+            });
         }
 
         // 未选择
         else {
             document.querySelector(".render-article-area").lastElementChild.remove();
         }
+
+
     });
 }

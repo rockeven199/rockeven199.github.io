@@ -79,8 +79,6 @@ window.onload = function () {
         }
       } else {
         // 通过标签查找
-        var articleArray = [];
-
         for (var a = 0; a < articleLen; a++) {
           for (var b = 0; b < resData[a].Tag.length; b++) {
             for (var c = 0; c < resData[a].Tag[b].length; c++) {

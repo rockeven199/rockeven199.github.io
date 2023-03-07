@@ -208,7 +208,5 @@ window.onload = function () {
         else {
             document.querySelector(".render-article-area").lastElementChild.remove();
         }
-
-
     });
 }

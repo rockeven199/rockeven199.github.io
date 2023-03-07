@@ -585,6 +585,10 @@ a {
 
 @media screen and (min-width:300px) and (max-width:450px) {
 
+    .prograss {
+        display: none;
+    }
+
     .page-header {
         width: 100%;
         height: 100%;
@@ -610,7 +614,7 @@ a {
 
             .header-nav {
                 padding: 0 !important;
-                width: 30%;
+                width: 100%;
                 position: absolute;
                 transform: translateY(-100%);
 
@@ -618,12 +622,14 @@ a {
                     display: flex;
                     flex-direction: column;
                     line-height: 15px;
+                    align-items: center;
 
                     .nav-items {
+                        padding: 0 10%;
+                        text-align: center;
                         font-size: 12px !important;
                         margin: 0px !important;
                         line-height: 30px !important;
-                        background-color: rgba(255, 255, 255, 0.756);
 
                         a {
                             color: rgb(30, 30, 30);
@@ -631,7 +637,7 @@ a {
                     }
 
                     .nav-items:hover {
-                        background-color: rgba(77, 77, 77, 0.823);
+                        background-color: rgba(0, 0, 0, 0.54);
 
                         a {
                             color: white;

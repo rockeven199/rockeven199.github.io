@@ -1,6 +1,4 @@
 window.onload = function () {
-    document.querySelector(".header-nav").style.marginRight = ($(window).width() - $(".header-nav").width()) / 2 + "px";
-
     // 手机端侧边栏
     function aside() {
         var phoneMenuStatus = false;
@@ -159,6 +157,7 @@ function deviceFlex() {
         })
 
         $("#nav-search-item").css("display", "none");
+        document.querySelector(".header-nav").style.marginRight = ($(window).width() - $(".header-nav").width()) / 2 + "px";
     }
 }
 deviceFlex();
@@ -265,4 +264,3 @@ function backTop() {
         }, 10)
     }
 }
-

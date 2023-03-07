@@ -91,26 +91,18 @@ window.onload = function () {
   var openLoadTimeOut = setTimeout(function () {
     renderHtml();
     clearTimeout(openLoadTimeOut);
-  }, 600); // 显示返回顶部按钮
+  }, 600); // 搜索框
 
-  window.addEventListener('scroll', function () {
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  document.querySelector('#search-input').value = "";
+};
 
-    if (scrollTop >= window.innerHeight) {
-      document.querySelector(".back-top").style.animation = "fadeIn 0.2s forwards";
-      document.querySelector(".back-top").style.display = "block";
-    } else {
-      document.querySelector(".back-top").style.animation = "fadeOut 0.2s forwards";
-      document.querySelector(".back-top").style.display = "none";
-    }
-  }); // 初始化页面元素
-  // 搜索框
+window.onresize = function () {
+  document.querySelector(".header-nav").style.marginRight = ($(window).width() - $(".header-nav").width()) / 2 + "px";
+};
 
-  document.querySelector('#search-input').value = ""; // 设置页面样式
-
-  deviceFlex(); // 返回顶部
-
-  scrollTo(0, 0);
+window.onscroll = function () {
+  // 顶部菜单
+  document.body.scrollTop + 10 || document.documentElement.scrollTop + 10 >= document.querySelector(".header-nav").offsetHeight ? document.querySelector(".header-nav").style.position = "fixed" : document.querySelector(".header-nav").style.position = "absolute";
 }; // 设备适配
 
 
@@ -118,21 +110,44 @@ function deviceFlex() {
   var winH = $(window).height();
   var winW = $(window).width();
 
-  if (winW >= 360 && winW <= 450 && winH >= 647 && winH <= 800) {
+  if (winW >= 360 && winW <= 450) {
     $(document).scroll(function () {
-      $(".prograss").width($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 90 + '%');
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 85 + '%');
+    });
+    $(".footer p").css("fontSize", "10px");
+  }
+
+  if (winW >= 451 && winW <= 800) {
+    $(document).scroll(function () {
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 90 + '%');
+    });
+    $(".footer p").css("fontSize", "10px");
+  }
+
+  if (winW >= 800 && winW <= 1200) {
+    $(document).scroll(function () {
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + '%');
+    });
+    $(".footer p").css("fontSize", "10px");
+  }
+
+  if (winW >= 1201 && winW <= 1499) {
+    $(document).scroll(function () {
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + '%');
     });
     $(".footer p").css("fontSize", "10px");
   }
 
   if (winW >= 1500 && winW <= 1920) {
     $(document).scroll(function () {
-      $(".prograss").width($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 98 + '%');
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + '%');
     });
     $("#nav-search-item").css("display", "none");
+    document.querySelector(".header-nav").style.marginRight = ($(window).width() - $(".header-nav").width()) / 2 + "px";
   }
-} // 提示信息
+}
 
+deviceFlex(); // 提示信息
 
 function errorTips(content) {
   $(".error-tips p").text(content);
@@ -197,35 +212,47 @@ function searchContent(searchButton) {
 
 
 function goToArticle(pageNum) {
-  $.ajax({
-    type: "GET",
-    url: "../article/article_list.json",
-    data: "data",
-    dataType: "json",
-    success: function success(response) {
-      for (var a = 0; a < response.length; a++) {
-        if (response[a].pubDate == pageNum) {
-          // response[a].pubDate
-          location.href = "../article_content.html";
-          return 0;
-        }
-      }
+  var xhr = new XMLHttpRequest();
+  var articleNum = pageNum.dataset.num;
+  var articleArray = undefined;
+  var articleUrl = "";
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 || xhr.status == 200) {
+      articleArray = eval(xhr.responseText);
+      articleUrl = articleArray[articleNum].articleUrl;
+      sessionStorage.setItem("articleUrl", articleUrl);
+      sessionStorage.setItem("articleNum", pageNum.dataset.num);
+      location.href = "../article_content.html";
     }
-  });
-  $("#article_content").val(pageNum.getAttribute("data-num") - 1);
-  $("#submit_article_content").click();
+  };
+
+  xhr.open('GET', '../article/article_list.json', true);
+  xhr.send();
   return 0;
 } // 点击按钮返回页面顶部
 
 
 function backTop() {
-  var backTop = 1000;
-  var backTopTimer = setInterval(function () {
-    backTop -= 100;
-    scrollTo(0, backTop);
+  var temp = document.documentElement.scrollTop;
 
-    if (backTop <= 0) {
-      clearInterval(backTopTimer);
-    }
-  }, 100);
+  if (temp != 0) {
+    var backTopTimer = setInterval(function () {
+      var backTopTimer2 = setInterval(function () {
+        var backTopTimer3 = setInterval(function () {
+          var backTopTimer4 = setInterval(function () {
+            if (temp <= 0) {
+              clearInterval(backTopTimer);
+              clearInterval(backTopTimer2);
+              clearInterval(backTopTimer3);
+              clearInterval(backTopTimer4);
+            }
+
+            scrollTo(0, temp);
+            temp -= 1;
+          }, 10);
+        }, 10);
+      }, 10);
+    }, 10);
+  }
 }

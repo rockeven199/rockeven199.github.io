@@ -5,12 +5,9 @@ document.addEventListener("readystatechange", function () {
 		var temp = setTimeout(() => {
 			document.querySelector(".prograss-pic").removeAttribute("style");
 			document.querySelector("body").removeAttribute("style");
-			// document.querySelector(".loading").remove()
-			clearTimeout(temp);
 		}, 4000);
 	}
 	else {
-		scrollTo(0, 0)
 		document.querySelector("body").style.overflow = "hidden";
 		document.querySelector(".prograss-pic").style.display = "none";
 		var fontColor = ['#2BD52B', '#E6E61A', '#DD2222', '#2B6FD5', '#CC33CC', '#E6941A'];
@@ -20,3 +17,7 @@ document.addEventListener("readystatechange", function () {
 		});
 	}
 });
+
+window.onload=()=>{
+
+}

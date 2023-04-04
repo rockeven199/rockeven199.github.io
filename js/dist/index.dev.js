@@ -2,108 +2,167 @@
 
 window.onload = function () {
   // 手机端侧边栏
-  function aside() {
-    var phoneMenuStatus = false;
-    $(".nav-menu").on('click', function () {
-      if (phoneMenuStatus === false) {
-        $(".nav-menu").css("transform", "rotate(-270deg)").css("transition", "all 0.5s");
-        $(".header-nav").css("transform", "translateX(0)");
-        phoneMenuStatus = true;
-      } else {
-        $(".header-nav").css("transform", "translateY(-100%)");
-        $(".nav-menu").css("transform", "rotate(-180deg)").css("transition", "all 0.5s");
-        phoneMenuStatus = false;
-      }
-    });
-  }
+  aside(); // 屏幕自适应
 
-  aside(); //打字机特效插件
-
-  var options = {
-    strings: ['Rockeven199的小屋'],
-    typeSpeed: 60
-  };
-  var typed = new Typed('.blog-title', options);
-
-  function renderHtml() {
-    // 数据请求
-    var XMLHttp;
-    listRes = null;
-    XMLHttp = new XMLHttpRequest();
-
-    XMLHttp.onreadystatechange = function () {
-      if (XMLHttp.readyState == 4 && XMLHttp.status == 200) {
-        listRes = XMLHttp.responseText;
-      }
-    };
-
-    XMLHttp.open("GET", "../article/article_list.json", false);
-    XMLHttp.send();
-    var listRes = JSON.parse(listRes); //获取文章总数
-
-    var listlen = listRes.length;
-    var tempHtml = "";
-    var temptempHTML = "";
-    var article_number = -1;
-
-    for (var a = 0; a < listlen; a++) {
-      var pubDate = listRes[a].pubDate;
-      var pubAuthor = listRes[a].authorName;
-      var articleTitle = listRes[a].articleTitle;
-      var articleContent = listRes[a].articleContent;
-      var tagTemplate = "";
-      article_number++;
-
-      try {
-        for (var b = 0; b < listRes[a].Tag.length; b++) {
-          for (var c = 0; c < listRes[a].Tag.length; c++) {
-            temptempHTML = "";
-
-            if (listRes[a].Tag[b][3] == "blue") {
-              temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-link\">").concat(listRes[a].Tag[b][1], "</a></div>");
-            } else if (listRes[a].Tag[b][3] == "green") {
-              temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-object\">").concat(listRes[a].Tag[b][1], "</a></div>");
-            } else {
-              temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-tag\">").concat(listRes[a].Tag[b][1], "</a></div>");
-            }
-          }
-
-          tagTemplate = tagTemplate + temptempHTML;
-        }
-      } catch (error) {}
-
-      var html = "<div class=\"article-main\">\n                <div class=\"article-header\">\n                    <div class=\"pub-time\">".concat(pubDate, "</div>\n                    <span class=\"point\" style=\"color: rgba(24, 24, 24, 0.623);\">\xB7</span>\n                    <div class=\"pub-author\">").concat(pubAuthor, "</div>\n                </div>\n                <div class=\"article-title\" id=\"article-title\">\n                    <h1>").concat(articleTitle, "</h1>\n                </div>\n                <div class=\"article-about\">\n                ").concat(tagTemplate, "\n                </div>\n                <div class=\"article-content\" onclick=\"goToArticle(this)\" data-num=\"").concat(article_number, "\">").concat(articleContent, "</div>\n            </div>"); // 模板定义
-
-      if (tempHtml != "") {
-        tempHtml = tempHtml + html;
-      } else {
-        tempHtml = html;
-      }
-    } // 渲染
-
-
-    var temp = ejs.render('<%- tempHtml %>', {
-      tempHtml: tempHtml
-    });
-    $(".article-section").html(temp);
-  }
+  deviceFlex(); // 渲染文章
 
   var openLoadTimeOut = setTimeout(function () {
     renderHtml();
     clearTimeout(openLoadTimeOut);
-  }, 600); // 搜索框
+  }, 600); // 手机端返回顶部
 
-  document.querySelector('#search-input').value = "";
+  document.querySelector(".phone-back-top").addEventListener('click', function () {
+    backTop();
+  }); // 电脑端顶部导航栏
+
+  var showNav = true;
+  showNav = resetHeaderNavPosition(showNav, deviceFlex()[0], deviceFlex()[1]); // 初始化页面样式
+
+  initPageStyle();
 };
 
 window.onresize = function () {
-  document.querySelector(".header-nav").style.marginRight = ($(window).width() - $(".header-nav").width()) / 2 + "px";
+  resetHeaderNavPosition();
 };
 
 window.onscroll = function () {
   // 顶部菜单
   document.body.scrollTop + 10 || document.documentElement.scrollTop + 10 >= document.querySelector(".header-nav").offsetHeight ? document.querySelector(".header-nav").style.position = "fixed" : document.querySelector(".header-nav").style.position = "absolute";
-}; // 设备适配
+};
+/**
+ * @name 渲染文章
+ */
+
+
+function renderHtml() {
+  // 数据请求
+  var XMLHttp;
+  listRes = null;
+  XMLHttp = new XMLHttpRequest();
+
+  XMLHttp.onreadystatechange = function () {
+    if (XMLHttp.readyState == 4 && XMLHttp.status == 200) {
+      listRes = XMLHttp.responseText;
+    }
+  };
+
+  XMLHttp.open("GET", "../article/article_list.json", false);
+  XMLHttp.send();
+  var listRes = JSON.parse(listRes); //获取文章总数
+
+  var listlen = listRes.length;
+  var tempHtml = "";
+  var temptempHTML = "";
+  var article_number = -1;
+
+  for (var a = 0; a < listlen; a++) {
+    var pubDate = listRes[a].pubDate;
+    var pubAuthor = listRes[a].authorName;
+    var articleTitle = listRes[a].articleTitle;
+    var articleContent = listRes[a].articleContent;
+    var tagTemplate = "";
+    article_number++;
+
+    try {
+      for (var b = 0; b < listRes[a].Tag.length; b++) {
+        for (var c = 0; c < listRes[a].Tag.length; c++) {
+          temptempHTML = "";
+
+          if (listRes[a].Tag[b][3] == "blue") {
+            temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-link\">").concat(listRes[a].Tag[b][1], "</a></div>");
+          } else if (listRes[a].Tag[b][3] == "green") {
+            temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-object\">").concat(listRes[a].Tag[b][1], "</a></div>");
+          } else {
+            temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-tag\">").concat(listRes[a].Tag[b][1], "</a></div>");
+          }
+        }
+
+        tagTemplate = tagTemplate + temptempHTML;
+      }
+    } catch (error) {}
+
+    var html = "<div class=\"article-main\">\n            <div class=\"article-header\">\n                <div class=\"pub-time\">".concat(pubDate, "</div>\n                <span class=\"point\" style=\"color: rgba(24, 24, 24, 0.623);\">\xB7</span>\n                <div class=\"pub-author\">").concat(pubAuthor, "</div>\n            </div>\n            <div class=\"article-title\" id=\"article-title\">\n                <h1>").concat(articleTitle, "</h1>\n            </div>\n            <div class=\"article-about\">\n            ").concat(tagTemplate, "\n            </div>\n            <div class=\"article-content\" onclick=\"goToArticle(this)\" data-num=\"").concat(article_number, "\">").concat(articleContent, "</div>\n        </div>"); // 模板定义
+
+    if (tempHtml != "") {
+      tempHtml = tempHtml + html;
+    } else {
+      tempHtml = html;
+    }
+  } // 渲染
+
+
+  var temp = ejs.render('<%- tempHtml %>', {
+    tempHtml: tempHtml
+  });
+  $(".article-section").html(temp);
+}
+/**
+ * @name 手机端顶部导航栏
+ */
+
+
+function aside() {
+  var phoneMenuStatus = false;
+  $(".nav-menu").on('click', function () {
+    if (phoneMenuStatus === false) {
+      $(".nav-menu").css("transform", "rotate(-270deg)").css("transition", "all 0.5s");
+      $(".header-nav").css("transform", "translateX(0)");
+      document.querySelector(".nav-menu").setAttribute("fill", "#000000");
+      phoneMenuStatus = true;
+    } else {
+      $(".header-nav").css("transform", "translateY(-100%)");
+      $(".nav-menu").css("transform", "rotate(-180deg)").css("transition", "all 0.5s");
+      document.querySelector(".nav-menu").setAttribute("fill", "#ffffff");
+      phoneMenuStatus = false;
+    }
+  });
+}
+/**
+ * @param {*} showFlag 
+ * @param {*} screenW 
+ * @param {*} screenH 
+ * @name 大屏设备导航栏
+ */
+
+
+function resetHeaderNavPosition(showFlag, screenW, screenH) {
+  var headerNav = document.querySelector(".header-nav");
+  var openIcon = document.querySelector(".close-nav");
+  var eleArr = [headerNav, openIcon];
+  headerNav.style.marginRight = ($(window).width() - $(".header-nav").width()) / 2 + "px";
+
+  if (screenW >= 400 && screenH >= 600) {
+    eleArr.reduce(function (pre, item, index) {
+      item.addEventListener('click', function () {
+        if (showFlag === true) {
+          headerNav.style.top = "0px";
+          return showFlag = false;
+        } else {
+          headerNav.style.top = "-2.5rem";
+          return showFlag = true;
+        }
+      });
+    });
+  }
+}
+/**
+ * @name 初始化页面样式
+ */
+// 初始化页面样式
+
+
+function initPageStyle() {
+  // 清空搜索框
+  document.querySelector('#search-input').value = ""; // 返回顶部
+
+  scrollTo(0, 0); // 手机端默认菜单图标样式
+
+  document.querySelector(".nav-menu").setAttribute('fill', '#ffffff');
+}
+/**
+ * @name 设备适配
+ * @return {[deviceH,device]}
+ */
 
 
 function deviceFlex() {
@@ -145,9 +204,15 @@ function deviceFlex() {
     $("#nav-search-item").css("display", "none");
     document.querySelector(".header-nav").style.marginRight = ($(window).width() - $(".header-nav").width()) / 2 + "px";
   }
-}
 
-deviceFlex(); // 提示信息
+  return [winH, winW];
+}
+/**
+ * @name 提示信息
+ * @borrows errorTips,successTips
+ */
+// 提示信息
+
 
 function errorTips(content) {
   $(".error-tips p").text(content);
@@ -185,13 +250,21 @@ function successTips(content) {
     }, 2000);
   }, 5);
   return 0;
-} // 监听输入框内容
+}
+/**
+ * @name 监听输入框内容
+ * @param {*} element 
+ */
 
 
 function inputChange(ele) {
   var __this = ele;
   __this.dataset.search = __this.value;
-} // 搜索
+}
+/**
+ * @name 搜索
+ * @param {*} searchButton 
+ */
 
 
 function searchContent(searchButton) {
@@ -208,7 +281,12 @@ function searchContent(searchButton) {
       __this.setAttribute("type", "submit");
     }
   }
-} // 获取文章内容并跳转
+}
+/**
+ * @name 获取文章内容并跳转
+ * @param {*} pageNum 
+ * @return
+ */
 
 
 function goToArticle(pageNum) {
@@ -218,19 +296,24 @@ function goToArticle(pageNum) {
   var articleUrl = "";
 
   xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 || xhr.status == 200) {
-      articleArray = eval(xhr.responseText);
-      articleUrl = articleArray[articleNum].articleUrl;
-      sessionStorage.setItem("articleUrl", articleUrl);
-      sessionStorage.setItem("articleNum", pageNum.dataset.num);
-      location.href = "../article_content.html";
-    }
+    try {
+      if (xhr.readyState == 4 || xhr.status == 200) {
+        articleArray = eval(xhr.responseText);
+        articleUrl = articleArray[articleNum].articleUrl;
+        sessionStorage.setItem("articleUrl", articleUrl);
+        sessionStorage.setItem("articleNum", pageNum.dataset.num);
+        location.href = "../article_content.html";
+      }
+    } catch (error) {}
   };
 
   xhr.open('GET', '../article/article_list.json', true);
   xhr.send();
   return 0;
-} // 点击按钮返回页面顶部
+}
+/**
+ * @name 返回页面顶部
+ */
 
 
 function backTop() {

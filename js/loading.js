@@ -5,6 +5,7 @@ document.addEventListener("readystatechange", function () {
 		var temp = setTimeout(() => {
 			document.querySelector(".prograss-pic").removeAttribute("style");
 			document.querySelector("body").removeAttribute("style");
+			// document.querySelector(".loading").remove()
 			clearTimeout(temp);
 		}, 4000);
 	}

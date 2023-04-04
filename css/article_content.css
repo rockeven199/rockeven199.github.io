@@ -88,6 +88,10 @@ body {
   border: 1px solid transparent;
   border-radius: 0.3125rem;
   font-size: 0.875rem;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .container .aside .control {
   position: absolute;

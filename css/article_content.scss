@@ -98,6 +98,8 @@ body {
                 border: 1px solid transparent;
                 border-radius: .3125rem;
                 font-size: .875rem;
+                cursor:default;
+                user-select: none;
             }
         }
 

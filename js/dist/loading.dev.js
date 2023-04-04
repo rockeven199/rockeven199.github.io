@@ -7,7 +7,8 @@ document.addEventListener("readystatechange", function () {
     document.querySelector(".loading").style.animation = "loading-complete 4s forwards";
     var temp = setTimeout(function () {
       document.querySelector(".prograss-pic").removeAttribute("style");
-      document.querySelector("body").removeAttribute("style");
+      document.querySelector("body").removeAttribute("style"); // document.querySelector(".loading").remove()
+
       clearTimeout(temp);
     }, 4000);
   } else {

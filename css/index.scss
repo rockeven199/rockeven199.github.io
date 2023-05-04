@@ -209,7 +209,7 @@ a {
     }
 
     .header {
-        background-image: url('../img/playground.jpg');
+        background-image: url('../img/wallhaven-zygeko.jpg');
         height: 100%;
         background-size: 100% cover;
         position: relative;
@@ -284,7 +284,8 @@ a {
 .page-content {
     width: 100%;
     background-attachment: fixed;
-    background-size: 100% 100%;
+    background-size: 100%;
+    background-image:url('../img/wallhaven-yxxo1x.jpg');
 
     .article {
         width: 100%;
@@ -304,6 +305,7 @@ a {
                 width: calc(100% - 10px);
                 margin: 10px 5px;
                 padding: 10px 0px;
+                background-color: transparent;
 
                 .article-header {
                     width: calc(80% - 20px);
@@ -316,6 +318,7 @@ a {
                     justify-content: flex-start;
                     font-weight: bold;
                     color: rgba(24, 24, 24, 0.77);
+                    background-color: transparent;
 
                     .pub-author {
                         font-size: 14px;
@@ -345,6 +348,7 @@ a {
                     padding-left: 1.4375rem;
                     color: rgba(24, 24, 24, 0.77);
                     font-weight: 600;
+                    background-color: transparent;
                 }
 
                 .article-about {

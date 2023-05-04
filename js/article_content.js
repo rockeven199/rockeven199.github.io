@@ -44,6 +44,17 @@ function getArticleContent(url) {
   }, "text");
 }
 
+function getJosn() {
+  fetch('../article/article_list.json', { method: 'GET' })
+    .then((data) => {
+      data.json().then((data) => {
+        return data;
+      })
+    })
+}
+
+getJosn()
+
 /**
  * @name 文章列表
  */
@@ -53,13 +64,15 @@ function articleList() {
   document.querySelectorAll('.article-item').forEach((item) => {
     item.addEventListener('click', (item) => {
       getArticleContent(item.target.dataset.url)
+      sessionStorage.setItem("articleNum", item.target.dataset.index)
+      location.reload()
+
       // document.querySelector('.author span').innerHTML = ""
       // document.querySelector('.pub-time span').innerHTML = ""
       // document.querySelectorAll('.tag-group').forEach(item => {
       //   item.remove()
       // })
-      sessionStorage.setItem("articleNum", item.target.dataset.index)
-      location.reload()
+
       // var url = item.target.dataset.index
       // $.ajax({
       //   type: "GET",

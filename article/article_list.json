@@ -1,6 +1,6 @@
 [
     {
-        "pubDate": "20220514",
+        "pubDate": "2022-5-14",
         "authorName": "Rockeven199",
         "articleTitle": "JavaScript Promise用法",
         "articleContent": "12345",
@@ -21,7 +21,7 @@
         "articleUrl": "../article/content/20220514.md"
     },
     {
-        "pubDate": "20220515",
+        "pubDate": "2022-5-15",
         "authorName": "Rockeven199",
         "articleTitle": "JavaScript Object用法",
         "articleContent": "12345",
@@ -42,7 +42,7 @@
         "articleUrl": "../article/content/20220515.md"
     },
     {
-        "pubDate": "20220516",
+        "pubDate": "2022-5-16",
         "authorName": "Rockeven199",
         "articleTitle": "Java基础",
         "articleContent": "3333333333333333",

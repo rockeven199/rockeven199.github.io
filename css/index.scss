@@ -50,6 +50,10 @@ a {
     text-decoration: none;
 }
 
+#search_button {
+    word-break: keep-all;
+}
+
 .prograss {
     top: 0;
     position: fixed;
@@ -207,9 +211,11 @@ a {
     .header {
         background-image: url('../img/playground.webp');
         height: 100%;
-        background-size: 100% 100;
+        background-size: 100% cover;
         position: relative;
         background-attachment: fixed;
+        min-height: 100%;
+        min-width: 100%;
 
         .nav-menu {
             display: none;

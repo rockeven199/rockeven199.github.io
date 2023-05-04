@@ -47,24 +47,35 @@ function getArticleContent(url) {
     document.querySelector(".content").innerHTML = marked.parse(data);
   }, "text");
 }
+
+function getJosn() {
+  fetch('../article/article_list.json', {
+    method: 'GET'
+  }).then(function (data) {
+    data.json().then(function (data) {
+      return data;
+    });
+  });
+}
+
+getJosn();
 /**
  * @name 文章列表
  */
-
 
 function articleList() {
   var temptempHTML = "";
   var articleList = "";
   document.querySelectorAll('.article-item').forEach(function (item) {
     item.addEventListener('click', function (item) {
-      getArticleContent(item.target.dataset.url); // document.querySelector('.author span').innerHTML = ""
+      getArticleContent(item.target.dataset.url);
+      sessionStorage.setItem("articleNum", item.target.dataset.index);
+      location.reload(); // document.querySelector('.author span').innerHTML = ""
       // document.querySelector('.pub-time span').innerHTML = ""
       // document.querySelectorAll('.tag-group').forEach(item => {
       //   item.remove()
       // })
-
-      sessionStorage.setItem("articleNum", item.target.dataset.index);
-      location.reload(); // var url = item.target.dataset.index
+      // var url = item.target.dataset.index
       // $.ajax({
       //   type: "GET",
       //   url: "../article/article_list.json",

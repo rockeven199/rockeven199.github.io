@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #71b5f5;
+  background-color: #1ec1a3;
 }
 
 .loading span {
@@ -62,5 +62,10 @@
   100% {
     transform: translateY(-100%);
     opacity: 0;
+  }
+}
+@media screen and (min-width: 300px) and (max-width: 450px) {
+  .loading span {
+    font-size: 1.875rem;
   }
 }

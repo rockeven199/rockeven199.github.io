@@ -12,12 +12,10 @@ document.addEventListener("readystatechange", function () {
   } else {
     document.querySelector("body").style.overflow = "hidden";
     document.querySelector(".prograss-pic").style.display = "none";
-    var fontColor = ['#2BD52B', '#E6E61A', '#DD2222', '#2B6FD5', '#CC33CC', '#E6941A'];
+    var fontColor = ['#2BD52B', '#c7c727', '#c12121', '#2661b8', '#b127b1', '#b7791d'];
     var realDom = document.querySelectorAll("span");
     realDom.forEach(function (element) {
       element.style.color = fontColor[Math.floor(Math.random() * (6 - 1 + 1))];
     });
   }
 });
-
-window.onload = function () {};

@@ -259,7 +259,8 @@ a {
                     cursor: default;
 
                     #search_content {
-                        border-radius: 5px;
+                        border-radius: .3125rem;
+                        border: 1px solid transparent;
                     }
                 }
             }
@@ -285,7 +286,7 @@ a {
     width: 100%;
     background-attachment: fixed;
     background-size: 100%;
-    background-image:url('../img/wallhaven-yxxo1x.jpg');
+    background-image: url('../img/wallhaven-yxxo1x.jpg');
 
     .article {
         width: 100%;
@@ -317,26 +318,25 @@ a {
                     align-items: center;
                     justify-content: flex-start;
                     font-weight: bold;
-                    color: rgba(24, 24, 24, 0.77);
                     background-color: transparent;
 
                     .pub-author {
                         font-size: 14px;
-                        border-bottom: 1px solid black;
-                        color: rgba(30, 30, 30, 0.736);
+                        border-bottom: 1px solid rgb(255, 255, 255);
+                        color: rgba(255, 255, 255, 0.736);
                     }
 
                     .pub-time {
                         font-size: 14px;
-                        border-bottom: 1px solid black;
-                        color: rgba(30, 30, 30, 0.736);
+                        border-bottom: 1px solid rgb(255, 255, 255);
+                        color: rgba(255, 255, 255, 0.736);
                     }
 
                     .point {
                         padding: 0px 5px;
                         font-size: 14px;
-                        border-bottom: 1px solid black;
-                        color: rgba(30, 30, 30, 0.736);
+                        border-bottom: 1px solid rgb(255, 255, 255);
+                        color: rgba(255, 255, 255, 0.736) !important;
                     }
 
                 }
@@ -346,7 +346,7 @@ a {
                     margin: 0px calc(10% - 3px);
                     font-size: 20px;
                     padding-left: 1.4375rem;
-                    color: rgba(24, 24, 24, 0.77);
+                    color: rgba(255, 255, 255, 0.919);
                     font-weight: 600;
                     background-color: transparent;
                 }
@@ -369,12 +369,14 @@ a {
                     display: flex;
                     margin: 0px calc(10% + 20px);
                     width: 80%;
-                    background-color: rgba(222, 222, 222, 0.419);
+                    background-color: rgba(255, 255, 255, 0.57);
                     height: 100%;
                     font-size: 16px;
                     word-break: break-all;
                     padding: 20px;
                     align-items: center;
+                    border-radius: .3125rem;
+                    outline: 2.5px solid rgba(48, 48, 48, 0.441);
                 }
             }
         }
@@ -398,8 +400,18 @@ a {
                     margin-left: 25px;
                     width: 60%;
 
+                    #search_form {
+
+                        #search-input {
+                            border-radius: 1.25rem;
+                            padding: .625rem .3125rem;
+                            text-indent: .3125rem;
+                        }
+                    }
+
                     .search-area-title {
-                        margin-bottom: 30px;
+                        margin-bottom: .625rem;
+                        color: rgba(255, 255, 255, 0.784);
                     }
 
                     select {
@@ -424,8 +436,7 @@ a {
                         justify-content: center;
 
                         input:focus {
-                            outline: none;
-                            border-bottom: 3px solid rgb(26, 127, 214);
+                            outline: solid rgb(23, 106, 231) .1563rem;
                         }
 
                         input {
@@ -454,7 +465,7 @@ a {
                                 padding: .375rem .75rem;
                                 color: white;
                                 background-color: rgba(197, 27, 27, 0.732);
-                                border: 1px solid rgba(179, 179, 179, 0.527);
+                                border: none;
                                 letter-spacing: .0625rem;
                             }
 
@@ -464,8 +475,8 @@ a {
                                 padding: .375rem .75rem;
                                 color: white;
                                 background-color: rgba(20, 170, 95, 0.732);
-                                border: 1px solid rgba(179, 179, 179, 0.527);
                                 letter-spacing: .0625rem;
+                                border: none;
                             }
                         }
                     }
@@ -516,7 +527,7 @@ a {
                         align-items: center;
                         padding: 25px 0px 25px 25px;
                         justify-content: flex-start;
-                        color: rgba(24, 24, 24, 0.77);
+                        color: rgba(255, 255, 255, 0.822);
                         font-weight: 600;
                         font-size: 18px;
                     }
@@ -526,7 +537,8 @@ a {
                         margin-left: 20px;
 
                         .item-tag {
-                            background-color: rgba(174, 174, 174, 0.201);
+                            outline: 2px solid black;
+                            background-color: rgba(255, 255, 255, 0.548);
                             display: block;
                             text-align: center;
                             border-radius: 20px;
@@ -536,6 +548,7 @@ a {
                             font-size: 12px;
                             transition: all 0.25s;
                             letter-spacing: .0313rem;
+                            outline: 2.5px solid rgba(48, 48, 48, 0.441);
 
                             a {
                                 color: rgba(24, 24, 24, 0.623);
@@ -772,10 +785,6 @@ a {
                     margin: 0 20px;
                     border-bottom: 1px solid black;
 
-                    .article-header {
-                        padding-left: 5% !important;
-                    }
-
                     .article-title {
                         font-size: 12px;
                         padding: 0 !important;
@@ -812,6 +821,8 @@ a {
                         align-items: center;
                         font-size: 13px;
                         background-color: rgb(236, 236, 236);
+                        border-radius: 1.25rem;
+                        border: 1px solid transparent;
                     }
 
                     .article-about {
@@ -827,7 +838,7 @@ a {
                             color: white;
                             height: 1.125rem;
                             padding: 0px 6px !important;
-                            background-color: rgba(0, 0, 0, 0.69);
+                            background-color: rgba(61, 61, 61, 0.948);
                             border-top-left-radius: 5px;
                             border-bottom-left-radius: 5px;
                         }

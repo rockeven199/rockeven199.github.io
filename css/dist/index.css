@@ -33,6 +33,27 @@ body::-webkit-scrollbar-track {
 body {
   position: relative;
 }
+body .change-page-menu {
+  background-color: white;
+  position: absolute;
+  right: 1.875rem;
+  bottom: 6.25rem;
+  height: 1.875rem;
+  width: 1.875rem;
+  z-index: 3;
+}
+body .change-page-menu .toggle-icon {
+  max-width: 1.875rem;
+  max-height: 1.875rem;
+}
+body .change-page-menu .night-icon {
+  position: relative;
+  top: -3.75rem;
+}
+body .change-page-menu .light-icon {
+  position: relative;
+  bottom: -1.875rem;
+}
 
 li {
   list-style-type: none;

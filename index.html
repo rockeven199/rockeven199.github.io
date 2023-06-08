@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="./css/lib/animate.css">
     <link rel="stylesheet" href="./css/index.css">
     <link href='http://fonts.font.im/css?family=Lato' rel='styesheet' type='text/css'>
-    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <!-- <script src="./js/loading.js"></script> -->
+    <script src="./js/loading.js"></script>
     <script src="./js/lib/ejs.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/getAsideTag.js"></script>
@@ -30,7 +30,7 @@
 
 <body id="top" style="overflow-x: hidden;overflow-y: auto;">
     <!--加载动画 -->
-    <!-- <div class="loading">
+    <div class="loading">
         <span class="loading-char" style="--delay:0.1s;" data-char="L">L</span>
         <span class="loading-char" style="--delay:0.2s;" data-char="o">o</span>
         <span class="loading-char" style="--delay:0.3s;" data-char="a">a</span>
@@ -41,8 +41,12 @@
         <span class="loading-char" style="--delay:0.8s;" data-char=".">.</span>
         <span class="loading-char" style="--delay:0.9s;" data-char=".">.</span>
         <span class="loading-char" style="--delay:1.0s;" data-char=".">.</span>
-    </div> -->
+    </div>
     <!-- 加载完成 -->
+    <div class="change-page-menu">
+        <img src="./img/moon-b-月亮.png" alt="" class="toggle-icon night-icon">
+        <img src="./img/太阳.png" alt="" class="toggle-icon light-icon">
+    </div>
     <div class="show-area">
         <div class="error-tips">
             <p></p>
@@ -101,7 +105,7 @@
                         <div class="search-area-title">搜索</div>
                         <form method="get" name="search" action="./search.html" id="search_form">
                             <input type="input" name="search_content" id="search-input" value="" placeholder="请输入搜索内容"
-                                onchange="inputChange(this)" data-search="" autocomplete="false"/>
+                                onchange="inputChange(this)" data-search="" autocomplete="false" />
                             <div class="search-area-button">
                                 <select name="search_option" id="search_option" title="选择搜索范围">
                                     <option value="content" name="search_option">文章</option>

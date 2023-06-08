@@ -40,6 +40,32 @@ body::-webkit-scrollbar-track {
 
 body {
     position: relative;
+
+    .change-page-menu {
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        right: 1.875rem;
+        bottom: 6.25rem;
+        height: 1.875rem;
+        width: 1.875rem;
+        z-index: 3;
+
+        .toggle-icon {
+            max-width: 1.875rem;
+            max-height: 1.875rem;
+        }
+
+        .night-icon {
+            position: relative;
+            top: -3.75rem;
+
+        }
+
+        .light-icon {
+            position: relative;
+            bottom: -1.875rem;
+        }
+    }
 }
 
 li {
@@ -61,7 +87,7 @@ a {
 #search_button,
 .article,
 .header-nav,
-.page-header::before{
+.page-header::before {
     filter: invert(100%);
 }
 

@@ -1,0 +1,29 @@
+{
+  "name": "rockeven199.github.io",
+  "version": "1.0.0",
+  "description": "用来练手的博客，没啥技术含量",
+  "main": "./app/app.js",
+  "dependencies": {
+    "commonjs": "^0.0.1",
+    "electron": "^25.1.1",
+    "fs": "^0.0.1-security",
+    "nodemon": "^2.0.22",
+    "path": "^0.12.7",
+    "typescript": "^5.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ndev": "nodemon --exec electron .",
+    "run":"electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rockeven199/rockeven199.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rockeven199/rockeven199.github.io/issues"
+  },
+  "homepage": "https://github.com/rockeven199/rockeven199.github.io#readme"
+}

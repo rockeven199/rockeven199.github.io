@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="./css/editor.css">
+</head>
+
+<body>
+    <div class="preview-container">
+        <div class="top-bar">
+            <div class="move-bar">
+            </div>
+            <div class="close-bar">
+                <button class="close-bar-button">关闭</button>
+            </div>
+        </div>
+        <div class="output-area"></div>
+    </div>
+    <div class="page-container">
+        <div class="set-title-container">
+            <label for="typeTitle">文章标题</label>
+            <input type="text" id="typeTitle">
+        </div>
+        <div class="type-article-container">
+            <div>
+                <label for="typeContent">编辑文章内容<span
+                        style="font-size: 10px;margin: 0 10px;">[使用markdown编写]</span></label>
+                <button class="control-preview" data-openPreview="false">打开预览</button>
+            </div>
+            <div>
+                <textarea name="typeContent" id="typeContent" cols="30" rows="10" required></textarea>
+            </div>
+        </div>
+        <div class="set-article-tag">
+            <label for="setTag">设置文章Tag</label>
+            <hr>
+            <div class="set-container">
+                <div class="control-bar">
+                    <button id="addTag">添加</button>
+                    <button id="removeTag">删除</button>
+                </div>
+            </div>
+            <div class="show-tag">
+                <div class="tag-container" data-articleIndex="0">
+                    <input type="checkbox" name="" class="tag-select-check">
+                    <input class="select-values" value="111"/>
+                </div>
+                <div class="tag-container" data-articleIndex="1">
+                    <input type="checkbox" name="" class="tag-select-check">
+                    <input class="select-values" value="222"/>
+                </div>
+                <div class="tag-container" data-articleIndex="1">
+                    <input type="checkbox" name="" class="tag-select-check">
+                    <input class="select-values" value="333"/>
+                </div>
+                <div class="tag-container" data-articleIndex="1">
+                    <input type="checkbox" name="" class="tag-select-check">
+                    <input class="select-values" value="444"/>
+                </div>
+            </div>
+        </div>
+        <div class="compass-function">
+            <button class="submit" type="button">提交</button>
+            <button class="reset" type="reset">重置</button>
+        </div>
+    </div>
+</body>
+<script src="./module/renderer.js"></script>
+<script src="./module/function.js"></script>
+<script src="./module/lib/marked.min.js"></script>
+<script src="./module/baseMethod.js"></script>
+
+</html>

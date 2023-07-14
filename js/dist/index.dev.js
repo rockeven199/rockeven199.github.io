@@ -11,14 +11,16 @@ window.onload = function () {
     clearTimeout(openLoadTimeOut);
   }, 600); // 手机端返回顶部
 
-  document.querySelector(".phone-back-top").addEventListener('click', function () {
+  document.querySelector(".phone-back-top").addEventListener("click", function () {
     backTop();
   }); // 电脑端顶部导航栏
 
   var showNav = true;
   showNav = resetHeaderNavPosition(showNav, deviceFlex()[0], deviceFlex()[1]); // 初始化页面样式
 
-  initPageStyle();
+  initPageStyle(); // 切换页面主题
+
+  changePageStyle();
 };
 
 window.onresize = function () {
@@ -30,7 +32,8 @@ window.onscroll = function () {
   document.body.scrollTop + 10 || document.documentElement.scrollTop + 10 >= document.querySelector(".header-nav").offsetHeight ? document.querySelector(".header-nav").style.position = "fixed" : document.querySelector(".header-nav").style.position = "absolute";
 };
 /**
- * @name 渲染文章
+ * @name renderHtml
+ * @description 渲染文章
  */
 
 
@@ -91,19 +94,20 @@ function renderHtml() {
   } // 渲染
 
 
-  var temp = ejs.render('<%- tempHtml %>', {
+  var temp = ejs.render("<%- tempHtml %>", {
     tempHtml: tempHtml
   });
   $(".article-section").html(temp);
 }
 /**
- * @name 手机端顶部导航栏
+ * @description 手机端顶部导航栏
+ * @name aside
  */
 
 
 function aside() {
   var phoneMenuStatus = false;
-  $(".nav-menu").on('click', function () {
+  $(".nav-menu").on("click", function () {
     if (phoneMenuStatus === false) {
       $(".nav-menu").css("transform", "rotate(-270deg)").css("transition", "all 0.5s");
       $(".header-nav").css("transform", "translateX(0)");
@@ -118,10 +122,11 @@ function aside() {
   });
 }
 /**
- * @param {*} showFlag 
- * @param {*} screenW 
- * @param {*} screenH 
- * @name 大屏设备导航栏
+ * @param {*} showFlag
+ * @param {*} screenW
+ * @param {*} screenH
+ * @name resetHeaderNavPosition
+ * @description 大屏设备导航栏
  */
 
 
@@ -133,12 +138,12 @@ function resetHeaderNavPosition(showFlag, screenW, screenH) {
 
   if (screenW >= 400 && screenH >= 600) {
     eleArr.reduce(function (pre, item, index) {
-      item.addEventListener('click', function () {
+      item.addEventListener("click", function () {
         if (showFlag === true) {
           headerNav.style.top = "0px";
           return showFlag = false;
         } else {
-          headerNav.style.top = "-2.5rem";
+          headerNav.style.top = "-2.1875rem";
           return showFlag = true;
         }
       });
@@ -146,21 +151,22 @@ function resetHeaderNavPosition(showFlag, screenW, screenH) {
   }
 }
 /**
- * @name 初始化页面样式
+ * @name initPageStyle
+ * @description 初始化页面样式
  */
-// 初始化页面样式
 
 
 function initPageStyle() {
   // 清空搜索框
-  document.querySelector('#search-input').value = ""; // 返回顶部
+  document.querySelector("#search-input").value = ""; // 返回顶部
 
   scrollTo(0, 0); // 手机端默认菜单图标样式
 
-  document.querySelector(".nav-menu").setAttribute('fill', '#ffffff');
+  document.querySelector(".nav-menu").setAttribute("fill", "#ffffff");
 }
 /**
- * @name 设备适配
+ * @name deviceFlex
+ * @description 设备适配
  * @return {[deviceH,device]}
  */
 
@@ -171,35 +177,35 @@ function deviceFlex() {
 
   if (winW >= 360 && winW <= 450) {
     $(document).scroll(function () {
-      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 85 + '%');
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 85 + "%");
     });
     $(".footer p").css("fontSize", "10px");
   }
 
   if (winW >= 451 && winW <= 800) {
     $(document).scroll(function () {
-      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 90 + '%');
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 90 + "%");
     });
     $(".footer p").css("fontSize", "10px");
   }
 
   if (winW >= 800 && winW <= 1200) {
     $(document).scroll(function () {
-      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + '%');
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + "%");
     });
     $(".footer p").css("fontSize", "10px");
   }
 
   if (winW >= 1201 && winW <= 1499) {
     $(document).scroll(function () {
-      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + '%');
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + "%");
     });
     $(".footer p").css("fontSize", "10px");
   }
 
   if (winW >= 1500 && winW <= 1920) {
     $(document).scroll(function () {
-      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + '%');
+      $(".prograss").height($(document).scrollTop() / ($(document).height() - $(window).innerHeight()).toFixed(2) * 95 + "%");
     });
     $("#nav-search-item").css("display", "none");
     document.querySelector(".header-nav").style.marginRight = ($(window).width() - $(".header-nav").width()) / 2 + "px";
@@ -208,10 +214,10 @@ function deviceFlex() {
   return [winH, winW];
 }
 /**
- * @name 提示信息
- * @borrows errorTips,successTips
+ * @description 失败提示信息
+ * @name errorTips
+ * @param {String} content
  */
-// 提示信息
 
 
 function errorTips(content) {
@@ -233,6 +239,13 @@ function errorTips(content) {
 
   return 0;
 }
+/**
+ * @description 成功提示信息
+ * @name successTips
+ * @param {String} content
+ * @returns
+ */
+
 
 function successTips(content) {
   $(".tips-progress").css("width", "100%");
@@ -252,8 +265,9 @@ function successTips(content) {
   return 0;
 }
 /**
- * @name 监听输入框内容
- * @param {*} element 
+ * @description 监听输入框内容
+ * @name inputChange
+ * @param {*} element
  */
 
 
@@ -262,8 +276,9 @@ function inputChange(ele) {
   __this.dataset.search = __this.value;
 }
 /**
- * @name 搜索
- * @param {*} searchButton 
+ * @description 搜索
+ * @name searchContent
+ * @param {*} searchButton
  */
 
 
@@ -283,8 +298,9 @@ function searchContent(searchButton) {
   }
 }
 /**
- * @name 获取文章内容并跳转
- * @param {*} pageNum 
+ * @description 获取文章内容并跳转
+ * @name goToArticle
+ * @param {*} pageNum
  * @return
  */
 
@@ -307,12 +323,13 @@ function goToArticle(pageNum) {
     } catch (error) {}
   };
 
-  xhr.open('GET', '../article/article_list.json', true);
+  xhr.open("GET", "../article/article_list.json", true);
   xhr.send();
   return 0;
 }
 /**
- * @name 返回页面顶部
+ * @description 返回页面顶部
+ * @name backTop
  */
 
 
@@ -338,4 +355,48 @@ function backTop() {
       }, 10);
     }, 10);
   }
+}
+/**
+ * @name changePageStyle
+ * @description 切换页面的样式
+ */
+
+
+function changePageStyle() {
+  var menu = document.querySelector(".change-page-menu");
+  var nightIcon = document.querySelector(".night-icon");
+  var lightIcon = document.querySelector(".light-icon");
+  var showFlag = false;
+  var darkFlag = false;
+  menu.addEventListener("click", function () {
+    if (showFlag === false) {
+      nightIcon.classList.replace("changePageStyleNightDown", "changePageStyleNightIn");
+      lightIcon.classList.replace("changePageStyleLightDown", "changePageStyleLightIn");
+      showFlag = true;
+    } else {
+      nightIcon.classList.replace("changePageStyleNightIn", "changePageStyleNightDown");
+      lightIcon.classList.replace("changePageStyleLightIn", "changePageStyleLightDown");
+      showFlag = false;
+    }
+  });
+  nightIcon.addEventListener("click", function () {
+    if (showFlag === true) {
+      if (darkFlag === false) {
+        var createElement = document.createElement("style");
+        createElement.setAttribute("id", "pageStyleChange");
+        document.querySelector("head").append(createElement);
+        document.querySelector("#pageStyleChange").innerText = "\n      .article-content,.article-title,.pub-time,.pub-author,.point,.item-tag,.tag-title,.search-area-title,#search_button,.article,.header-nav,.show-next,.page-header::before {\n        filter: invert(100%);\n      }\n      ";
+        darkFlag = true;
+        console.log(darkFlag);
+      }
+    }
+  });
+  lightIcon.addEventListener("click", function () {
+    if (showFlag === true) {
+      if (darkFlag === true) {
+        document.querySelector("#pageStyleChange").remove();
+        darkFlag = false;
+      }
+    }
+  });
 }

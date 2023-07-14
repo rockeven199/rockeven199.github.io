@@ -43,27 +43,35 @@ body {
 
     .change-page-menu {
         background-color: rgb(255, 255, 255);
-        position: absolute;
+        position: fixed;
         right: 1.875rem;
         bottom: 6.25rem;
         height: 1.875rem;
         width: 1.875rem;
-        z-index: 3;
+        z-index: 999;
+        border-radius: .3125rem;
 
         .toggle-icon {
+            z-index: 999;
             max-width: 1.875rem;
             max-height: 1.875rem;
+            user-select: none;
         }
 
         .night-icon {
+            transition: all 0.2s;
             position: relative;
-            top: -3.75rem;
-
+            transform: translateY(0);
+            opacity: 0;
+            z-index: -1;
         }
 
         .light-icon {
+            opacity: 0;
+            transition: all 0.2s;
             position: relative;
-            bottom: -1.875rem;
+            transform: translateY(-2.1875rem);
+            z-index: -1;
         }
     }
 }
@@ -76,20 +84,20 @@ a {
     text-decoration: none;
 }
 
-.article-content,
-.article-title,
-.pub-time,
-.pub-author,
-.point,
-.item-tag,
-.tag-title,
-.search-area-title,
-#search_button,
-.article,
-.header-nav,
-.page-header::before {
-    filter: invert(100%);
-}
+// .article-content,
+// .article-title,
+// .pub-time,
+// .pub-author,
+// .point,
+// .item-tag,
+// .tag-title,
+// .search-area-title,
+// #search_button,
+// .article,
+// .header-nav,
+// .page-header::before {
+//     // filter: invert(100%);
+// }
 
 #search_button {
     word-break: keep-all;
@@ -265,29 +273,28 @@ a {
         }
 
         .header-nav {
-            top: -2.5rem;
-            padding: .3125rem 0px .3125rem 0px;
+            top: -2.1875rem;
+            // padding: .3125rem 0px .3125rem 0px;
             position: absolute;
             right: 0;
             z-index: 2;
             width: 40%;
             display: flex;
             justify-content: center;
-            background-color: rgba(255, 255, 255, 0.834);
+            background-color: transparent;
             transition: all 0.5s;
             border-bottom-left-radius: .625rem;
             border-bottom-right-radius: .625rem;
-            border-left: 4px solid rgb(236, 236, 236);
-            border-right: 4px solid rgb(236, 236, 236);
-            border-bottom: 4px solid rgb(236, 236, 236);
 
             .header-nav-group {
                 width: 100%;
+                background-color: rgba(255, 255, 255, 0.834);
                 display: flex;
                 justify-content: space-evenly;
-                border-bottom: 2px solid rgb(129, 129, 129);
                 padding-bottom: .3125rem;
                 margin-bottom: .9375rem;
+                border-bottom-right-radius: .625rem;
+                border-bottom-left-radius: .625rem;
 
                 .nav-items {
                     flex: 1;
@@ -299,6 +306,7 @@ a {
                     font-weight: bold;
                     font-size: 15px;
                     cursor: default;
+                    user-select: none;
 
                     #search_content {
                         border-radius: .3125rem;
@@ -672,10 +680,13 @@ a {
 
 
 .close-nav {
+    background-color: rgba(255, 255, 255, 0.834);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     width: 1.875rem;
-    height: 1.875rem;
+    height: .9375rem;
     position: absolute;
-    bottom: calc((1.875rem / -2) - (1.875rem / -4));
+    bottom: calc((1.875rem / -2) - (1.875rem / -2));
 }
 
 @keyframes fadeIn {
@@ -756,8 +767,8 @@ a {
             .header-nav {
                 background-color: rgba(255, 255, 255, 0.552);
                 border-right: 0px solid rgb(236, 236, 236);
-                border-bottom: 0px solid rgb(236, 236, 236);
-                border-bottom: 0px solid rgb(129, 129, 129);
+                // border-bottom: 0px solid rgb(236, 236, 236);
+                // border-bottom: 0px solid rgb(129, 129, 129);
                 padding: 0px;
                 width: 100%;
                 top: 0;
@@ -981,17 +992,17 @@ a {
 
     0%,
     100% {
-        transform: rotate(0)
+        transform: rotate(0);
     }
 
     20%,
     60% {
-        transform: rotate(-25deg)
+        transform: rotate(-25deg);
     }
 
     40%,
     80% {
-        transform: rotate(10deg)
+        transform: rotate(10deg);
     }
 }
 

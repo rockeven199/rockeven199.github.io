@@ -1,0 +1,63 @@
+@keyframes changePageStyleNightIn {
+  0% {
+    top: 0;
+    position: relative;
+    opacity: 0;
+  }
+  100% {
+    top: -3.75rem;
+    position: relative;
+    opacity: 1;
+  }
+}
+@keyframes changePageStyleNightDown {
+  0% {
+    top: -3.75rem;
+    position: relative;
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    position: relative;
+    opacity: 0;
+  }
+}
+@keyframes changePageStyleLightIn {
+  0% {
+    top: 0;
+    position: relative;
+    opacity: 0;
+  }
+  100% {
+    top: 3.75rem;
+    position: relative;
+    opacity: 1;
+  }
+}
+@keyframes changePageStyleLightDown {
+  0% {
+    top: 3.75rem;
+    position: relative;
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    position: relative;
+    opacity: 0;
+  }
+}
+.changePageStyleNightIn {
+  animation: changePageStyleNightIn 500ms forwards;
+}
+
+.changePageStyleNightDown {
+  animation: changePageStyleNightDown 500ms forwards;
+}
+
+.changePageStyleLightIn {
+  animation: changePageStyleLightIn 500ms forwards;
+}
+
+.changePageStyleLightDown {
+  animation: changePageStyleLightDown 500ms forwards;
+}

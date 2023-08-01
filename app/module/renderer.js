@@ -4,6 +4,9 @@ window.onload = () => {
   dataArray = selectTagOption(dataArray);
   toggleControlPreview();
   previewWindowFunctions();
+  addTag();
+  reset();
+  removeTag();
 };
 
 /**
@@ -15,7 +18,7 @@ function selectTagOption(dataArray) {
   const optionContainer = document.querySelectorAll(".tag-container");
   for (const i of optionContainer) {
     i.addEventListener("click", (element) => {
-      if ((element.target.className != "tag-select-check")) {
+      if (element.target.className != "tag-select-check") {
         if (hasChecked(element.target.children[0])) {
           dataArray.splice(
             dataArray.indexOf(
@@ -27,7 +30,7 @@ function selectTagOption(dataArray) {
           );
           element.target.children[0].checked = false;
         } else {
-          console.log(element.target)
+          console.log(element.target);
           // if (dataArray.indexOf(element.target.children[1].value) != -1) {
           //   element.target.children[0].checked = true;
           //   console.log("already set this tag !!");
@@ -99,6 +102,10 @@ function toggleControlPreview() {
   });
 }
 
+/**
+ * @naem previewWindowFunctions
+ * @description previewEditerContent
+ */
 function previewWindowFunctions() {
   // inputContent
   const textarea = document.querySelector("textarea");
@@ -145,4 +152,56 @@ function previewWindowFunctions() {
   });
 
   document.querySelector(".preview-container");
+}
+
+/**
+ * @name addTag
+ * @description add tag
+ */
+function addTag() {
+  const addTag = document.querySelector("#addTag");
+  addTag.addEventListener("click", () => {
+    const showTagContainer = document.querySelector(".show-tag");
+    const tagContainer = document.createElement("div");
+    const checkElement = document.createElement("input");
+    const inputElement = document.createElement("input");
+
+    tagContainer.setAttribute("class", "tag-container");
+    inputElement.type = "text";
+    inputElement.classList = "select-values";
+    checkElement.type = "checkbox";
+    checkElement.classList = "tag-select-check";
+    tagContainer.append(checkElement);
+    tagContainer.append(inputElement);
+    showTagContainer.append(tagContainer);
+  });
+}
+
+/**
+ * @name removeTag
+ * @description remove tag
+ */
+function removeTag() {
+  // document.querySelector();
+}
+
+/**
+ * @name reset edit
+ * @description reset button
+ */
+function reset() {
+  const title = document.querySelector("#typeTitle");
+  const content = document.querySelector("#typeContent");
+  const reset = document.querySelector(".reset");
+
+  reset.addEventListener("click", () => {
+    if (confirm("确认清空操作吗？？？（不可恢复）")) {
+      title.value = "";
+      content.value = "";
+      const allTag = document.querySelectorAll(".tag-container");
+      allTag.forEach((item) => {
+        item.remove();
+      });
+    }
+  });
 }

@@ -127,9 +127,22 @@ body {
                     margin-right: 25px;
                     padding: 5px 10px;
                     font-size: 12px;
+                    border: 1px solid transparent;
+                    border-radius: 5px;
+                    color: white;
+                    font-weight: bold;
+                    box-shadow: 0px 0px 2px black;
+                    background-color: #007fee;
+                    // background-color: rgb(22, 182, 4);
                 }
 
                 #removeTag {
+                    border: 1px solid transparent;
+                    border-radius: 5px;
+                    color: white;
+                    font-weight: bold;
+                    box-shadow: 0px 0px 2px black;
+                    background-color: #c62b00;
                     font-size: 12px;
                     padding: 5px 10px;
                 }
@@ -172,12 +185,24 @@ body {
             padding: 5px 10px;
             font-size: 12px;
             margin: 10px 20px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0px 0px 2px black;
+            background-color: #16b604;
         }
 
         .reset {
             padding: 5px 10px;
             font-size: 12px;
             margin: 10px 20px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0px 0px 2px black;
+            background-color: #c62b00;
         }
     }
 }

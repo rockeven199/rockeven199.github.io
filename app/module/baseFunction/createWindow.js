@@ -1,22 +1,22 @@
 const { BrowserWindow, Menu } = require("electron");
 const path = require("path");
 
-const createWin = () => {
-  const win = new BrowserWindow({
-    x: 920,
-    y: 0,
-    title: "博客编辑器",
+function createWin() {
+  const mainWindow = new BrowserWindow({
+    width: 1184,
+    height: 600,
+    minWidth: 1184,
+    minHeight: 600,
+    frame: false,
     webPreferences: {
       preload: path.resolve(__dirname, "../preload.js"),
     },
   });
+  mainWindow.loadFile(path.resolve(__dirname, "../../", "editor.html"));
+  mainWindow.webContents.openDevTools();
 
   Menu.setApplicationMenu(null);
-  win.loadFile(path.resolve("app","editor.html"));
-  win.webContents.openDevTools();
-  // win.maximize()
-};
+  return mainWindow;
+}
 
-module.exports = {
-  createWin,
-};
+module.exports = { createWin };

@@ -130,13 +130,12 @@ function renderInfo() {
       document.title = response[position].articleTitle;
 
       for (a in response[position].Tag) {
-        if (response[position].Tag[a][3] == "blue") {
-          temptempHTML += "<div class=\"tag-group\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(response[position].Tag[a][0], "</span><a class=\"about-link\">").concat(response[position].Tag[a][1], "</a></div></div>");
-        } else if (response[position].Tag[a][3] == "green") {
-          temptempHTML += "<div class=\"tag-group\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(response[position].Tag[a][0], "</span><a class=\"about-object\">").concat(response[position].Tag[a][1], "</a></div></div>");
-        } else {
-          temptempHTML += "<div class=\"tag-group\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(response[position].Tag[a][0], "</span><a class=\"about-tag\">").concat(response[position].Tag[a][1], "</a></div></div>");
-        }
+        // if (response[position].Tag[a][3] == "blue") {
+        //   temptempHTML += `<div class="tag-group"><span class="about-title" style="margin-left:5px">${response[position].Tag[a][0]}</span><a class="about-link">${response[position].Tag[a][1]}</a></div></div>`
+        // } else if (response[position].Tag[a][3] == "green") {
+        //   temptempHTML += `<div class="tag-group"><span class="about-title" style="margin-left:5px">${response[position].Tag[a][0]}</span><a class="about-object">${response[position].Tag[a][1]}</a></div></div>`
+        // } else {
+        temptempHTML += "<div class=\"tag-group\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(response[position].Tag[a][0], "</span><a class=\"about-tag\">").concat(response[position].Tag[a][1], "</a></div></div>"); // }
       }
 
       document.querySelector(".article-header-about-tag").innerHTML = temptempHTML;

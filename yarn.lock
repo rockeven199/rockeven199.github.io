@@ -768,6 +768,11 @@
   "resolved" "https://mirrors.huaweicloud.com/repository/npm/ms/-/ms-2.1.2.tgz"
   "version" "2.1.2"
 
+"ndev@^1.0.1":
+  "integrity" "sha512-DFZ4KEawW8rW6Dbj2UDj8KrmyYZYavdJfdZIqVHUvXT7S8ePydXH/FLQSfNm+OFuljfZIuVw+cTW/Pi7pOqIdA=="
+  "resolved" "https://mirrors.huaweicloud.com/repository/npm/ndev/-/ndev-1.0.1.tgz"
+  "version" "1.0.1"
+
 "nodemon@^2.0.22":
   "integrity" "sha512-B8YqaKMmyuCO7BowF1Z1/mkPqLk6cs/l63Ojtd6otKjMx47Dq1utxfRxcavH1I7VSaL8n5BUaoutadnsX3AAVQ=="
   "resolved" "https://mirrors.huaweicloud.com/repository/npm/nodemon/-/nodemon-2.0.22.tgz"

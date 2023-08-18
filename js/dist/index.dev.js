@@ -70,14 +70,7 @@ function renderHtml() {
       for (var b = 0; b < listRes[a].Tag.length; b++) {
         for (var c = 0; c < listRes[a].Tag.length; c++) {
           temptempHTML = "";
-
-          if (listRes[a].Tag[b][3] == "blue") {
-            temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-link\">").concat(listRes[a].Tag[b][1], "</a></div>");
-          } else if (listRes[a].Tag[b][3] == "green") {
-            temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-object\">").concat(listRes[a].Tag[b][1], "</a></div>");
-          } else {
-            temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-tag\">").concat(listRes[a].Tag[b][1], "</a></div>");
-          }
+          temptempHTML = "<div class=\"article-header-about-tag\"><span class=\"about-title\" style=\"margin-left:5px\">".concat(listRes[a].Tag[b][0], "</span><a class=\"about-link\">").concat(listRes[a].Tag[b][1], "</a></div>");
         }
 
         tagTemplate = tagTemplate + temptempHTML;
@@ -385,6 +378,7 @@ function changePageStyle() {
         var createElement = document.createElement("style");
         createElement.setAttribute("id", "pageStyleChange");
         document.querySelector("head").append(createElement);
+        document.querySelector(".notice").style.filter = "invert(100%)";
         document.querySelector("#pageStyleChange").innerText = "\n      .article-content,.article-title,.pub-time,.pub-author,.point,.item-tag,.tag-title,.search-area-title,#search_button,.article,.header-nav,.show-next,.page-header::before {\n        filter: invert(100%);\n      }\n      ";
         darkFlag = true;
         console.log(darkFlag);
@@ -397,6 +391,8 @@ function changePageStyle() {
         document.querySelector("#pageStyleChange").remove();
         darkFlag = false;
       }
+
+      document.querySelector(".notice").removeAttribute("style");
     }
   });
 }

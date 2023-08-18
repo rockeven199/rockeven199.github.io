@@ -1,12 +1,16 @@
 window.onload = () => {
   let dataArray = [];
 
-  dataArray = selectTagOption(dataArray);
+  // dataArray = selectTagOption(dataArray);
   toggleControlPreview();
   previewWindowFunctions();
   addTag();
   reset();
+  hotkeySubmit();
   removeTag();
+  selectAll();
+  submitChange();
+  selectConfigFile();
 };
 
 /**
@@ -74,13 +78,12 @@ function selectTagOption(dataArray) {
       console.log(dataArray);
     });
   }
-
   return dataArray;
 }
 
 /**
  * @name toggleControlPreview
- * @description toggle preview window
+ * @description 切换预览窗口
  */
 function toggleControlPreview() {
   const previewContainer = document.querySelector(".preview-container");
@@ -103,8 +106,8 @@ function toggleControlPreview() {
 }
 
 /**
- * @naem previewWindowFunctions
- * @description previewEditerContent
+ * @name previewEditerContent
+ * @description 预览功能实现
  */
 function previewWindowFunctions() {
   // inputContent
@@ -132,16 +135,16 @@ function previewWindowFunctions() {
       moveX = event.clientX - diffx;
       moveY = event.clientY - diffY;
     }
-    if (moveX < 0) {
-      moveX = 0;
-    } else if (moveX > window.innerWidth - previewContainer.offsetWidth) {
-      moveX = window.innerWidth - previewContainer.offsetWidth;
-    }
-    if (moveY < 0) {
-      moveY = 0;
-    } else if (moveY > window.innerHeight - previewContainer.offsetHeight) {
-      moveY = window.innerHeight - previewContainer.offsetHeight;
-    }
+    // if (moveX < 0) {
+    //   moveX = 0;
+    // } else if (moveX > window.innerWidth - previewContainer.offsetWidth) {
+    //   moveX = window.innerWidth - previewContainer.offsetWidth;
+    // }
+    // if (moveY < 0) {
+    //   moveY = 0;
+    // } else if (moveY > window.innerHeight - previewContainer.offsetHeight) {
+    //   moveY = window.innerHeight - previewContainer.offsetHeight;
+    // }
 
     previewContainer.style.left = moveX + "px";
     previewContainer.style.top = moveY + "px";
@@ -156,38 +159,89 @@ function previewWindowFunctions() {
 
 /**
  * @name addTag
- * @description add tag
+ * @description 添加Tag
  */
 function addTag() {
+  let count = 0;
   const addTag = document.querySelector("#addTag");
   addTag.addEventListener("click", () => {
     const showTagContainer = document.querySelector(".show-tag");
     const tagContainer = document.createElement("div");
     const checkElement = document.createElement("input");
     const inputElement = document.createElement("input");
+    const nameElement = document.createElement("input");
+    const selectColor = document.createElement("input");
 
     tagContainer.setAttribute("class", "tag-container");
     inputElement.type = "text";
     inputElement.classList = "select-values";
     checkElement.type = "checkbox";
     checkElement.classList = "tag-select-check";
+    nameElement.type = "text";
+    nameElement.id = "tag-name";
+    selectColor.type = "color";
+    selectColor.id = "select-color";
     tagContainer.append(checkElement);
+    tagContainer.append(nameElement);
     tagContainer.append(inputElement);
+    tagContainer.append(selectColor);
     showTagContainer.append(tagContainer);
   });
 }
 
 /**
  * @name removeTag
- * @description remove tag
+ * @description 删除Tag
  */
 function removeTag() {
-  // document.querySelector();
+  const removeButton = document.querySelector("#removeTag");
+  removeButton.addEventListener("click", () => {
+    const allTag = document.querySelectorAll(".tag-container");
+    let selectedElement = [];
+    allTag.forEach((item1) => {
+      if (item1.firstElementChild.checked) {
+        selectedElement.push(item1);
+      }
+
+      if (selectedElement.length == 0) {
+        if (allTag.length != 0) {
+          allTag[allTag.length - 1].remove();
+        }
+      } else {
+        selectedElement.forEach((item2) => {
+          item2.remove();
+        });
+      }
+    });
+  });
 }
 
 /**
- * @name reset edit
- * @description reset button
+ * @name selectAllTag
+ * @description 全选tag
+ */
+function selectAll() {
+  const selectAllButton = document.querySelector("#selectAll");
+  var flag = false;
+  selectAllButton.addEventListener("click", () => {
+    const selectBox = document.querySelectorAll("[type='checkbox']");
+    if (flag === false) {
+      selectBox.forEach((item) => {
+        item.checked = true;
+      });
+      flag = true;
+    } else {
+      selectBox.forEach((item) => {
+        item.checked = false;
+      });
+      flag = false;
+    }
+  });
+}
+
+/**
+ * @name resetEdit
+ * @description 重置页面操作
  */
 function reset() {
   const title = document.querySelector("#typeTitle");
@@ -203,5 +257,118 @@ function reset() {
         item.remove();
       });
     }
+  });
+}
+
+/**
+ * @name submitChange
+ * @description 提交更改
+ */
+
+function submitChange() {
+  const submitButton = document.querySelector(".submit");
+  let allTag = [];
+  let submitedContent = {};
+
+  // 获取tag
+  function getTag(allTag) {
+    let tagArr = [];
+    const tagElement = document.querySelectorAll(".tag-select-check");
+    tagElement.forEach((item2) => {
+      if (tagArr.length == 3) {
+        allTag.push(tagArr);
+        tagArr = [];
+      }
+      tagArr.push("Tag");
+      tagArr.push(item2.nextElementSibling.value);
+      tagArr.push(item2.nextElementSibling.nextElementSibling.value);
+      allTag.push(tagArr);
+    });
+  }
+
+  // 获取发布时间
+  function getPubTime() {
+    const date = new Date();
+    let pubtime = ``;
+    pubtime = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+    return pubtime;
+  }
+
+  // 获取文章标题
+  function getArticleTitle() {
+    const articleTitle = document.querySelector("#typeTitle").value;
+    return articleTitle;
+  }
+
+  // 获取文章简介
+  function getInfoContent() {
+    const info = document.querySelector("textarea").value.substring(0, 30);
+    return info;
+  }
+
+  // 单击提交
+  submitButton.addEventListener("click", () => {
+    if (confirm("确认提交？")) {
+      getTag(allTag);
+      let pubtime = getPubTime();
+      let articleTitle = getArticleTitle();
+      let infoContent = getInfoContent();
+      const date = new Date();
+      let tempMonth = "";
+      let tempDay = "";
+
+      date.getMonth().length != 2
+        ? (tempMonth = "0" + date.getMonth().toString())
+        : (tempMonth = date.getMonth().toString());
+      date.getDay().length != 2
+        ? (tempDay = "0" + date.getDay())
+        : (tempDay = date.getDay());
+
+      submitedContent.Tag = allTag;
+      submitedContent.pubDate = pubtime;
+      submitedContent.authorName = "Rockeven199";
+      submitedContent.articleTitle = articleTitle;
+      submitedContent.articleContent = infoContent;
+      submitedContent.articleUrl =
+        "../article/content/" +
+        date.getFullYear().toString() +
+        tempMonth +
+        tempDay +
+        ".md";
+
+      console.log(submitedContent);
+    }
+  });
+}
+
+/**
+ * @name hotkey
+ * @description 按下enter键提交
+ */
+
+function hotkeySubmit() {
+  window.addEventListener("keypress", (event) => {
+    if (event.key == "Enter") {
+      const submitButton = document.querySelector(".submit");
+      submitButton.click();
+    }
+  });
+}
+
+
+/**
+ * @name selectConfigFile
+ * @description 选择配置文件
+ */
+
+function selectConfigFile() {
+  const selectFileButton = document.querySelector("#selectFile");
+  selectFileButton.addEventListener("click", () => {
+    window.doSelectConfig.doSelectFile((value) => {
+      if (!value[0].canceled) {
+        document.querySelector(".mask-container").style.display = "none";
+        return value[1];
+      }
+    });
   });
 }

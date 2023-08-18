@@ -36,7 +36,7 @@ window.onload = function () {
               data: "data",
               dataType: "text",
               success: function success(response) {
-                $("div").append("<p>" + response + "</p>");
+                $(".search-result-group").append("<div class='search-result-item'>" + marked.parse(response) + "</div>");
               }
             });
           }
@@ -51,7 +51,8 @@ window.onload = function () {
               data: "data",
               dataType: "text",
               success: function success(response) {
-                $("div").append("<p>" + response + "</p>");
+                console.log(response);
+                $(".search-result-group").append("<div class='search-result-item'>" + response + "</div>");
               }
             });
           }
@@ -66,7 +67,7 @@ window.onload = function () {
               data: "data",
               dataType: "text",
               success: function success(response) {
-                $("div").append("<p>" + response + "</p>");
+                $(".search-result-group").append("<div class='search-result-item'>" + response + "</div>");
               }
             });
           }
@@ -81,7 +82,7 @@ window.onload = function () {
               data: "data",
               dataType: "text",
               success: function success(response) {
-                $("div").append("<p>" + response + "</p>");
+                $(".search-result-group").append("<div class='search-result-item'>" + response + "</div>");
               }
             });
           }
@@ -98,7 +99,7 @@ window.onload = function () {
                   data: "data",
                   dataType: "text",
                   success: function success(response) {
-                    $("div").append("<p>" + response + "</p>");
+                    $(".search-result-group").append("<div class='search-result-item'>" + response + "</div>");
                   }
                 });
               }

@@ -4,11 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link rel="stylesheet" href="./css/editor.css">
 </head>
 
 <body>
+    <div class="mask-container">
+        <div class="tips-container">
+            <span>未选择配置文件，请选择文章列表配置文件</span>
+            <button type="button" id="selectFile">选择配置文件</button>
+        </div>
+    </div>
     <div class="preview-container">
         <div class="top-bar">
             <div class="move-bar">
@@ -24,35 +31,64 @@
             <label for="typeTitle">文章标题</label>
             <input type="text" id="typeTitle">
         </div>
-        <div class="type-article-container">
-            <div>
-                <label for="typeContent">编辑文章内容<span
-                        style="font-size: 10px;margin: 0 10px;">[使用markdown编写]</span></label>
-                <button class="control-preview" data-openPreview="false">打开预览</button>
-            </div>
-            <div>
-                <textarea name="typeContent" id="typeContent" cols="30" rows="10" required></textarea>
-            </div>
-        </div>
-        <div class="set-article-tag">
-            <label for="setTag">设置文章Tag</label>
-            <hr>
-            <div class="set-container">
-                <div class="control-bar">
-                    <button id="addTag">添加</button>
-                    <button id="removeTag">删除</button>
+        <div class="container-panel">
+            <div class="type-article-container">
+                <div style="display: flex;justify-content: space-evenly;align-items: center;height: 10%;">
+                    <label for="typeContent">编辑文章内容<span
+                            style="font-size: 10px;margin: 0 10px;">[使用markdown编写]</span></label>
+                    <button class="control-preview" data-openPreview="false">打开预览</button>
+                </div>
+                <div style="height: 80%;">
+                    <textarea name="typeContent" id="typeContent" required></textarea>
                 </div>
             </div>
-            <div class="show-tag">
-                <!-- <div class="tag-container" data-articleIndex="0">
-                    <input type="checkbox" name="" class="tag-select-check">
-                    <input class="select-values" value="111"/>
-                </div> -->
+            <div class="set-article-tag">
+                <div class="set-container">
+                    <label for="setTag" style="word-break: keep-all;letter-spacing: 0.5px;">设置文字TAG</label>
+                    <div class="control-bar">
+                        <button id="selectAll">全选</button>
+                        <button id="addTag">添加</button>
+                        <button id="removeTag">删除</button>
+                    </div>
+                </div>
+                <div class="show-tag">
+                    <div class="tag-container" data-articleIndex="0">
+                        <input type="checkbox" name="" class="tag-select-check">
+                        <input type="text" id="tag-name" value="a">
+                        <input id="tag-content" class="select-values" value="111" />
+                        <input type="color" name="" id="select-color" value="red">
+                    </div>
+                    <div class="tag-container" data-articleIndex="0">
+                        <input type="checkbox" name="" class="tag-select-check">
+                        <input type="text" id="tag-name" value="a">
+                        <input id="tag-content" class="select-values" value="111" />
+                        <input type="color" name="" id="select-color" value="red">
+                    </div>
+                    <div class="tag-container" data-articleIndex="0">
+                        <input type="checkbox" name="" class="tag-select-check">
+                        <input type="text" id="tag-name" value="a">
+                        <input id="tag-content" class="select-values" value="111" />
+                        <input type="color" name="" id="select-color" value="red">
+                    </div>
+                    <div class="tag-container" data-articleIndex="0">
+                        <input type="checkbox" name="" class="tag-select-check">
+                        <input type="text" id="tag-name" value="a">
+                        <input id="tag-content" class="select-values" value="111" />
+                        <input type="color" name="" id="select-color" value="red">
+                    </div>
+                    <div class="tag-container" data-articleIndex="0">
+                        <input type="checkbox" name="" class="tag-select-check">
+                        <input type="text" id="tag-name" value="a">
+                        <input id="tag-content" class="select-values" value="111" />
+                        <input type="color" name="" id="select-color" value="red">
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="compass-function">
-            <button class="submit" type="button">提交</button>
-            <button class="reset" type="reset">重置</button>
+            <button class="submit" type="button">提交操作</button>
+            <button class="reset" type="reset">重置操作</button>
         </div>
     </div>
 </body>

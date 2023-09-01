@@ -7,15 +7,15 @@ function createWin() {
     height: 600,
     minWidth: 1184,
     minHeight: 600,
-    frame: false,
     webPreferences: {
-      preload: path.resolve(__dirname, "../preload.js"),
+      preload: path.resolve(__dirname, "../preload.js")
     },
   });
   mainWindow.loadFile(path.resolve(__dirname, "../../", "editor.html"));
   mainWindow.webContents.openDevTools();
 
   Menu.setApplicationMenu(null);
+  
   return mainWindow;
 }
 

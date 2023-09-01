@@ -11,8 +11,9 @@ window.onload = () => {
   selectAll();
   submitChange();
   selectConfigFile();
+  controlArticleList();
+  openArticleInfo();
 };
-
 /**
  * @name selectTagOption
  * @description select tag value
@@ -355,20 +356,120 @@ function hotkeySubmit() {
   });
 }
 
-
 /**
  * @name selectConfigFile
  * @description 选择配置文件
  */
 
 function selectConfigFile() {
+  const mask = document.querySelector(".mask-container");
   const selectFileButton = document.querySelector("#selectFile");
   selectFileButton.addEventListener("click", () => {
     window.doSelectConfig.doSelectFile((value) => {
       if (!value[0].canceled) {
-        document.querySelector(".mask-container").style.display = "none";
+        mask.style.display = "none";
         return value[1];
       }
+    });
+  });
+}
+
+/**
+ * @name controlArticleList
+ * @description 控制文章列表
+ */
+function controlArticleList() {
+  const listBar = document.querySelector(".article-list-control-bar");
+  const listContainer = document.querySelector(".article-list-container");
+  var showList = true;
+  listBar.addEventListener("click", (event) => {
+    if (!showList) {
+      listContainer.style.transform = "translateX(0)";
+      showList = true;
+    } else {
+      listContainer.style.transform = "translateX(-100%)";
+      showList = false;
+    }
+  });
+}
+
+/**
+ * @name openArticleInfo 填充文章信息
+ */
+function openArticleInfo() {
+  let listElement = document.querySelectorAll(".article-group");
+  let listTitle = document.querySelectorAll(".article-title");
+  let listInfo = document.querySelectorAll(".other-info");
+
+  // 赋值给函数内全局对象
+  var artConfig = new Object();
+  artConfig.__proto__.config;
+  window.sendConfig.fetchArtConfig(
+    (config) => (artConfig.__proto__.config = config)
+  );
+
+  /**
+   * @description 创建tag
+   * @param {*} tagName
+   * @param {*} tagContent
+   * @param {*} tagIndex
+   * @param {*} tagColor
+   */
+  function createTag(tagName, tagContent, tagIndex, tagColor) {
+    const container = document.createElement("div");
+    container.dataset.articleIndex = tagIndex;
+    container.classList.add("tag-container");
+
+    const checkBox = document.createElement("input");
+    checkBox.classList.add("tag-select-check");
+    checkBox.type = "checkbox";
+
+    const tagNameEntry = document.createElement("input");
+    tagNameEntry.id = "tag-name";
+    tagNameEntry.type = "text";
+    tagNameEntry.value = tagName;
+
+    const content = document.createElement("input");
+    content.id = "tag-content";
+    content.classList.add("select-values");
+    content.value = tagContent;
+
+    const color = document.createElement("input");
+    color.type = "color";
+    color.id = "select-color";
+    color.value = tagColor;
+
+    container.appendChild(checkBox);
+    container.appendChild(tagNameEntry);
+    container.appendChild(content);
+    container.appendChild(color);
+
+    document.querySelector(".show-tag").appendChild(container);
+  }
+
+  /**
+   * @description 填充文章信息
+   * @param {*} artTitle
+   * @param {*} artContent
+   */
+  function fillArticleInfo(elementIndex) {
+    const title = document.querySelector("#typeTitle");
+    const content = document.querySelector("#typeContent");
+    const configData = artConfig.__proto__.config;
+    title.value = configData[elementIndex].articleTitle;
+    content.value = configData[elementIndex].articleContent;
+    console.log(configData[elementIndex]);
+  }
+
+  listTitle.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      fillArticleInfo(listElement[index].dataset.artIndex);
+    });
+  });
+
+  listInfo.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      fillArticleInfo(listElement[index].dataset.artIndex);
     });
   });
 }

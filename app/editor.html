@@ -10,12 +10,34 @@
 </head>
 
 <body>
+    <!-- 文章列表 -->
+    <div class="article-list-container">
+        <div class="article-list-control-bar">
+            <svg t="1693361159143" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="4012" width="128" height="128">
+                <path
+                    d="M303.307286 9.731785L194.095037 118.944034c-11.894403 11.894403-11.894403 32.439282 0 45.414995L541.195354 511.459345 194.095037 859.640971c-11.894403 11.894403-11.894403 32.439282 0 45.414995L303.307286 1014.268215c11.894403 11.894403 32.439282 11.894403 45.414995 0l366.563886-366.563886c1.081309-1.081309 3.243928-2.162619 4.325237-3.243928l110.293559-110.293558c6.487856-6.487856 9.731785-14.057022 9.731785-22.707498s-3.243928-16.219641-9.731785-22.707497L719.611404 379.539599c-1.081309-1.081309-2.162619-2.162619-4.325237-3.243928L348.722281 9.731785C335.746568-3.243928 316.282999-3.243928 303.307286 9.731785z"
+                    p-id="4013"></path>
+            </svg>
+        </div>
+        <div class="article-renderer-container">
+            <!-- <div class="article-group">
+                <p class="article-title">article title</p>
+                <div class="other-info">
+                    <p class="pubdate">Date</p>
+                    <p class="author">author</p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <!--文件选择蒙版 -->
     <div class="mask-container">
         <div class="tips-container">
             <span>未选择配置文件，请选择文章列表配置文件</span>
             <button type="button" id="selectFile">选择配置文件</button>
         </div>
     </div>
+    <!-- 预览窗口 -->
     <div class="preview-container">
         <div class="top-bar">
             <div class="move-bar">
@@ -52,7 +74,7 @@
                     </div>
                 </div>
                 <div class="show-tag">
-                    <div class="tag-container" data-articleIndex="0">
+                    <!-- <div class="tag-container" data-articleIndex="0">
                         <input type="checkbox" name="" class="tag-select-check">
                         <input type="text" id="tag-name" value="a">
                         <input id="tag-content" class="select-values" value="111" />
@@ -81,7 +103,7 @@
                         <input type="text" id="tag-name" value="a">
                         <input id="tag-content" class="select-values" value="111" />
                         <input type="color" name="" id="select-color" value="red">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

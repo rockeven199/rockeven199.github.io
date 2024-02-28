@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link rel="stylesheet" href="./css/editor.css">
+    <link rel="stylesheet" href="./css/animate.css">
 </head>
 
 <body>
@@ -48,32 +49,52 @@
         </div>
         <div class="output-area"></div>
     </div>
-    <div class="page-container">
-        <div class="set-title-container">
-            <label for="typeTitle">文章标题</label>
-            <input type="text" id="typeTitle">
+
+    <div class="control-bar animate__animated">
+        <div class="control-button">
+            <svg t="1695092209277" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="6219">
+                <path
+                    d="M780.288 767.082667c40.405333 40.725333 40.512 106.645333 0.192 147.264l-36.096 36.373333a103.36 103.36 0 0 1-146.944-0.085333L249.685333 600.213333a125.290667 125.290667 0 0 1 0-176.490666L597.44 73.322667a103.466667 103.466667 0 0 1 146.944-0.085334l36.096 36.352c40.362667 40.682667 40.192 106.56-0.192 147.264L527.104 511.978667l253.184 255.104zM436.693333 542.016a42.666667 42.666667 0 0 1 0-60.096L719.722667 196.736a19.328 19.328 0 0 0 0.192-27.029333l-36.096-36.352a18.154667 18.154667 0 0 0-25.813334 0.064L310.250667 483.84a39.957333 39.957333 0 0 0 0 56.256l347.754666 350.421333a18.026667 18.026667 0 0 0 25.813334 0.085334l36.096-36.373334a19.349333 19.349333 0 0 0-0.192-27.029333L436.693333 542.037333z"
+                    p-id="6220" fill="#000000"></path>
+            </svg>
         </div>
-        <div class="container-panel">
-            <div class="type-article-container">
-                <div style="display: flex;justify-content: space-evenly;align-items: center;height: 10%;">
-                    <label for="typeContent">编辑文章内容<span
-                            style="font-size: 10px;margin: 0 10px;">[使用markdown编写]</span></label>
-                    <button class="control-preview" data-openPreview="false">打开预览</button>
-                </div>
-                <div style="height: 80%;">
-                    <textarea name="typeContent" id="typeContent" required></textarea>
+        <div class="control-tag-container">
+            <p style="font-size: 14px;color: white;margin-bottom: 10px;">编辑标签</p>
+            <button id="selectAll">全选</button>
+            <button id="addTag">添加</button>
+            <button id="removeTag">删除</button>
+        </div>
+    </div>
+    <div class="page-container">
+        <div class="set-info-container">
+            <div class="info-container">
+                <input type="text" id="typeTitle" required>
+                <label for="typeTitle">文章标题</label>
+            </div>
+            <div class="info-container">
+                <input type="text" id="typeAuthor" required>
+                <label for="typeAuthor">文章作者</label>
+            </div>
+            <div class="info-container">
+                <input type="text" id="typeDate" required>
+                <label for="typeDate">发布时间</label>
+            </div>
+        </div>
+        <div class="container-panel" style="max-height:60%;">
+            <div style="display: flex;width: 80%;">
+                <div class="type-article-container">
+                    <div style="height: 100%;width: 100%;">
+                        <textarea name="typeContent" id="typeContent" placeholder="请输入文章内容" required></textarea>
+                    </div>
                 </div>
             </div>
             <div class="set-article-tag">
                 <div class="set-container">
-                    <label for="setTag" style="word-break: keep-all;letter-spacing: 0.5px;">设置文字TAG</label>
-                    <div class="control-bar">
-                        <button id="selectAll">全选</button>
-                        <button id="addTag">添加</button>
-                        <button id="removeTag">删除</button>
-                    </div>
+                    <label for="setTag" style="word-break: keep-all;letter-spacing: 0.5px;">文章标签</label>
+                    <span class="show-tag-count">0</span>
                 </div>
-                <div class="show-tag">
+                <div class="show-tag" style="max-height: 90%;height: 90%;overflow-y: scroll;">
                     <!-- <div class="tag-container" data-articleIndex="0">
                         <input type="checkbox" name="" class="tag-select-check">
                         <input type="text" id="tag-name" value="a">
@@ -109,6 +130,7 @@
         </div>
 
         <div class="compass-function">
+            <button class="control-preview" data-openPreview="false">预览文章</button>
             <button class="submit" type="button">提交操作</button>
             <button class="reset" type="reset">重置操作</button>
         </div>

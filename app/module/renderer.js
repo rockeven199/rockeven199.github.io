@@ -1,26 +1,63 @@
 window.onload = () => {
   let dataArray = [];
 
-  // dataArray = selectTagOption(dataArray);
-  toggleControlPreview();
-  previewWindowFunctions();
-  addTag();
+  const renderElement = {
+    multipe: {
+      tagContainer: document.querySelectorAll(".tag-container"),
+      selectCheck: document.querySelectorAll("#tag-select-check"),
+    },
+    single: {
+      previewWindow: document.querySelector(".preview-container"),
+      previewWindowControlBar: document.querySelector(".control-preview"),
+      perviewWindowCloseBar: document.querySelector(".close-bar-button"),
+      perviewOutArea: document.querySelector(".output-area"),
+      editArticleArea: document.querySelector("textarea"),
+      addTagButton: document.querySelector("#addTag"),
+      tagSlideButton: document.querySelector(".control-button"),
+      tagSlideListContainer: document.querySelector(".control-bar"),
+      tagCountShowArea: document.querySelector(".show-tag-count"),
+    },
+    help: `
+          tagContainer：每个tag的容器
+          selectCheck：每个tag的复选框
+          previewWindow：预览窗口的整体容器
+          previewWindowControlBar：预览窗口切换的控制区
+          perviewWindowCloseBar：预览窗口的关闭按钮
+          perviewOutArea：文章预览输出的区域
+          editArticleArea：文章内容编辑的区域
+          addTagButton：标签添加按钮
+          tagSlideButton：tag侧边栏切换按钮
+          tagSlideListContainer：tag侧边栏的容器,
+          tagCountShowArea:tag数显示区域
+          `,
+  };
+
+  var artConfig = () => {
+    return new Object();
+  };
+
+  // dataArray = selectTagOption(dataArray,renderElement);
+  toggleControlPreview(renderElement);
+  previewWindowFunctions(renderElement);
+  addTag(artConfig, renderElement);
   reset();
   hotkeySubmit();
-  removeTag();
+  removeTag(artConfig);
   selectAll();
-  submitChange();
+  submitChange(artConfig);
   selectConfigFile();
   controlArticleList();
-  openArticleInfo();
+  openArticleInfo(artConfig);
+  listenterContentChange();
 };
+
 /**
  * @name selectTagOption
  * @description select tag value
  */
-function selectTagOption(dataArray) {
+function selectTagOption(dataArray, element) {
   //To click container
-  const optionContainer = document.querySelectorAll(".tag-container");
+  const optionContainer = element.multipe.tagContainer;
   for (const i of optionContainer) {
     i.addEventListener("click", (element) => {
       if (element.target.className != "tag-select-check") {
@@ -35,7 +72,6 @@ function selectTagOption(dataArray) {
           );
           element.target.children[0].checked = false;
         } else {
-          console.log(element.target);
           // if (dataArray.indexOf(element.target.children[1].value) != -1) {
           //   element.target.children[0].checked = true;
           //   console.log("already set this tag !!");
@@ -44,13 +80,12 @@ function selectTagOption(dataArray) {
           //   element.target.children[0].checked = true;
           // }
         }
-        console.log(dataArray);
       }
     });
   }
 
-  // To click checkbox
-  const optionsCheckBox = document.querySelectorAll("#tag-select-check");
+  // 复选框
+  const optionsCheckBox = element.multipe.selectCheck;
   for (const j of optionsCheckBox) {
     j.addEventListener("click", (Element) => {
       if (Element.target.id == "tag-select-check") {
@@ -76,7 +111,6 @@ function selectTagOption(dataArray) {
           }
         }
       }
-      console.log(dataArray);
     });
   }
   return dataArray;
@@ -86,9 +120,9 @@ function selectTagOption(dataArray) {
  * @name toggleControlPreview
  * @description 切换预览窗口
  */
-function toggleControlPreview() {
-  const previewContainer = document.querySelector(".preview-container");
-  const togglePreview = document.querySelector(".control-preview");
+function toggleControlPreview(element) {
+  const previewContainer = element.single.previewWindow;
+  const togglePreview = element.single.previewWindowControlBar;
   togglePreview.addEventListener("click", (Element) => {
     if (Element.target.dataset.openpreview == "ture") {
       previewContainer.style.zIndex = "-1";
@@ -99,7 +133,7 @@ function toggleControlPreview() {
     }
   });
 
-  const closePreview = document.querySelector(".close-bar-button");
+  const closePreview = element.single.perviewWindowCloseBar;
   closePreview.addEventListener("click", (Element) => {
     previewContainer.style.zIndex = "-1";
     Element.target.dataset.openpreview = false;
@@ -110,10 +144,11 @@ function toggleControlPreview() {
  * @name previewEditerContent
  * @description 预览功能实现
  */
-function previewWindowFunctions() {
+function previewWindowFunctions(element) {
   // inputContent
-  const textarea = document.querySelector("textarea");
-  const outputArea = document.querySelector(".output-area");
+  const textarea = element.single.editArticleArea;
+  const outputArea = element.single.perviewOutArea;
+  const previewContainer = element.single.previewWindow;
   textarea.addEventListener("input", () => {
     outputArea.innerHTML = marked.parse(textarea.value);
   });
@@ -124,7 +159,7 @@ function previewWindowFunctions() {
   diffY = 0;
   moveX = 0;
   moveY = 0;
-  const previewContainer = document.querySelector(".preview-container");
+
   previewContainer.addEventListener("mousedown", (event) => {
     canDrag = true;
     diffx = event.clientX - previewContainer.offsetLeft;
@@ -154,39 +189,59 @@ function previewWindowFunctions() {
   previewContainer.addEventListener("mouseup", () => {
     canDrag = false;
   });
-
-  document.querySelector(".preview-container");
 }
 
 /**
  * @name addTag
  * @description 添加Tag
  */
-function addTag() {
-  let count = 0;
-  const addTag = document.querySelector("#addTag");
-  addTag.addEventListener("click", () => {
-    const showTagContainer = document.querySelector(".show-tag");
-    const tagContainer = document.createElement("div");
-    const checkElement = document.createElement("input");
-    const inputElement = document.createElement("input");
-    const nameElement = document.createElement("input");
-    const selectColor = document.createElement("input");
+function addTag(artConfig, element) {
+  const __addTag = element.single.addTagButton;
+  const __click_svg = element.single.tagSlideButton;
+  const __control_bar = element.single.tagSlideListContainer;
+  const __showTagCount = element.single.tagCountShowArea;
+  var __flag = false;
+  var __count = __showTagCount.innerHTML;
 
-    tagContainer.setAttribute("class", "tag-container");
-    inputElement.type = "text";
-    inputElement.classList = "select-values";
-    checkElement.type = "checkbox";
-    checkElement.classList = "tag-select-check";
-    nameElement.type = "text";
-    nameElement.id = "tag-name";
-    selectColor.type = "color";
-    selectColor.id = "select-color";
-    tagContainer.append(checkElement);
-    tagContainer.append(nameElement);
-    tagContainer.append(inputElement);
-    tagContainer.append(selectColor);
-    showTagContainer.append(tagContainer);
+  __addTag.addEventListener("click", () => {
+    // 添加标签
+    const __showTagContainer = document.querySelector(".show-tag");
+    const __tagContainer = document.createElement("div");
+    const __checkElement = document.createElement("input");
+    const __inputElement = document.createElement("input");
+    const __nameElement = document.createElement("input");
+    const __selectColor = document.createElement("input");
+
+    __tagContainer.setAttribute("class", "tag-container");
+    __inputElement.type = "text";
+    __inputElement.classList = "select-values";
+    __inputElement.placeholder = "输入标签值";
+    __checkElement.type = "checkbox";
+    __checkElement.classList = "tag-select-check";
+    __nameElement.type = "text";
+    __nameElement.id = "tag-name";
+    __nameElement.placeholder = "输入标签名";
+    __selectColor.type = "color";
+    __selectColor.id = "select-color";
+    __tagContainer.append(__checkElement);
+    __tagContainer.append(__nameElement);
+    __tagContainer.append(__inputElement);
+    __tagContainer.append(__selectColor);
+    __showTagContainer.append(__tagContainer);
+
+    // 标签总数计算
+    __showTagCount.innerHTML = __count++;
+    artConfig.__proto__.tagCount = __count;
+  });
+
+  __click_svg.addEventListener("click", () => {
+    if (__flag == false) {
+      __control_bar.style.right = "-195px";
+      __flag = true;
+    } else {
+      __control_bar.style.right = "0px";
+      __flag = false;
+    }
   });
 }
 
@@ -194,26 +249,34 @@ function addTag() {
  * @name removeTag
  * @description 删除Tag
  */
-function removeTag() {
-  const removeButton = document.querySelector("#removeTag");
-  removeButton.addEventListener("click", () => {
-    const allTag = document.querySelectorAll(".tag-container");
-    let selectedElement = [];
-    allTag.forEach((item1) => {
-      if (item1.firstElementChild.checked) {
-        selectedElement.push(item1);
+function removeTag(__artConfig) {
+  const __removeButton = document.querySelector("#removeTag");
+  const __showTagCount = document.querySelector(".show-tag-count");
+  __removeButton.addEventListener("click", () => {
+    const __allTag = document.querySelectorAll(".tag-container");
+    let __selectedElement = [];
+    __allTag.forEach((__item1) => {
+      if (__item1.firstElementChild.checked) {
+        __selectedElement.push(__item1);
       }
 
-      if (selectedElement.length == 0) {
-        if (allTag.length != 0) {
-          allTag[allTag.length - 1].remove();
+      if (__selectedElement.length == 0) {
+        if (__allTag.length != 0) {
+          __allTag[__allTag.length - 1].remove();
         }
       } else {
-        selectedElement.forEach((item2) => {
-          item2.remove();
+        __selectedElement.forEach((__item2) => {
+          __item2.remove();
         });
       }
     });
+
+    if (__artConfig.__proto__.tagCount-- > 0) {
+      __showTagCount.innerHTML = __artConfig.__proto__.tagCount--;
+    } else {
+      __showTagCount.innerHTML = __artConfig.__proto__.tagCount = 0;
+    }
+    __artConfig.__proto__.tagCount = __showTagCount.innerHTML;
   });
 }
 
@@ -222,20 +285,20 @@ function removeTag() {
  * @description 全选tag
  */
 function selectAll() {
-  const selectAllButton = document.querySelector("#selectAll");
-  var flag = false;
-  selectAllButton.addEventListener("click", () => {
+  const __selectAllButton = document.querySelector("#selectAll");
+  var __flag = false;
+  __selectAllButton.addEventListener("click", () => {
     const selectBox = document.querySelectorAll("[type='checkbox']");
-    if (flag === false) {
+    if (__flag === false) {
       selectBox.forEach((item) => {
         item.checked = true;
       });
-      flag = true;
+      __flag = true;
     } else {
       selectBox.forEach((item) => {
         item.checked = false;
       });
-      flag = false;
+      __flag = false;
     }
   });
 }
@@ -245,14 +308,14 @@ function selectAll() {
  * @description 重置页面操作
  */
 function reset() {
-  const title = document.querySelector("#typeTitle");
-  const content = document.querySelector("#typeContent");
-  const reset = document.querySelector(".reset");
+  const __title = document.querySelector("#typeTitle");
+  const __content = document.querySelector("#typeContent");
+  const __reset = document.querySelector(".reset");
 
-  reset.addEventListener("click", () => {
+  __reset.addEventListener("click", () => {
     if (confirm("确认清空操作吗？？？（不可恢复）")) {
-      title.value = "";
-      content.value = "";
+      __title.value = "";
+      __content.value = "";
       const allTag = document.querySelectorAll(".tag-container");
       allTag.forEach((item) => {
         item.remove();
@@ -266,78 +329,124 @@ function reset() {
  * @description 提交更改
  */
 
-function submitChange() {
+function submitChange(artConfig, element) {
   const submitButton = document.querySelector(".submit");
-  let allTag = [];
-  let submitedContent = {};
+  let __allTag = [];
+  let __submitedContent = {};
 
   // 获取tag
-  function getTag(allTag) {
-    let tagArr = [];
-    const tagElement = document.querySelectorAll(".tag-select-check");
-    tagElement.forEach((item2) => {
-      if (tagArr.length == 3) {
-        allTag.push(tagArr);
-        tagArr = [];
-      }
-      tagArr.push("Tag");
-      tagArr.push(item2.nextElementSibling.value);
-      tagArr.push(item2.nextElementSibling.nextElementSibling.value);
-      allTag.push(tagArr);
-    });
+  function getTag(__allTag) {
+    let __tagArr = [];
+    const __tagElement = element.multipe.selectCheck;
+    if (__tagElement.length != 0) {
+      __tagElement.forEach((__item2) => {
+        if (__tagArr.length == 3) {
+          __allTag.push(__tagArr);
+          __tagArr = [];
+        }
+        __tagArr.push("Tag");
+        __tagArr.push(__item2.nextElementSibling.value);
+        __tagArr.push(__item2.nextElementSibling.nextElementSibling.value);
+        __allTag.push(__tagArr);
+      });
+      return __tagArr;
+    } else {
+      return false;
+    }
   }
 
   // 获取发布时间
   function getPubTime() {
-    const date = new Date();
-    let pubtime = ``;
-    pubtime = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
-    return pubtime;
+    // const __pubDate = document.querySelector("");
+    // const date = new Date();
+    // let pubtime = ``;
+    // pubtime = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+    // return pubtime;
   }
 
   // 获取文章标题
   function getArticleTitle() {
-    const articleTitle = document.querySelector("#typeTitle").value;
-    return articleTitle;
+    const __articleTitle = document.querySelector("#typeTitle").value;
+    if (__articleTitle.value != "") {
+      return __articleTitle;
+    } else {
+      return false;
+    }
   }
 
   // 获取文章简介
   function getInfoContent() {
-    const info = document.querySelector("textarea").value.substring(0, 30);
-    return info;
+    const __info = document.querySelector("textarea").value.substring(0, 30);
+    return __info;
+  }
+
+  /**
+   * @description 获取文章内容
+   * @returns false|context
+   */
+  function getContext() {
+    const __context = document.querySelector("textarea").value;
+    if (__context.value != "") {
+      return __context;
+    } else {
+      return false;
+    }
+  }
+
+  function findSameArticle(__articleTitle) {
+    const __artList = artConfig.__proto__.config;
+    __artList.some((item) => item.articleTitle == __articleTitle)
+      ? (__artList.haveSameArticle = true)
+      : (__artList.haveSameArticle = false);
+    return __artList;
   }
 
   // 单击提交
   submitButton.addEventListener("click", () => {
     if (confirm("确认提交？")) {
-      getTag(allTag);
-      let pubtime = getPubTime();
-      let articleTitle = getArticleTitle();
-      let infoContent = getInfoContent();
-      const date = new Date();
-      let tempMonth = "";
-      let tempDay = "";
+      let __tag = getTag(__allTag);
+      let __pubtime = getPubTime();
+      let __articleTitle = getArticleTitle();
+      let __infoContent = getInfoContent();
+      let __context = getContext();
+      let __artList = findSameArticle(__articleTitle);
 
-      date.getMonth().length != 2
-        ? (tempMonth = "0" + date.getMonth().toString())
-        : (tempMonth = date.getMonth().toString());
-      date.getDay().length != 2
-        ? (tempDay = "0" + date.getDay())
-        : (tempDay = date.getDay());
+      if (__artList.haveSameArticle === true) {
+        __artList.forEach((__item) => {
+          console.log(__item.pubDate + __pubtime);
+        });
+      }
+      if (
+        __tag != false &&
+        __articleTitle != false &&
+        __infoContent != false &&
+        __context != false
+      ) {
+        const date = new Date();
+        let __tempMonth = "";
+        let __tempDay = "";
 
-      submitedContent.Tag = allTag;
-      submitedContent.pubDate = pubtime;
-      submitedContent.authorName = "Rockeven199";
-      submitedContent.articleTitle = articleTitle;
-      submitedContent.articleContent = infoContent;
-      submitedContent.articleUrl =
-        "../article/content/" +
-        date.getFullYear().toString() +
-        tempMonth +
-        tempDay +
-        ".md";
+        date.getMonth().length != 2
+          ? (__tempMonth = "0" + date.getMonth().toString())
+          : (__tempMonth = date.getMonth().toString());
+        date.getDay().length != 2
+          ? (__tempDay = "0" + date.getDay())
+          : (__tempDay = date.getDay());
 
-      console.log(submitedContent);
+        __submitedContent.Tag = __allTag;
+        __submitedContent.pubDate = __pubtime;
+        __submitedContent.authorName = "Rockeven199";
+        __submitedContent.articleTitle = __articleTitle;
+        __submitedContent.articleContent = __infoContent;
+        __submitedContent.articleUrl =
+          "../article/content/" +
+          date.getFullYear().toString() +
+          __empMonth +
+          __empDay +
+          ".md";
+      } else {
+        alert("请检查是否有空缺");
+      }
     }
   });
 }
@@ -350,8 +459,8 @@ function submitChange() {
 function hotkeySubmit() {
   window.addEventListener("keypress", (event) => {
     if (event.key == "Enter") {
-      const submitButton = document.querySelector(".submit");
-      submitButton.click();
+      const __submitButton = document.querySelector(".submit");
+      __submitButton.click();
     }
   });
 }
@@ -362,12 +471,12 @@ function hotkeySubmit() {
  */
 
 function selectConfigFile() {
-  const mask = document.querySelector(".mask-container");
-  const selectFileButton = document.querySelector("#selectFile");
-  selectFileButton.addEventListener("click", () => {
+  const __mask = document.querySelector(".mask-container");
+  const __selectFileButton = document.querySelector("#selectFile");
+  __selectFileButton.addEventListener("click", () => {
     window.doSelectConfig.doSelectFile((value) => {
       if (!value[0].canceled) {
-        mask.style.display = "none";
+        __mask.style.display = "none";
         return value[1];
       }
     });
@@ -379,16 +488,16 @@ function selectConfigFile() {
  * @description 控制文章列表
  */
 function controlArticleList() {
-  const listBar = document.querySelector(".article-list-control-bar");
-  const listContainer = document.querySelector(".article-list-container");
-  var showList = true;
-  listBar.addEventListener("click", (event) => {
-    if (!showList) {
-      listContainer.style.transform = "translateX(0)";
-      showList = true;
+  const __listBar = document.querySelector(".article-list-control-bar");
+  const __listContainer = document.querySelector(".article-list-container");
+  var __showList = false;
+  __listBar.addEventListener("click", (event) => {
+    if (!__showList) {
+      __listContainer.style.transform = "translateX(0)";
+      __showList = true;
     } else {
-      listContainer.style.transform = "translateX(-100%)";
-      showList = false;
+      __listContainer.style.transform = "translateX(-100%)";
+      __showList = false;
     }
   });
 }
@@ -396,13 +505,14 @@ function controlArticleList() {
 /**
  * @name openArticleInfo 填充文章信息
  */
-function openArticleInfo() {
-  let listElement = document.querySelectorAll(".article-group");
-  let listTitle = document.querySelectorAll(".article-title");
-  let listInfo = document.querySelectorAll(".other-info");
+function openArticleInfo(artConfig) {
+  const __listElement = document.querySelectorAll(".article-group");
+  const __listTitle = document.querySelectorAll(".article-title");
+  const __listInfo = document.querySelectorAll(".other-info");
+  const __showTagCount = document.querySelector(".show-tag-count");
+  const __container = document.querySelectorAll(".tag-container");
+  const __sideList = document.querySelector(".article-list-container");
 
-  // 赋值给函数内全局对象
-  var artConfig = new Object();
   artConfig.__proto__.config;
   window.sendConfig.fetchArtConfig(
     (config) => (artConfig.__proto__.config = config)
@@ -410,41 +520,41 @@ function openArticleInfo() {
 
   /**
    * @description 创建tag
-   * @param {*} tagName
-   * @param {*} tagContent
-   * @param {*} tagIndex
-   * @param {*} tagColor
+   * @param {*} __tagName
+   * @param {*} __tagContent
+   * @param {*} __tagIndex
+   * @param {*} __tagColor
    */
-  function createTag(tagName, tagContent, tagIndex, tagColor) {
-    const container = document.createElement("div");
-    container.dataset.articleIndex = tagIndex;
-    container.classList.add("tag-container");
+  function createTag(__tagName, __tagContent, __tagColor, __tagIndex) {
+    const __container = document.createElement("div");
+    __container.dataset.articleIndex = __tagIndex;
+    __container.classList.add("tag-container");
 
-    const checkBox = document.createElement("input");
-    checkBox.classList.add("tag-select-check");
-    checkBox.type = "checkbox";
+    const __checkBox = document.createElement("input");
+    __checkBox.classList.add("tag-select-check");
+    __checkBox.type = "checkbox";
 
-    const tagNameEntry = document.createElement("input");
-    tagNameEntry.id = "tag-name";
-    tagNameEntry.type = "text";
-    tagNameEntry.value = tagName;
+    const __tagNameEntry = document.createElement("input");
+    __tagNameEntry.id = "tag-name";
+    __tagNameEntry.type = "text";
+    __tagNameEntry.value = __tagName;
 
-    const content = document.createElement("input");
-    content.id = "tag-content";
-    content.classList.add("select-values");
-    content.value = tagContent;
+    const __content = document.createElement("input");
+    __content.id = "tag-content";
+    __content.classList.add("select-values");
+    __content.value = __tagContent;
 
-    const color = document.createElement("input");
-    color.type = "color";
-    color.id = "select-color";
-    color.value = tagColor;
+    const __color = document.createElement("input");
+    __color.type = "color";
+    __color.id = "select-color";
+    __color.value = __tagColor;
 
-    container.appendChild(checkBox);
-    container.appendChild(tagNameEntry);
-    container.appendChild(content);
-    container.appendChild(color);
+    __container.appendChild(__checkBox);
+    __container.appendChild(__tagNameEntry);
+    __container.appendChild(__content);
+    __container.appendChild(__color);
 
-    document.querySelector(".show-tag").appendChild(container);
+    document.querySelector(".show-tag").appendChild(__container);
   }
 
   /**
@@ -453,23 +563,76 @@ function openArticleInfo() {
    * @param {*} artContent
    */
   function fillArticleInfo(elementIndex) {
-    const title = document.querySelector("#typeTitle");
-    const content = document.querySelector("#typeContent");
-    const configData = artConfig.__proto__.config;
-    title.value = configData[elementIndex].articleTitle;
-    content.value = configData[elementIndex].articleContent;
-    console.log(configData[elementIndex]);
+    // 清空Tag
+    document
+      .querySelectorAll(".tag-container")
+      .forEach((item) => item.remove());
+
+    // 设置文章信息
+    const __title = document.querySelector("#typeTitle");
+    const __content = document.querySelector("#typeContent");
+    const __configData = artConfig.__proto__.config;
+    __title.value = __configData[elementIndex].articleTitle;
+    __content.value = __configData[elementIndex].articleContent;
+
+    // 设置tag
+    for (
+      var tagIndex = 0;
+      tagIndex < __configData[elementIndex].Tag.length;
+      tagIndex++
+    ) {
+      createTag(
+        __configData[elementIndex].Tag[tagIndex][0],
+        __configData[elementIndex].Tag[tagIndex][1],
+        __configData[elementIndex].Tag[tagIndex][2],
+        tagIndex
+      );
+    }
   }
 
-  listTitle.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      fillArticleInfo(listElement[index].dataset.artIndex);
+  __listTitle.forEach((item, index) => {
+    item.addEventListener("click", (event) => {
+      fillArticleInfo(__listElement[index].dataset.artIndex);
+      __showTagCount.innerHTML = __container.length;
+      __sideList.style.transform = "translateX(-100%)";
     });
   });
 
-  listInfo.forEach((item, index) => {
+  __listInfo.forEach((item, index) => {
     item.addEventListener("click", () => {
-      fillArticleInfo(listElement[index].dataset.artIndex);
+      fillArticleInfo(__listElement[index].dataset.artIndex);
+      __showTagCount.innerHTML = __container.length;
+      __sideList.style.transform = "translateX(-100%)";
     });
+  });
+}
+
+/**
+ * @name listenterContentChange
+ * @description 监听输入框判读是否有文本输入
+ */
+function listenterContentChange() {
+  const __input = document.querySelectorAll("[type=text]");
+  const __textarea = document.querySelector("textarea");
+  const __control_main_bar = document.querySelector(".compass-function");
+  __input.forEach((__item) => {
+    __item.addEventListener("input", (__target) => {
+      {
+        __control_main_bar.style.transform = "translateY(0)";
+      }
+    });
+
+    __item.addEventListener("blur", (__target) => {
+      {
+        __control_main_bar.style.transform = "translateY(40px)";
+      }
+    });
+  });
+
+  __textarea.addEventListener("input", () => {
+    __control_main_bar.style.transform = "translateY(0)";
+  });
+  __textarea.addEventListener("blur", () => {
+    __control_main_bar.style.transform = "translateY(40px)";
   });
 }

@@ -1,19 +1,25 @@
 "use strict";
 
 window.onload = function () {
-  var dataArray = []; // dataArray = selectTagOption(dataArray);
+  var dataArray = [];
+
+  var artConfig = function artConfig() {
+    return new Object();
+  }; // dataArray = selectTagOption(dataArray);
+
 
   toggleControlPreview();
   previewWindowFunctions();
-  addTag();
+  addTag(artConfig);
   reset();
   hotkeySubmit();
-  removeTag();
+  removeTag(artConfig);
   selectAll();
-  submitChange();
+  submitChange(artConfig);
   selectConfigFile();
   controlArticleList();
-  openArticleInfo();
+  openArticleInfo(artConfig);
+  listenterContentChange();
 };
 /**
  * @name selectTagOption
@@ -36,8 +42,7 @@ function selectTagOption(dataArray) {
           if (hasChecked(element.target.children[0])) {
             dataArray.splice(dataArray.indexOf(element.target.children[1].value, dataArray.indexOf(element.target.children[1].value == 0) ? element.target.children[1].value + 1 : element.target.children[1].value - 1));
             element.target.children[0].checked = false;
-          } else {
-            console.log(element.target); // if (dataArray.indexOf(element.target.children[1].value) != -1) {
+          } else {// if (dataArray.indexOf(element.target.children[1].value) != -1) {
             //   element.target.children[0].checked = true;
             //   console.log("already set this tag !!");
             // } else {
@@ -45,8 +50,6 @@ function selectTagOption(dataArray) {
             //   element.target.children[0].checked = true;
             // }
           }
-
-          console.log(dataArray);
         }
       });
     } // To click checkbox
@@ -89,8 +92,6 @@ function selectTagOption(dataArray) {
             }
           }
         }
-
-        console.log(dataArray);
       });
     }
   } catch (err) {
@@ -189,30 +190,68 @@ function previewWindowFunctions() {
  */
 
 
-function addTag() {
-  var count = 0;
-  var addTag = document.querySelector("#addTag");
-  addTag.addEventListener("click", function () {
-    var showTagContainer = document.querySelector(".show-tag");
-    var tagContainer = document.createElement("div");
-    var checkElement = document.createElement("input");
-    var inputElement = document.createElement("input");
-    var nameElement = document.createElement("input");
-    var selectColor = document.createElement("input");
-    tagContainer.setAttribute("class", "tag-container");
-    inputElement.type = "text";
-    inputElement.classList = "select-values";
-    checkElement.type = "checkbox";
-    checkElement.classList = "tag-select-check";
-    nameElement.type = "text";
-    nameElement.id = "tag-name";
-    selectColor.type = "color";
-    selectColor.id = "select-color";
-    tagContainer.append(checkElement);
-    tagContainer.append(nameElement);
-    tagContainer.append(inputElement);
-    tagContainer.append(selectColor);
-    showTagContainer.append(tagContainer);
+function addTag(artConfig) {
+  var __addTag = document.querySelector("#addTag");
+
+  var __click_svg = document.querySelector(".control-button");
+
+  var __control_bar = document.querySelector(".control-bar");
+
+  var __showTagCount = document.querySelector(".show-tag-count");
+
+  var __flag = false;
+  var __count = __showTagCount.innerHTML;
+
+  __addTag.addEventListener("click", function () {
+    // 添加标签
+    var __showTagContainer = document.querySelector(".show-tag");
+
+    var __tagContainer = document.createElement("div");
+
+    var __checkElement = document.createElement("input");
+
+    var __inputElement = document.createElement("input");
+
+    var __nameElement = document.createElement("input");
+
+    var __selectColor = document.createElement("input");
+
+    __tagContainer.setAttribute("class", "tag-container");
+
+    __inputElement.type = "text";
+    __inputElement.classList = "select-values";
+    __inputElement.placeholder = "输入标签值";
+    __checkElement.type = "checkbox";
+    __checkElement.classList = "tag-select-check";
+    __nameElement.type = "text";
+    __nameElement.id = "tag-name";
+    __nameElement.placeholder = "输入标签名";
+    __selectColor.type = "color";
+    __selectColor.id = "select-color";
+
+    __tagContainer.append(__checkElement);
+
+    __tagContainer.append(__nameElement);
+
+    __tagContainer.append(__inputElement);
+
+    __tagContainer.append(__selectColor);
+
+    __showTagContainer.append(__tagContainer); // 标签总数计算
+
+
+    __showTagCount.innerHTML = __count++;
+    artConfig.__proto__.tagCount = __count;
+  });
+
+  __click_svg.addEventListener("click", function () {
+    if (__flag == false) {
+      __control_bar.style.right = "-195px";
+      __flag = true;
+    } else {
+      __control_bar.style.right = "0px";
+      __flag = false;
+    }
   });
 }
 /**
@@ -221,26 +260,33 @@ function addTag() {
  */
 
 
-function removeTag() {
-  var removeButton = document.querySelector("#removeTag");
-  removeButton.addEventListener("click", function () {
-    var allTag = document.querySelectorAll(".tag-container");
-    var selectedElement = [];
-    allTag.forEach(function (item1) {
-      if (item1.firstElementChild.checked) {
-        selectedElement.push(item1);
+function removeTag(__artConfig) {
+  var __removeButton = document.querySelector("#removeTag");
+
+  var __showTagCount = document.querySelector(".show-tag-count");
+
+  __removeButton.addEventListener("click", function () {
+    var __allTag = document.querySelectorAll(".tag-container");
+
+    var __selectedElement = [];
+
+    __allTag.forEach(function (__item1) {
+      if (__item1.firstElementChild.checked) {
+        __selectedElement.push(__item1);
       }
 
-      if (selectedElement.length == 0) {
-        if (allTag.length != 0) {
-          allTag[allTag.length - 1].remove();
+      if (__selectedElement.length == 0) {
+        if (__allTag.length != 0) {
+          __allTag[__allTag.length - 1].remove();
         }
       } else {
-        selectedElement.forEach(function (item2) {
-          item2.remove();
+        __selectedElement.forEach(function (__item2) {
+          __item2.remove();
         });
       }
     });
+
+    __showTagCount.innerHTML = __artConfig.__proto__.tagCount-- > 0 ? __artConfig.__proto__.tagCount-- : __artConfig.__proto__.tagCount = 0; // __artConfig.__proto__.tagCount = __artConfig.__proto__.tagCount--;
   });
 }
 /**
@@ -250,21 +296,23 @@ function removeTag() {
 
 
 function selectAll() {
-  var selectAllButton = document.querySelector("#selectAll");
-  var flag = false;
-  selectAllButton.addEventListener("click", function () {
+  var __selectAllButton = document.querySelector("#selectAll");
+
+  var __flag = false;
+
+  __selectAllButton.addEventListener("click", function () {
     var selectBox = document.querySelectorAll("[type='checkbox']");
 
-    if (flag === false) {
+    if (__flag === false) {
       selectBox.forEach(function (item) {
         item.checked = true;
       });
-      flag = true;
+      __flag = true;
     } else {
       selectBox.forEach(function (item) {
         item.checked = false;
       });
-      flag = false;
+      __flag = false;
     }
   });
 }
@@ -275,13 +323,16 @@ function selectAll() {
 
 
 function reset() {
-  var title = document.querySelector("#typeTitle");
-  var content = document.querySelector("#typeContent");
-  var reset = document.querySelector(".reset");
-  reset.addEventListener("click", function () {
+  var __title = document.querySelector("#typeTitle");
+
+  var __content = document.querySelector("#typeContent");
+
+  var __reset = document.querySelector(".reset");
+
+  __reset.addEventListener("click", function () {
     if (confirm("确认清空操作吗？？？（不可恢复）")) {
-      title.value = "";
-      content.value = "";
+      __title.value = "";
+      __content.value = "";
       var allTag = document.querySelectorAll(".tag-container");
       allTag.forEach(function (item) {
         item.remove();
@@ -295,66 +346,126 @@ function reset() {
  */
 
 
-function submitChange() {
+function submitChange(artConfig) {
   var submitButton = document.querySelector(".submit");
-  var allTag = [];
-  var submitedContent = {}; // 获取tag
+  var __allTag = [];
+  var __submitedContent = {}; // 获取tag
 
-  function getTag(allTag) {
-    var tagArr = [];
-    var tagElement = document.querySelectorAll(".tag-select-check");
-    tagElement.forEach(function (item2) {
-      if (tagArr.length == 3) {
-        allTag.push(tagArr);
-        tagArr = [];
-      }
+  function getTag(__allTag) {
+    var __tagArr = [];
 
-      tagArr.push("Tag");
-      tagArr.push(item2.nextElementSibling.value);
-      tagArr.push(item2.nextElementSibling.nextElementSibling.value);
-      allTag.push(tagArr);
-    });
+    var __tagElement = document.querySelectorAll(".tag-select-check");
+
+    if (__tagElement.length != 0) {
+      __tagElement.forEach(function (__item2) {
+        if (__tagArr.length == 3) {
+          __allTag.push(__tagArr);
+
+          __tagArr = [];
+        }
+
+        __tagArr.push("Tag");
+
+        __tagArr.push(__item2.nextElementSibling.value);
+
+        __tagArr.push(__item2.nextElementSibling.nextElementSibling.value);
+
+        __allTag.push(__tagArr);
+      });
+
+      return __tagArr;
+    } else {
+      return false;
+    }
   } // 获取发布时间
 
 
   function getPubTime() {
-    var date = new Date();
-    var pubtime = "";
-    pubtime = "".concat(date.getFullYear(), "-").concat(date.getMonth(), "-").concat(date.getDay());
+    var __pubDate = document.querySelector(""); // const date = new Date();
+    // let pubtime = ``;
+    // pubtime = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+
+
     return pubtime;
   } // 获取文章标题
 
 
   function getArticleTitle() {
-    var articleTitle = document.querySelector("#typeTitle").value;
-    return articleTitle;
+    var __articleTitle = document.querySelector("#typeTitle").value;
+
+    if (__articleTitle.value != "") {
+      return __articleTitle;
+    } else {
+      return false;
+    }
   } // 获取文章简介
 
 
   function getInfoContent() {
-    var info = document.querySelector("textarea").value.substring(0, 30);
-    return info;
+    var __info = document.querySelector("textarea").value.substring(0, 30);
+
+    return __info;
+  }
+  /**
+   * @description 获取文章内容
+   * @returns false|context
+   */
+
+
+  function getContext() {
+    var __context = document.querySelector("textarea").value;
+
+    if (__context.value != "") {
+      return __context;
+    } else {
+      return false;
+    }
+  }
+
+  function findSameArticle(__articleTitle) {
+    var __artList = artConfig.__proto__.config;
+    __artList.some(function (item) {
+      return item.articleTitle == __articleTitle;
+    }) ? __artList.haveSameArticle = true : __artList.haveSameArticle = false;
+    return __artList;
   } // 单击提交
 
 
   submitButton.addEventListener("click", function () {
     if (confirm("确认提交？")) {
-      getTag(allTag);
-      var pubtime = getPubTime();
-      var articleTitle = getArticleTitle();
-      var infoContent = getInfoContent();
-      var date = new Date();
-      var tempMonth = "";
-      var tempDay = "";
-      date.getMonth().length != 2 ? tempMonth = "0" + date.getMonth().toString() : tempMonth = date.getMonth().toString();
-      date.getDay().length != 2 ? tempDay = "0" + date.getDay() : tempDay = date.getDay();
-      submitedContent.Tag = allTag;
-      submitedContent.pubDate = pubtime;
-      submitedContent.authorName = "Rockeven199";
-      submitedContent.articleTitle = articleTitle;
-      submitedContent.articleContent = infoContent;
-      submitedContent.articleUrl = "../article/content/" + date.getFullYear().toString() + tempMonth + tempDay + ".md";
-      console.log(submitedContent);
+      var __tag = getTag(__allTag);
+
+      var __pubtime = getPubTime();
+
+      var __articleTitle = getArticleTitle();
+
+      var __infoContent = getInfoContent();
+
+      var __context = getContext();
+
+      var __artList = findSameArticle(__articleTitle);
+
+      if (__artList.haveSameArticle === true) {
+        __artList.forEach(function (__item) {
+          console.log(__item.pubDate + __pubtime);
+        });
+      }
+
+      if (__tag != false && __articleTitle != false && __infoContent != false && __context != false) {
+        var date = new Date();
+        var __tempMonth = "";
+        var __tempDay = "";
+        date.getMonth().length != 2 ? __tempMonth = "0" + date.getMonth().toString() : __tempMonth = date.getMonth().toString();
+        date.getDay().length != 2 ? __tempDay = "0" + date.getDay() : __tempDay = date.getDay();
+        __submitedContent.Tag = __allTag;
+        __submitedContent.pubDate = __pubtime;
+        __submitedContent.authorName = "Rockeven199";
+        __submitedContent.articleTitle = __articleTitle;
+        __submitedContent.articleContent = __infoContent;
+        __submitedContent.articleUrl = "../article/content/" + date.getFullYear().toString() + __empMonth + __empDay + ".md";
+      } else {
+        alert("请检查是否有空缺");
+      }
     }
   });
 }
@@ -367,8 +478,9 @@ function submitChange() {
 function hotkeySubmit() {
   window.addEventListener("keypress", function (event) {
     if (event.key == "Enter") {
-      var submitButton = document.querySelector(".submit");
-      submitButton.click();
+      var __submitButton = document.querySelector(".submit");
+
+      __submitButton.click();
     }
   });
 }
@@ -379,12 +491,14 @@ function hotkeySubmit() {
 
 
 function selectConfigFile() {
-  var mask = document.querySelector(".mask-container");
-  var selectFileButton = document.querySelector("#selectFile");
-  selectFileButton.addEventListener("click", function () {
+  var __mask = document.querySelector(".mask-container");
+
+  var __selectFileButton = document.querySelector("#selectFile");
+
+  __selectFileButton.addEventListener("click", function () {
     window.doSelectConfig.doSelectFile(function (value) {
       if (!value[0].canceled) {
-        mask.style.display = "none";
+        __mask.style.display = "none";
         return value[1];
       }
     });
@@ -397,16 +511,19 @@ function selectConfigFile() {
 
 
 function controlArticleList() {
-  var listBar = document.querySelector(".article-list-control-bar");
-  var listContainer = document.querySelector(".article-list-container");
-  var showList = true;
-  listBar.addEventListener("click", function (event) {
-    if (!showList) {
-      listContainer.style.transform = "translateX(0)";
-      showList = true;
+  var __listBar = document.querySelector(".article-list-control-bar");
+
+  var __listContainer = document.querySelector(".article-list-container");
+
+  var __showList = false;
+
+  __listBar.addEventListener("click", function (event) {
+    if (!__showList) {
+      __listContainer.style.transform = "translateX(0)";
+      __showList = true;
     } else {
-      listContainer.style.transform = "translateX(-100%)";
-      showList = false;
+      __listContainer.style.transform = "translateX(-100%)";
+      __showList = false;
     }
   });
 }
@@ -415,48 +532,71 @@ function controlArticleList() {
  */
 
 
-function openArticleInfo() {
-  var listElement = document.querySelectorAll(".article-group");
-  var listTitle = document.querySelectorAll(".article-title");
-  var listInfo = document.querySelectorAll(".other-info"); // 赋值给函数内全局对象
+function openArticleInfo(artConfig) {
+  var __listElement = document.querySelectorAll(".article-group");
 
-  var artConfig = new Object();
+  var __listTitle = document.querySelectorAll(".article-title");
+
+  var __listInfo = document.querySelectorAll(".other-info");
+
+  var __showTagCount = document.querySelector(".show-tag-count");
+
+  var __container = document.querySelectorAll(".tag-container");
+
   artConfig.__proto__.config;
   window.sendConfig.fetchArtConfig(function (config) {
     return artConfig.__proto__.config = config;
   });
   /**
    * @description 创建tag
-   * @param {*} tagName
-   * @param {*} tagContent
-   * @param {*} tagIndex
-   * @param {*} tagColor
+   * @param {*} __tagName
+   * @param {*} __tagContent
+   * @param {*} __tagIndex
+   * @param {*} __tagColor
    */
 
-  function createTag(tagName, tagContent, tagIndex, tagColor) {
-    var container = document.createElement("div");
-    container.dataset.articleIndex = tagIndex;
-    container.classList.add("tag-container");
-    var checkBox = document.createElement("input");
-    checkBox.classList.add("tag-select-check");
-    checkBox.type = "checkbox";
-    var tagNameEntry = document.createElement("input");
-    tagNameEntry.id = "tag-name";
-    tagNameEntry.type = "text";
-    tagNameEntry.value = tagName;
-    var content = document.createElement("input");
-    content.id = "tag-content";
-    content.classList.add("select-values");
-    content.value = tagContent;
-    var color = document.createElement("input");
-    color.type = "color";
-    color.id = "select-color";
-    color.value = tagColor;
-    container.appendChild(checkBox);
-    container.appendChild(tagNameEntry);
-    container.appendChild(content);
-    container.appendChild(color);
-    document.querySelector(".show-tag").appendChild(container);
+  function createTag(__tagName, __tagContent, __tagColor, __tagIndex) {
+    var __container = document.createElement("div");
+
+    __container.dataset.articleIndex = __tagIndex;
+
+    __container.classList.add("tag-container");
+
+    var __checkBox = document.createElement("input");
+
+    __checkBox.classList.add("tag-select-check");
+
+    __checkBox.type = "checkbox";
+
+    var __tagNameEntry = document.createElement("input");
+
+    __tagNameEntry.id = "tag-name";
+    __tagNameEntry.type = "text";
+    __tagNameEntry.value = __tagName;
+
+    var __content = document.createElement("input");
+
+    __content.id = "tag-content";
+
+    __content.classList.add("select-values");
+
+    __content.value = __tagContent;
+
+    var __color = document.createElement("input");
+
+    __color.type = "color";
+    __color.id = "select-color";
+    __color.value = __tagColor;
+
+    __container.appendChild(__checkBox);
+
+    __container.appendChild(__tagNameEntry);
+
+    __container.appendChild(__content);
+
+    __container.appendChild(__color);
+
+    document.querySelector(".show-tag").appendChild(__container);
   }
   /**
    * @description 填充文章信息
@@ -466,22 +606,70 @@ function openArticleInfo() {
 
 
   function fillArticleInfo(elementIndex) {
-    var title = document.querySelector("#typeTitle");
-    var content = document.querySelector("#typeContent");
-    var configData = artConfig.__proto__.config;
-    title.value = configData[elementIndex].articleTitle;
-    content.value = configData[elementIndex].articleContent;
-    console.log(configData[elementIndex]);
+    // 清空Tag
+    document.querySelectorAll(".tag-container").forEach(function (item) {
+      return item.remove();
+    }); // 设置文章信息
+
+    var __title = document.querySelector("#typeTitle");
+
+    var __content = document.querySelector("#typeContent");
+
+    var __configData = artConfig.__proto__.config;
+    __title.value = __configData[elementIndex].articleTitle;
+    __content.value = __configData[elementIndex].articleContent; // 设置tag
+
+    for (var tagIndex = 0; tagIndex < __configData[elementIndex].Tag.length; tagIndex++) {
+      createTag(__configData[elementIndex].Tag[tagIndex][0], __configData[elementIndex].Tag[tagIndex][1], __configData[elementIndex].Tag[tagIndex][2], tagIndex);
+    }
   }
 
-  listTitle.forEach(function (item, index) {
-    item.addEventListener("click", function () {
-      fillArticleInfo(listElement[index].dataset.artIndex);
+  __listTitle.forEach(function (item, index) {
+    item.addEventListener("click", function (event) {
+      fillArticleInfo(__listElement[index].dataset.artIndex);
+      __showTagCount.innerHTML = __container.length;
     });
   });
-  listInfo.forEach(function (item, index) {
+
+  __listInfo.forEach(function (item, index) {
     item.addEventListener("click", function () {
-      fillArticleInfo(listElement[index].dataset.artIndex);
+      fillArticleInfo(__listElement[index].dataset.artIndex);
+      __showTagCount.innerHTML = __container.length;
     });
+  });
+}
+/**
+ * @name listenterContentChange
+ * @description 监听输入框判读是否有文本输入
+ */
+
+
+function listenterContentChange() {
+  var __input = document.querySelectorAll("[type=text]");
+
+  var __textarea = document.querySelector("textarea");
+
+  var __control_main_bar = document.querySelector(".compass-function");
+
+  __input.forEach(function (__item) {
+    __item.addEventListener("input", function (__target) {
+      {
+        __control_main_bar.style.transform = "translateY(0)";
+      }
+    });
+
+    __item.addEventListener("blur", function (__target) {
+      {
+        __control_main_bar.style.transform = "translateY(40px)";
+      }
+    });
+  });
+
+  __textarea.addEventListener("input", function () {
+    __control_main_bar.style.transform = "translateY(0)";
+  });
+
+  __textarea.addEventListener("blur", function () {
+    __control_main_bar.style.transform = "translateY(40px)";
   });
 }

@@ -77,20 +77,20 @@ function renderHtml() {
       for (var b = 0; b < listRes[a].Tag.length; b++) {
         for (var c = 0; c < listRes[a].Tag.length; c++) {
           temptempHTML = ``;
-            temptempHTML = `<div class="article-header-about-tag"><span class="about-title" style="margin-left:5px">${listRes[a].Tag[b][0]}</span><a class="about-link">${listRes[a].Tag[b][1]}</a></div>`;
+          temptempHTML = `<div class="article-header-about-tag"><span class="about-title">${listRes[a].Tag}</span></div>`;
         }
         tagTemplate = tagTemplate + temptempHTML;
       }
     } catch (error) {}
 
     var html = `<div class="article-main">
-            <div class="article-header">
-                <div class="pub-time">${pubDate}</div>
+                <div class="article-title" id="article-title" style="font-size:25px;">
+                <p>${articleTitle}</p>
+            </div>
+            <div class="article-header" style="height:min-content;">
+                <div class="pub-time"><?xml version="1.0" encoding="UTF-8"?><svg style="margin-right:5px;height:15px;" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 19H43V40C43 41.1046 42.1046 42 41 42H7C5.89543 42 5 41.1046 5 40V19Z" fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round"/><path d="M5 9C5 7.89543 5.89543 7 7 7H41C42.1046 7 43 7.89543 43 9V19H5V9Z" stroke="#333" stroke-width="4" stroke-linejoin="round"/><path d="M16 4V12" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 4V12" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 34H34" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 34H20" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 26H34" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 26H20" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>${pubDate}</div>
                 <span class="point" style="color: rgba(24, 24, 24, 0.623);">·</span>
                 <div class="pub-author">${pubAuthor}</div>
-            </div>
-            <div class="article-title" id="article-title">
-                <h1>${articleTitle}</h1>
             </div>
             <div class="article-about">
             ${tagTemplate}
@@ -273,11 +273,11 @@ function errorTips(content) {
   if (flag == false) {
     setTimeout(() => {
       flag = true;
-      $(".error-tips").css("top", "40px");
+      $(".error-tips").css("top", "10vh").css("opacity", "1");
       document.querySelector(".tips-progress").style.animation =
         "tipsProgress 2s forwards";
       setTimeout(() => {
-        $(".error-tips").css("top", "-50px");
+        $(".error-tips").css("top", "-10vh").css("opacity", "0");
         document.querySelector(".tips-progress").removeAttribute("style");
         flag = false;
       }, 2000);
@@ -330,8 +330,10 @@ function searchContent(searchButton) {
   this.__this = searchButton;
   this.getUA = __this.dataset.ua;
   this.searchWay = __this.previousElementSibling;
+
   if (getUA === "pc") {
-    if (__this.parentElement.parentElement.children[0].dataset.search == "") {
+    // if (__this.parentElement.parentElement.children[0].dataset.search.trim() == "") {
+    if (document.querySelector("#search-input").value.trim() == "") {
       __this.setAttribute("type", "button");
       errorTips("搜索内容不能为空");
     } else {
@@ -398,64 +400,64 @@ function backTop() {
  * @description 切换页面的样式
  */
 function changePageStyle() {
-  const menu = document.querySelector(".change-page-menu");
-  const nightIcon = document.querySelector(".night-icon");
-  const lightIcon = document.querySelector(".light-icon");
+  // const menu = document.querySelector(".change-page-menu");
+  // const nightIcon = document.querySelector(".night-icon");
+  // const lightIcon = document.querySelector(".light-icon");
 
   let showFlag = false;
   let darkFlag = false;
 
-  menu.addEventListener("click", () => {
-    if (showFlag === false) {
-      nightIcon.classList.replace(
-        "changePageStyleNightDown",
-        "changePageStyleNightIn"
-      );
-      lightIcon.classList.replace(
-        "changePageStyleLightDown",
-        "changePageStyleLightIn"
-      );
+  // menu.addEventListener("click", () => {
+  //   if (showFlag === false) {
+  //     nightIcon.classList.replace(
+  //       "changePageStyleNightDown",
+  //       "changePageStyleNightIn"
+  //     );
+  //     lightIcon.classList.replace(
+  //       "changePageStyleLightDown",
+  //       "changePageStyleLightIn"
+  //     );
 
-      showFlag = true;
-    } else {
-      nightIcon.classList.replace(
-        "changePageStyleNightIn",
-        "changePageStyleNightDown"
-      );
-      lightIcon.classList.replace(
-        "changePageStyleLightIn",
-        "changePageStyleLightDown"
-      );
+  //     showFlag = true;
+  //   } else {
+  //     nightIcon.classList.replace(
+  //       "changePageStyleNightIn",
+  //       "changePageStyleNightDown"
+  //     );
+  //     lightIcon.classList.replace(
+  //       "changePageStyleLightIn",
+  //       "changePageStyleLightDown"
+  //     );
 
-      showFlag = false;
-    }
-  });
+  //     showFlag = false;
+  //   }
+  // });
 
-  nightIcon.addEventListener("click", () => {
-    if (showFlag === true) {
-      if (darkFlag === false) {
-        const createElement = document.createElement("style");
-        createElement.setAttribute("id", "pageStyleChange");
-        document.querySelector("head").append(createElement);
-        document.querySelector(".notice").style.filter="invert(100%)"
+  // nightIcon.addEventListener("click", () => {
+  //   if (showFlag === true) {
+  //     if (darkFlag === false) {
+  //       const createElement = document.createElement("style");
+  //       createElement.setAttribute("id", "pageStyleChange");
+  //       document.querySelector("head").append(createElement);
+  //       document.querySelector(".notice").style.filter="invert(100%)"
 
-        document.querySelector("#pageStyleChange").innerText = `
-      .article-content,.article-title,.pub-time,.pub-author,.point,.item-tag,.tag-title,.search-area-title,#search_button,.article,.header-nav,.show-next,.page-header::before {
-        filter: invert(100%);
-      }
-      `;
-        darkFlag = true;
-        console.log(darkFlag);
-      }
-    }
-  });
+  //       document.querySelector("#pageStyleChange").innerText = `
+  //     .article-content,.article-title,.pub-time,.pub-author,.point,.item-tag,.tag-title,.search-area-title,#search_button,.article,.header-nav,.show-next,.page-header::before {
+  //       filter: invert(100%);
+  //     }
+  //     `;
+  //       darkFlag = true;
+  //       console.log(darkFlag);
+  //     }
+  //   }
+  // });
 
-  lightIcon.addEventListener("click", () => {
-    if (showFlag === true) {
-      if (darkFlag === true) {
-        document.querySelector("#pageStyleChange").remove();
-        darkFlag = false;
-      } document.querySelector(".notice").removeAttribute("style");
-    }
-  });
+  // lightIcon.addEventListener("click", () => {
+  //   if (showFlag === true) {
+  //     if (darkFlag === true) {
+  //       document.querySelector("#pageStyleChange").remove();
+  //       darkFlag = false;
+  //     } document.querySelector(".notice").removeAttribute("style");
+  //   }
+  // });
 }

@@ -1,33 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="msvalidate.01" content="252A053688DD1F06E2C18CACCDB689D7" />
-    <meta name="keywords" content="blog">
-    <meta name="keywords" content="blogs">
-    <meta name="keywords" content="rockeven199">
-    <meta name="author" content="rockeven199">
-    <meta name="robots" content="index">
+    <meta name="keywords" content="blog" />
+    <meta name="keywords" content="blogs" />
+    <meta name="keywords" content="rockeven199" />
+    <meta name="author" content="rockeven199" />
+    <meta name="robots" content="index" />
     <meta name="description" content="Rockeven199的博客" />
     <title>Rockeven199的个人空间</title>
-    <link rel="stylesheet" href="./css/lib/animate.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <link href='http://fonts.font.im/css?family=Lato' rel='styesheet' type='text/css'>
-    <link href="./css/pageload.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/siteAnimate.css">
-    <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/lib/animate.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link
+      href="http://fonts.font.im/css?family=Lato"
+      rel="styesheet"
+      type="text/css"
+    />
+    <link href="./css/pageload.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/siteAnimate.css" />
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+    <script src="./js/lib/jquery-3.6.1.js"></script>
+    <script src="./js/lib/marked.min.js"></script>
+    <script src="./js/lib/typed.js"></script>
     <!-- <script src="./js/loading.js"></script> -->
     <script src="./js/lib/ejs.js"></script>
     <script src="./js/index.js"></script>
-    <script src="./js/getAsideTag.js"></script>
+    <script src="./js/getTag.js"></script>
     <script src="./js/getNotice.js"></script>
-</head>
+  </head>
 
-<body id="top" style="overflow-x: hidden;overflow-y: auto;">
+  <body id="top" style="overflow-x: hidden; overflow-y: auto">
     <!--加载动画 -->
     <!-- <div class="loading">
         <span class="loading-char" style="--delay:0.1s;" data-char="L">L</span>
@@ -42,118 +48,234 @@
         <span class="loading-char" style="--delay:1.0s;" data-char=".">.</span>
     </div> -->
     <!-- 加载完成 -->
-    <div class="change-page-menu" style="background-image: url('../../img/未定义菜单.svg');background-size: 100% 100%;background-color: transparent;">
-        <img src="./img/moon-b-月亮.png" alt="" class="toggle-icon night-icon changePageStyleNightDown">
-        <img src="./img/太阳.png" alt="" class="toggle-icon light-icon changePageStyleLightDown">
-    </div>
+    <!-- <div
+      class="change-page-menu"
+      style="
+        background-image: url('../../img/未定义菜单.svg');
+        background-size: 100% 100%;
+        background-color: transparent;
+      "
+    > 
+      <img
+        src="./img/moon-b-月亮.png"
+        alt=""
+        class="toggle-icon night-icon changePageStyleNightDown"
+      />
+      <img
+        src="./img/太阳.png"
+        alt=""
+        class="toggle-icon light-icon changePageStyleLightDown"
+      />
+    </div> -->
     <div class="show-area">
-        <div class="error-tips">
-            <p></p>
-            <div class="tips-progress"></div>
-        </div>
-        <div class="success-tips">
-            <p></p>
-            <div class="tips-progress">
-            </div>
-        </div>
+      <div class="error-tips">
+        <p></p>
+        <div class="tips-progress"></div>
+      </div>
+      <div class="success-tips">
+        <p></p>
+        <div class="tips-progress"></div>
+      </div>
     </div>
     <div class="prograss">
-        <div class="prograss-pic back-top" onclick="backTop()"></div>
+      <div class="prograss-pic back-top" onclick="backTop()"></div>
     </div>
     <div class="page-header">
-        <header class="header">
-            <svg t="1672580248520" class="nav-menu icon" viewBox="0 0 1024 1024" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" p-id="48554" width="200" height="200">
-                <path
-                    d="M193.422222 506.311111c85.333333 0 153.6-62.577778 167.822222-142.222222H995.555556v-56.888889H361.244444c-14.222222-79.644444-82.488889-142.222222-167.822222-142.222222-93.866667 0-170.666667 76.8-170.666666 170.666666s76.8 170.666667 170.666666 170.666667z m0-284.444444c62.577778 0 113.777778 51.2 113.777778 113.777777s-51.2 113.777778-113.777778 113.777778-113.777778-51.2-113.777778-113.777778 51.2-113.777778 113.777778-113.777777zM1001.244444 713.955556h-108.088888c-14.222222-79.644444-82.488889-142.222222-167.822223-142.222223-85.333333 0-153.6 62.577778-167.822222 142.222223H28.444444v56.888888h531.911112c14.222222 79.644444 82.488889 142.222222 167.822222 142.222223s153.6-62.577778 167.822222-142.222223h108.088889v-56.888888z m-275.911111 142.222222c-62.577778 0-113.777778-51.2-113.777777-113.777778s51.2-113.777778 113.777777-113.777778 113.777778 51.2 113.777778 113.777778-51.2 113.777778-113.777778 113.777778z"
-                    fill="" p-id="48555"></path>
-            </svg>
-            <nav class="header-nav">
-                <ul class="header-nav-group">
-                    <li class="nav-items"><a>主页</a></li>
-                    <li class="nav-items"><a>归档</a></li>
-                    <li class="nav-items"><a>标签</a></li>
-                    <li class="nav-items"><a>关于</a></li>
-                </ul>
-                <svg t="1674189047045" class="close-nav icon" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="2170" title="打开导航栏">
-                    <path
-                        d="M533.333333 516.266667l-174.933333-170.666667-64 59.733333 234.666667 234.666667L768 405.333333l-59.733333-59.733333-174.933334 170.666667z"
-                        fill="#000000" p-id="2171"></path>
-                </svg>
-            </nav>
-            <div class="blog-title">Rockeven199的博客</div>
-            <div style="width: 100%;display: flex;
-            justify-content: center;">
-                <svg t="1674189047045" class="show-next icon" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="2170">
-                    <path
-                        d="M533.333333 516.266667l-174.933333-170.666667-64 59.733333 234.666667 234.666667L768 405.333333l-59.733333-59.733333-174.933334 170.666667z"
-                        fill="#000000" p-id="2171"></path>
-                </svg>
-            </div>
-        </header>
+      <header class="header">
+        <svg
+          t="1672580248520"
+          class="nav-menu icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="48554"
+          width="200"
+          height="200"
+        >
+          <path
+            d="M193.422222 506.311111c85.333333 0 153.6-62.577778 167.822222-142.222222H995.555556v-56.888889H361.244444c-14.222222-79.644444-82.488889-142.222222-167.822222-142.222222-93.866667 0-170.666667 76.8-170.666666 170.666666s76.8 170.666667 170.666666 170.666667z m0-284.444444c62.577778 0 113.777778 51.2 113.777778 113.777777s-51.2 113.777778-113.777778 113.777778-113.777778-51.2-113.777778-113.777778 51.2-113.777778 113.777778-113.777777zM1001.244444 713.955556h-108.088888c-14.222222-79.644444-82.488889-142.222222-167.822223-142.222223-85.333333 0-153.6 62.577778-167.822222 142.222223H28.444444v56.888888h531.911112c14.222222 79.644444 82.488889 142.222222 167.822222 142.222223s153.6-62.577778 167.822222-142.222223h108.088889v-56.888888z m-275.911111 142.222222c-62.577778 0-113.777778-51.2-113.777777-113.777778s51.2-113.777778 113.777777-113.777778 113.777778 51.2 113.777778 113.777778-51.2 113.777778-113.777778 113.777778z"
+            fill=""
+            p-id="48555"
+          ></path>
+        </svg>
+        <nav class="header-nav">
+          <ul class="header-nav-group">
+            <li class="nav-items"><a>主页</a></li>
+            <li class="nav-items"><a>归档</a></li>
+            <li class="nav-items"><a>标签</a></li>
+            <li class="nav-items"><a>关于</a></li>
+          </ul>
+          <svg
+            t="1674189047045"
+            class="close-nav icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="2170"
+            title="打开导航栏"
+          >
+            <path
+              d="M533.333333 516.266667l-174.933333-170.666667-64 59.733333 234.666667 234.666667L768 405.333333l-59.733333-59.733333-174.933334 170.666667z"
+              fill="#000000"
+              p-id="2171"
+            ></path>
+          </svg>
+        </nav>
+        <div class="blog-title">Rockeven199的博客</div>
+        <div style="width: 100%; display: flex; justify-content: center">
+          <svg
+            t="1674189047045"
+            class="show-next icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="2170"
+          >
+            <path
+              d="M533.333333 516.266667l-174.933333-170.666667-64 59.733333 234.666667 234.666667L768 405.333333l-59.733333-59.733333-174.933334 170.666667z"
+              fill="#000000"
+              p-id="2171"
+            ></path>
+          </svg>
+        </div>
+      </header>
     </div>
     <div class="page-content">
-        <div class="article">
-            <article class="article-section">
-            </article>
-            <aside>
-                <div class="search-area">
-                    <div class="search-group">
-                        <div class="search-area-title">搜索</div>
-                        <form method="get" name="search" action="./search.html" id="search_form">
-                            <input type="input" name="search_content" id="search-input" value="" placeholder="请输入搜索内容"
-                                onchange="inputChange(this)" data-search="" autocomplete="false" />
-                            <div class="search-area-button">
-                                <select name="search_option" id="search_option" title="选择搜索范围">
-                                    <option value="content" name="search_option">文章</option>
-                                    <option value="author" name="search_option">作者</option>
-                                    <option value="title" name="search_option">标题</option>
-                                    <option value="date" name="search_option">日期</option>
-                                </select>
-                                <button type="submit" id="search_button" data-ua="pc"
-                                    onclick="searchContent(this)">搜索</button>
-                            </div>
-                        </form>
-                    </div>
+      <div class="article">
+        <article class="article-section"></article>
+        <aside>
+          <div class="search-area">
+            <div class="search-group">
+              <div class="search-area-title" style="display: flex;align-items: center;">
+                <svg style="margin-right: 5px;"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M26.657 14.3431C25.2093 12.8954 23.2093 12 21.0001 12C18.791 12 16.791 12.8954 15.3433 14.3431"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M33.2216 33.2217L41.7069 41.707"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg>搜索
+              </div>
+              <form
+                method="get"
+                name="search"
+                action="./search.html"
+                id="search_form"
+              >
+                <input
+                  type="input"
+                  name="search_content"
+                  id="search-input"
+                  value=""
+                  placeholder="请输入搜索内容"
+                  onchange="inputChange(this)"
+                  data-search=""
+                  autocomplete="false"
+                />
+                <div style="width: max-content">
+                  <div class="search-area-button">
+                    <select
+                      name="search_option"
+                      id="search_option"
+                      title="选择搜索范围"
+                    >
+                      <option value="content" name="search_option">文章</option>
+                      <option value="author" name="search_option">作者</option>
+                      <option value="title" name="search_option">标题</option>
+                      <option value="date" name="search_option">日期</option>
+                    </select>
+                    <button
+                      type="submit"
+                      id="search_button"
+                      data-ua="pc"
+                      onclick="searchContent(this)"
+                    >
+                      搜索
+                    </button>
+                  </div>
                 </div>
-                <div class="aside">
-                    <div class="tag">
-                        <div class="tag-title">标签</div>
-                        <ul class="article-tag">
-                        </ul>
-                    </div>
-                    <div class="notice">
-                        <div class="notice-title">公告栏</div>
-                        <!-- 公告板区域 -->
-                    </div>
-                </div>
-            </aside>
-        </div>
+              </form>
+            </div>
+          </div>
+          <div class="aside">
+            <div class="tag">
+              <div class="tag-title"><svg style="margin-right: 5px;" width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M42.1691 29.2451L29.2631 42.1511C28.5879 42.8271 27.6716 43.2069 26.7161 43.2069C25.7606 43.2069 24.8444 42.8271 24.1691 42.1511L8 26V8H26L42.1691 24.1691C43.5649 25.5732 43.5649 27.841 42.1691 29.2451Z" fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round"/><path fill-rule="evenodd" clip-rule="evenodd" d="M18.5 21C19.8807 21 21 19.8807 21 18.5C21 17.1193 19.8807 16 18.5 16C17.1193 16 16 17.1193 16 18.5C16 19.8807 17.1193 21 18.5 21Z" fill="#333"/></svg>标签</div>
+              <ul class="article-tag"></ul>
+            </div>
+            <div class="notice">
+              <div class="notice-title"><svg width="20" height="20" style="margin-right: 5px;" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="15" width="40" height="26" rx="2" fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round"/><path d="M24 7L16 15H32L24 7Z" fill="none" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 24H30" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 32H20" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>公告栏</div>
+              <!-- 公告板区域 -->
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
     <div class="page-footer">
-        <footer class="footer">
-            <p style="letter-spacing:.125rem;font-size: 12px;">CopyRight@<span
-                    style="font-size: 12px;font-family: 'Lato', sans-serif;">rockeven199</span></p>
-            <!-- <p>CopyRight&copy;2019-2022</p> -->
-        </footer>
+      <footer class="footer">
+        <p style="letter-spacing: 0.125rem; font-size: 12px">
+          CopyRight@<span
+            style="font-size: 12px; font-family: 'Lato', sans-serif"
+            >rockeven199</span
+          >
+        </p>
+        <!-- <p>CopyRight&copy;2019-2022</p> -->
+      </footer>
     </div>
     <div class="phone-back-top">返回顶部</div>
-    <a href="https://github.com/rockeven199/rockeven199.github.io" class="github-corner"
-        aria-label="View source on GitHub">
-        <svg viewBox="0 0 250 250" id="github-pic"
-            style="fill:#8e40d2; color:#fff; position: absolute;width:100px;height:100px; top: -0.625rem; border: 0; left: -0.625rem; transform: scale(-0.8,0.8);"
-            aria-hidden="true">
-            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-            <path
-                d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-                fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-            <path
-                d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-                fill="currentColor" class="octo-body"></path>
-        </svg>
+    <a
+      href="https://github.com/rockeven199/rockeven199.github.io"
+      class="github-corner"
+      aria-label="View source on GitHub"
+    >
+      <svg
+        viewBox="0 0 250 250"
+        id="github-pic"
+        style="
+          fill: #8e40d2;
+          color: #fff;
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          top: -0.625rem;
+          border: 0;
+          left: -0.625rem;
+          transform: scale(-0.8, 0.8);
+        "
+        aria-hidden="true"
+      >
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+          d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+          fill="currentColor"
+          style="transform-origin: 130px 106px"
+          class="octo-arm"
+        ></path>
+        <path
+          d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+          fill="currentColor"
+          class="octo-body"
+        ></path>
+      </svg>
     </a>
-</body>
-
+  </body>
 </html>

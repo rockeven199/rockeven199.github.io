@@ -1,10 +1,22 @@
-{
-    "1": "HTML",
-    "2": "CSS",
-    "3": "JavaScript",
-    "4": "php",
-    "5": "C",
-    "6": "Java",
-    "7": "Vue",
-    "8": "React"
-}
+[
+    {
+        "name": "JavaScript",
+        "color": "#e56000",
+        "searchArgs": "--JavaScript"
+    },
+    {
+        "name": "HTML",
+        "color": "#6665a9",
+        "searchArgs": "--HTML"
+    },
+    {
+        "name": "Java",
+        "color": "#566589",
+        "searchArgs": "--Java"
+    },
+    {
+        "name": "SQL",
+        "color": "#1e6589",
+        "searchArgs": "--SQL"
+    }
+]
